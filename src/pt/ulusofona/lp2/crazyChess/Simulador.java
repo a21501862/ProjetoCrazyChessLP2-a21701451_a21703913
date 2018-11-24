@@ -1,0 +1,100 @@
+package pt.ulusofona.lp2.crazyChess;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Simulador {
+    int tamanhoTabuleiro;
+    int numeroPecas;
+    List<CrazyPiece> pecas = new ArrayList<>();
+    List<String> autores = new ArrayList<>();
+    File ficheiro;
+    int idEquipaAtual;
+
+    public Simulador(){
+
+    }
+
+    public boolean iniciaJogo(File ficheiroInical){
+        ficheiro = ficheiroInical;
+        try {
+            Scanner leitorFicheiro = new Scanner(ficheiro);
+            int numLinha = 0;
+            int linhaTabuleiro = 0;
+            while(leitorFicheiro.hasNextLine()) {
+                String linha = leitorFicheiro.nextLine();
+                String dados[] = linha.split(":");
+                numLinha ++;
+                if (numLinha == 1){
+                    int tamanho = Integer.parseInt(dados[0]);
+                    if (tamanho < 4 || tamanho >12){
+                        return false;
+                    }else{
+                        tamanhoTabuleiro = tamanho;
+                    }
+                }else if (numLinha == 2){
+                    int numpecas = Integer.parseInt(dados[0]);
+                    if (numpecas >= tamanhoTabuleiro*tamanhoTabuleiro){
+                        return false;
+                    }else{
+                        numeroPecas = numpecas;
+                    }
+                }else if (numLinha >= 3 && numLinha <= numeroPecas + 2){
+                    int idPeca = Integer.parseInt(dados[0]);
+                    int tipoPeca = Integer.parseInt(dados[1]);
+                    int idEquipa = Integer.parseInt(dados[2]);
+                    String alcunha = dados[3];
+                    CrazyPiece peca = new CrazyPiece(idPeca,tipoPeca,idEquipa,alcunha);
+                    pecas.add(peca);
+                }else if (numLinha >= numeroPecas + 3 && numLinha<= numeroPecas + 2 + tamanhoTabuleiro){
+                    for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
+                        int id = Integer.parseInt(dados[colunaTabuleiro]);
+                        for (CrazyPiece peca : pecas){
+                            if (peca.getId() == id){
+                               peca.definirCoordenadas(colunaTabuleiro,linhaTabuleiro);
+                            }
+                        }
+                    }
+                    linhaTabuleiro ++;
+                }
+            }
+            leitorFicheiro.close();
+            return true;
+        }
+        catch(FileNotFoundException exception) {
+            System.out.println("Erro: o ficheiro não foi encontrado.");
+            return false;
+        }
+    }
+
+    public int getTamanhoTabuleiro(){
+        return tamanhoTabuleiro;
+    }
+
+    public List<CrazyPiece> getPecasMalucas(){
+        return pecas;
+    }
+
+    public List<String> getAutores(){
+        String nomeFicheiro = "AUTHORS.txt";
+        try {
+            File ficheiro = new File(nomeFicheiro);
+            Scanner leitorFicheiro = new Scanner(ficheiro);
+            while(leitorFicheiro.hasNextLine()) {
+                String linha = leitorFicheiro.nextLine();
+                String dados[] = linha.split(";");
+                String autor = dados[0];
+                autores.add(autor);
+            }
+            leitorFicheiro.close();
+        }
+        catch(FileNotFoundException exception) {
+            String mensagem = "Erro: o ficheiro " + nomeFicheiro + " nao foi encontrado.";
+            System.out.println(mensagem);
+        }
+        return autores;
+    }
+}

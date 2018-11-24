@@ -53,7 +53,7 @@ public class Simulador {
                     for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
                         int id = Integer.parseInt(dados[colunaTabuleiro]);
                         for (CrazyPiece peca : pecas){
-                            if (peca.getId() == id){
+                            if (peca.idPeca == id){
                                peca.definirCoordenadas(colunaTabuleiro,linhaTabuleiro);
                             }
                         }

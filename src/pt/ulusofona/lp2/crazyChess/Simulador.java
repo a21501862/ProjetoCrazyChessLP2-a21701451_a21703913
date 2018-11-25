@@ -38,6 +38,16 @@ public class Simulador {
         this.terminou = false;
     }
 
+    public void setNumeroReis(){
+        for(CrazyPiece peca: pecas ){
+            if(peca.getIdEquipa() == 0){
+                reisPretos++;
+            }else{
+                reisBrancos++;
+            }
+        }
+    }
+
     public boolean iniciaJogo(File ficheiroInical){
         ficheiro = ficheiroInical;
         try {
@@ -82,9 +92,8 @@ public class Simulador {
                 }
             }
             leitorFicheiro.close();
-            reisPretos = numeroPecas/2;
-            reisBrancos = numeroPecas/2;
-            if (numeroPecas == 2){
+            setNumeroReis();
+            if (numeroPecas == 2 || reisPretos==0 || reisBrancos==0){
                 terminou=true;
             }
             return true;

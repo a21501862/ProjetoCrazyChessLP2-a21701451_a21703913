@@ -84,6 +84,9 @@ public class Simulador {
             leitorFicheiro.close();
             reisPretos = numeroPecas/2;
             reisBrancos = numeroPecas/2;
+            if (numeroPecas == 2){
+                terminou=true;
+            }
             return true;
         }
         catch(FileNotFoundException exception) {
@@ -97,37 +100,57 @@ public class Simulador {
     }
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
-        int count = 0;
-        if (numeroPecas <=2){
-            return true;
-        }
-        CrazyPiece pecaParaRemover = null;
-        if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
-                || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
-            if (idEquipaAtual == 0){
-                jogadasInvalidasPretas ++;
-            }else{
-                jogadasInvalidasBrancas ++;
+        while(!terminou){
+            int count = 0;
+            CrazyPiece pecaParaRemover = null;
+            if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
+                    || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
+                if (idEquipaAtual == 0){
+                    jogadasInvalidasPretas ++;
+                }else{
+                    jogadasInvalidasBrancas ++;
+                }
+                return false;
             }
-            return false;
-        }
-        for (CrazyPiece peca: pecas){
-            if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO){
-                for (CrazyPiece peca2 : pecas){
-                    if (peca2.getIdEquipa() != idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
-                        pecaParaRemover = peca2;
-                        peca2.capturar();
-                        primeiraCapturaEfetuada = true;
-                        turnosSemCapturas = -1;
-                        if (idEquipaAtual == 0) {
-                            reisBrancos--;
-                            capturasPretas++;
-                        } else {
-                            reisPretos--;
-                            capturasBrancas++;
+            for (CrazyPiece peca: pecas){
+                if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO){
+                    for (CrazyPiece peca2 : pecas){
+                        if (peca2.getIdEquipa() != idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
+                            pecaParaRemover = peca2;
+                            peca2.capturar();
+                            primeiraCapturaEfetuada = true;
+                            turnosSemCapturas = -1;
+                            if (idEquipaAtual == 0) {
+                                reisBrancos--;
+                                capturasPretas++;
+                            } else {
+                                reisPretos--;
+                                capturasBrancas++;
+                            }
+                        }
+                        if (peca2.getIdEquipa() == idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
+                            if (idEquipaAtual == 0) {
+                                jogadasInvalidasPretas++;
+                            } else {
+                                jogadasInvalidasBrancas++;
+                            }
+                            return false;
                         }
                     }
-                    if (peca2.getIdEquipa() == idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
+                    peca.definirCoordenadas(xD,Yd);
+                    pecas.remove(pecaParaRemover);
+                    turnosSemCapturas ++;
+                    if (idEquipaAtual == 0){
+                        jogadasValidasPretas++;
+                        idEquipaAtual = 1;
+                    }else{
+                        jogadasValidasBrancas++;
+                        idEquipaAtual = 0;
+                    }
+                    return true;
+                }else{
+                    count ++;
+                    if (count == pecas.size()) {
                         if (idEquipaAtual == 0) {
                             jogadasInvalidasPretas++;
                         } else {
@@ -135,27 +158,6 @@ public class Simulador {
                         }
                         return false;
                     }
-                }
-                peca.definirCoordenadas(xD,Yd);
-                pecas.remove(pecaParaRemover);
-                turnosSemCapturas ++;
-                if (idEquipaAtual == 0){
-                    jogadasValidasPretas++;
-                    idEquipaAtual = 1;
-                }else{
-                    jogadasValidasBrancas++;
-                    idEquipaAtual = 0;
-                }
-                return true;
-            }else{
-                count ++;
-                if (count == pecas.size()) {
-                    if (idEquipaAtual == 0) {
-                        jogadasInvalidasPretas++;
-                    } else {
-                        jogadasInvalidasBrancas++;
-                    }
-                    return false;
                 }
             }
         }

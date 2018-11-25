@@ -79,7 +79,8 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
         int count = 0;
-        if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0 || Yd >tamanhoTabuleiro){
+        if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
+                || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
             if (idEquipaAtual == 0){
                 jogadasInvalidasPretas ++;
             }else{

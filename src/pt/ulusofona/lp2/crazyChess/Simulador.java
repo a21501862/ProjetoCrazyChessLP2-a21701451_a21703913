@@ -11,6 +11,7 @@ public class Simulador {
     int numeroPecas;
     List<CrazyPiece> pecas = new ArrayList<>();
     List<String> autores = new ArrayList<>();
+    List<String> resultados = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
 
@@ -74,8 +75,16 @@ public class Simulador {
         return tamanhoTabuleiro;
     }
 
+    public boolean processaJogada(int xO, int yO, int xD, int Yd){
+        return true;
+    }
+
     public List<CrazyPiece> getPecasMalucas(){
         return pecas;
+    }
+
+    public boolean jogoTerminado(){
+        return true;
     }
 
     public List<String> getAutores(){
@@ -86,7 +95,7 @@ public class Simulador {
             while(leitorFicheiro.hasNextLine()) {
                 String linha = leitorFicheiro.nextLine();
                 String dados[] = linha.split(";");
-                String autor = dados[0];
+                String autor = dados[1];
                 autores.add(autor);
             }
             leitorFicheiro.close();
@@ -96,6 +105,10 @@ public class Simulador {
             System.out.println(mensagem);
         }
         return autores;
+    }
+
+    public List<String> getResultados(){
+        return resultados;
     }
 
     public int getIDPeca(int x, int y){

@@ -34,7 +34,7 @@ public class Simulador {
         this.jogadasValidasBrancas = 0;
         this.capturasBrancas = 0;
         this.capturasPretas = 0;
-        this.primeiraCapturaEfetuada = true;
+        this.primeiraCapturaEfetuada = false;
         this.terminou = false;
     }
 
@@ -139,7 +139,9 @@ public class Simulador {
                     }
                     peca.definirCoordenadas(xD,Yd);
                     pecas.remove(pecaParaRemover);
-                    turnosSemCapturas ++;
+                    if (primeiraCapturaEfetuada){
+                        turnosSemCapturas ++;
+                    }
                     if (idEquipaAtual == 0){
                         jogadasValidasPretas++;
                         idEquipaAtual = 1;

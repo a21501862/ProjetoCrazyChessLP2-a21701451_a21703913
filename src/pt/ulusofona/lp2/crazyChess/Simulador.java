@@ -53,7 +53,7 @@ public class Simulador {
                     for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
                         int id = Integer.parseInt(dados[colunaTabuleiro]);
                         for (CrazyPiece peca : pecas){
-                            if (peca.idPeca == id){
+                            if (peca.getId() == id){
                                peca.definirCoordenadas(colunaTabuleiro,linhaTabuleiro);
                             }
                         }
@@ -96,5 +96,18 @@ public class Simulador {
             System.out.println(mensagem);
         }
         return autores;
+    }
+
+    public int getIDPeca(int x, int y){
+        for (CrazyPiece peca: pecas){
+            if (peca.getX() == x && peca.getY() == y){
+                return peca.getId();
+            }
+        }
+        return 0;
+    }
+
+    public int getIDEquipaAJogar(){
+        return idEquipaAtual;
     }
 }

@@ -5,7 +5,6 @@ public class CrazyPiece {
     int tipo;
     int idEquipa;
     String alcunha;
-    String imagem;
     int x;
     int y;
     boolean capturada;
@@ -23,7 +22,11 @@ public class CrazyPiece {
     }
 
     public String getImagePNG(){
-        return null;
+        if (idEquipa == 0){
+            return "crazy_emoji_black.png";
+        }else{
+            return "crazy_emoji_white.png";
+        }
     }
 
     public String toString(){
@@ -32,6 +35,14 @@ public class CrazyPiece {
         }else{
             return idPeca + " | " + tipo + " | " + idEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
     }
 
     public void definirCoordenadas (int x, int y){

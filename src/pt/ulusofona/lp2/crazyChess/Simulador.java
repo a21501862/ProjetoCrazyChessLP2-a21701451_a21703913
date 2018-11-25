@@ -14,11 +14,19 @@ public class Simulador {
     List<String> resultados = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
-    int jogadasInvalidasPretas = 0;
-    int jogadasInvalidasBrancas = 0;
+    int jogadasInvalidasPretas;
+    int jogadasInvalidasBrancas;
+    int jogadasValidasPretas;
+    int jogadasValidasBrancas;
+    boolean terminou;
 
     public Simulador(){
-
+        this.idEquipaAtual = 0;
+        this.jogadasInvalidasPretas = 0;
+        this.jogadasInvalidasBrancas = 0;
+        this.jogadasValidasPretas = 0;
+        this.jogadasValidasBrancas = 0;
+        this.terminou = false;
     }
 
     public boolean iniciaJogo(File ficheiroInical){
@@ -87,12 +95,21 @@ public class Simulador {
             }else{
                 jogadasInvalidasBrancas ++;
             }
+            return false;
         }
         for (CrazyPiece peca: pecas){
             if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO){
                 for (CrazyPiece peca2 : pecas){
                     if (peca2.getIdEquipa() != idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
                         pecaParaRemover = peca2;
+                    }
+                    if (peca2.getIdEquipa() == idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
+                        if (idEquipaAtual == 0) {
+                            jogadasInvalidasPretas++;
+                        } else {
+                            jogadasInvalidasBrancas++;
+                        }
+                        return false;
                     }
                 }
                 peca.definirCoordenadas(xD,Yd);
@@ -125,7 +142,11 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        return true;
+        if (terminou){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public List<String> getAutores(){

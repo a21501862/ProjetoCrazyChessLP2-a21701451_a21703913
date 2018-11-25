@@ -20,6 +20,8 @@ public class Simulador {
     int jogadasValidasBrancas;
     int reisPretos;
     int reisBrancos;
+    int capturasPretas;
+    int capturasBrancas;
     int turnosSemCapturas;
     boolean primeiraCapturaEfetuada;
     boolean terminou;
@@ -187,6 +189,23 @@ public class Simulador {
     }
 
     public List<String> getResultados(){
+        resultados.add("JOGO DE CRAZY CHESS");
+        if(reisBrancos == 0){
+            resultados.add("Resultado: VENCERAM AS PRETAS");
+        }else if(reisPretos == 0){
+            resultados.add("Resultado: VENCERAM AS BRANCAS");
+        }else{
+            resultados.add("Resultado: EMPATE");
+        }
+        resultados.add("---");
+        resultados.add("Equipa das Pretas");
+        resultados.add(String.valueOf(capturasPretas));
+        resultados.add(String.valueOf(jogadasValidasPretas));
+        resultados.add(String.valueOf(jogadasInvalidasPretas));
+        resultados.add("Equipa das Brancas");
+        resultados.add(String.valueOf(capturasBrancas));
+        resultados.add(String.valueOf(jogadasValidasBrancas));
+        resultados.add(String.valueOf(jogadasInvalidasBrancas));
         return resultados;
     }
 

@@ -98,6 +98,9 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
         int count = 0;
+        if (numeroPecas <=2){
+            return true;
+        }
         CrazyPiece pecaParaRemover = null;
         if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
                 || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
@@ -164,7 +167,7 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if ((reisPretos == 0 || reisBrancos == 0) || (reisPretos == 1 && reisBrancos == 1) || turnosSemCapturas == 10){
+        if ((reisPretos == 0 || reisBrancos == 0) || (reisPretos == 1 && reisBrancos == 1) || turnosSemCapturas == 10 || numeroPecas<=2){
             terminou = true;
             return true;
         }else{

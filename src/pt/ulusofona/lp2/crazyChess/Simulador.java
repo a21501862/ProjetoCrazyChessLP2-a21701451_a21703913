@@ -86,6 +86,7 @@ public class Simulador {
     }
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
+        int count = 0;
         if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0 || Yd >tamanhoTabuleiro){
             if (idEquipaAtual == 0){
                 jogadasInvalidasPretas ++;
@@ -93,6 +94,29 @@ public class Simulador {
                 jogadasInvalidasBrancas ++;
             }
             return false;
+        }
+        for (CrazyPiece peca: pecas){
+            if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO){
+                peca.definirCoordenadas(xD,Yd);
+                if (idEquipaAtual == 0){
+                    jogadasValidasPretas++;
+                    idEquipaAtual = 1;
+                }else{
+                    jogadasValidasBrancas++;
+                    idEquipaAtual = 0;
+                }
+                return true;
+            }else{
+                count ++;
+                if (count == pecas.size()) {
+                    if (idEquipaAtual == 0) {
+                        jogadasInvalidasPretas++;
+                    } else {
+                        jogadasInvalidasBrancas++;
+                    }
+                    return false;
+                }
+            }
         }
         return true;
     }

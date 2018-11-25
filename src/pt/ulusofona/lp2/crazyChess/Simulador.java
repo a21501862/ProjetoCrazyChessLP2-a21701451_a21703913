@@ -95,6 +95,7 @@ public class Simulador {
             setNumeroReis();
             if (numeroPecas == 2 || reisPretos==0 || reisBrancos==0){
                 terminou=true;
+                getResultados();
             }
             return true;
         }

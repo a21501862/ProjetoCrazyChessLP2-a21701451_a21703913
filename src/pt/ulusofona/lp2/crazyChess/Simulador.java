@@ -79,6 +79,7 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
         int count = 0;
+        CrazyPiece pecaParaRemover = null;
         if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
                 || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
             if (idEquipaAtual == 0){
@@ -89,7 +90,13 @@ public class Simulador {
         }
         for (CrazyPiece peca: pecas){
             if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO){
+                for (CrazyPiece peca2 : pecas){
+                    if (peca2.getIdEquipa() != idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
+                        pecaParaRemover = peca2;
+                    }
+                }
                 peca.definirCoordenadas(xD,Yd);
+                pecas.remove(pecaParaRemover);
                 if (idEquipaAtual == 0){
                     jogadasValidasPretas++;
                     idEquipaAtual = 1;

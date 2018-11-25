@@ -161,6 +161,9 @@ public class Simulador {
                 }
             }
         }
+        if (terminou){
+            resultados.clear();
+        }
         return true;
     }
 

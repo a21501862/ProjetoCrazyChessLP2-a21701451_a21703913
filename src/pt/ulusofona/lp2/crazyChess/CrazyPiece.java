@@ -53,4 +53,8 @@ public class CrazyPiece {
     public int getIdEquipa() {
         return idEquipa;
     }
+
+    public void capturar(){
+        capturada = true;
+    }
 }

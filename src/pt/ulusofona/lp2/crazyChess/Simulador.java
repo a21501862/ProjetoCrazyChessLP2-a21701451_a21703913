@@ -18,6 +18,10 @@ public class Simulador {
     int jogadasInvalidasBrancas;
     int jogadasValidasPretas;
     int jogadasValidasBrancas;
+    int reisPretos;
+    int reisBrancos;
+    int turnosSemCapturas;
+    boolean primeiraCapturaEfetuada;
     boolean terminou;
 
     public Simulador(){
@@ -26,6 +30,7 @@ public class Simulador {
         this.jogadasInvalidasBrancas = 0;
         this.jogadasValidasPretas = 0;
         this.jogadasValidasBrancas = 0;
+        this.primeiraCapturaEfetuada = true;
         this.terminou = false;
     }
 
@@ -73,6 +78,8 @@ public class Simulador {
                 }
             }
             leitorFicheiro.close();
+            reisPretos = numeroPecas/2;
+            reisBrancos = numeroPecas/2;
             return true;
         }
         catch(FileNotFoundException exception) {
@@ -102,6 +109,14 @@ public class Simulador {
                 for (CrazyPiece peca2 : pecas){
                     if (peca2.getIdEquipa() != idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
                         pecaParaRemover = peca2;
+                        peca2.capturar();
+                        primeiraCapturaEfetuada = true;
+                        turnosSemCapturas = -1;
+                        if (idEquipaAtual == 0) {
+                            reisBrancos--;
+                        } else {
+                            reisPretos--;
+                        }
                     }
                     if (peca2.getIdEquipa() == idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
                         if (idEquipaAtual == 0) {
@@ -114,6 +129,7 @@ public class Simulador {
                 }
                 peca.definirCoordenadas(xD,Yd);
                 pecas.remove(pecaParaRemover);
+                turnosSemCapturas ++;
                 if (idEquipaAtual == 0){
                     jogadasValidasPretas++;
                     idEquipaAtual = 1;
@@ -142,7 +158,8 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if (terminou){
+        if ((reisPretos == 0 || reisBrancos == 0) || (reisPretos == 1 && reisBrancos == 1) || turnosSemCapturas == 10){
+            terminou = true;
             return true;
         }else{
             return false;

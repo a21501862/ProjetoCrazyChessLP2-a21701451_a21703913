@@ -32,6 +32,8 @@ public class Simulador {
         this.jogadasInvalidasBrancas = 0;
         this.jogadasValidasPretas = 0;
         this.jogadasValidasBrancas = 0;
+        this.capturasBrancas = 0;
+        this.capturasPretas = 0;
         this.primeiraCapturaEfetuada = true;
         this.terminou = false;
     }
@@ -116,8 +118,10 @@ public class Simulador {
                         turnosSemCapturas = -1;
                         if (idEquipaAtual == 0) {
                             reisBrancos--;
+                            capturasPretas++;
                         } else {
                             reisPretos--;
+                            capturasBrancas++;
                         }
                     }
                     if (peca2.getIdEquipa() == idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){

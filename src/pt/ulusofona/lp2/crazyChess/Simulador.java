@@ -14,9 +14,19 @@ public class Simulador {
     List<String> resultados = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
+    int jogadasInvalidasPretas;
+    int jogadasInvalidasBrancas;
+    int jogadasValidasPretas;
+    int jogadasValidasBrancas;
+    boolean terminou;
 
     public Simulador(){
-
+        this.idEquipaAtual = 0;
+        this.jogadasInvalidasPretas = 0;
+        this.jogadasInvalidasBrancas = 0;
+        this.jogadasValidasPretas = 0;
+        this.jogadasValidasBrancas = 0;
+        this.terminou = false;
     }
 
     public boolean iniciaJogo(File ficheiroInical){
@@ -76,6 +86,14 @@ public class Simulador {
     }
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
+        if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0 || Yd >tamanhoTabuleiro){
+            if (idEquipaAtual == 0){
+                jogadasInvalidasPretas ++;
+            }else{
+                jogadasInvalidasBrancas ++;
+            }
+            return false;
+        }
         return true;
     }
 
@@ -84,7 +102,11 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        return true;
+        if (terminou){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public List<String> getAutores(){

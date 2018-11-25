@@ -49,4 +49,8 @@ public class CrazyPiece {
         this.x = x;
         this.y = y;
     }
+
+    public int getIdEquipa() {
+        return idEquipa;
+    }
 }

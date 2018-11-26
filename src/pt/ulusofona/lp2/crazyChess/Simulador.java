@@ -23,7 +23,6 @@ public class Simulador {
     int capturasPretas;
     int capturasBrancas;
     int turnosSemCapturas;
-    boolean empateFicheiro;
     boolean primeiraCapturaEfetuada;
     boolean terminou;
 
@@ -35,7 +34,6 @@ public class Simulador {
         this.jogadasValidasBrancas = 0;
         this.capturasBrancas = 0;
         this.capturasPretas = 0;
-        this.empateFicheiro = false;
         this.primeiraCapturaEfetuada = false;
         this.terminou = false;
     }
@@ -95,9 +93,8 @@ public class Simulador {
             }
             leitorFicheiro.close();
             setNumeroReis();
-            if (numeroPecas == 2){
+            if (numeroPecas == 2 || reisPretos==0 || reisBrancos==0){
                 terminou=true;
-                empateFicheiro=true;
             }
             return true;
         }
@@ -216,9 +213,6 @@ public class Simulador {
     }
 
     public List<String> getResultados(){
-        if(empateFicheiro){
-            return resultados;
-        }
         resultados.add("JOGO DE CRAZY CHESS");
         if(reisBrancos == 0){
             resultados.add("Resultado: VENCERAM AS PRETAS");

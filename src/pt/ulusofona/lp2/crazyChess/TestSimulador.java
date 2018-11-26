@@ -13,7 +13,7 @@ public class TestSimulador {
         Simulador simulador = new Simulador();
         File ficheiro = new File("jogo.txt");
         simulador.iniciaJogo(ficheiro);
-        boolean jogadaEsperada = true;
+        boolean jogadaEsperada = false;
         boolean jogadaObtida  = simulador.processaJogada(1,0,1,1);
         assertEquals(jogadaEsperada,jogadaObtida);
     }

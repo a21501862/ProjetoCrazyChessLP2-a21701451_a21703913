@@ -237,7 +237,7 @@ public class Simulador {
 
     public int getIDPeca(int x, int y){
         for (CrazyPiece peca: pecas){
-            if (peca.getX() == x && peca.getY() == y){
+            if (peca.getX() == x &&  peca.getY() == y){
                 return peca.getId();
             }
         }

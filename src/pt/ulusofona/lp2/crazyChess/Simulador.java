@@ -117,7 +117,7 @@ public class Simulador {
             int count = 0;
             CrazyPiece pecaParaRemover = null;
             if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
-                    || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
+                    || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1 || xO == xD || yO == Yd){
                 if (idEquipaAtual == 0){
                     jogadasInvalidasPretas ++;
                 }else{

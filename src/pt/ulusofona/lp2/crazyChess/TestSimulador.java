@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 
 public class TestSimulador {
     @Test
@@ -13,7 +13,8 @@ public class TestSimulador {
         Simulador simulador = new Simulador();
         File ficheiro = new File("jogo.txt");
         simulador.iniciaJogo(ficheiro);
-        boolean jogada  = simulador.processaJogada(1,0,1,1);
-        assertTrue(jogada);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,0,1,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
     }
 }

@@ -10,7 +10,6 @@ public class Simulador {
     int tamanhoTabuleiro;
     int numeroPecas;
     List<CrazyPiece> pecas = new ArrayList<>();
-    List<String> autores = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
     int jogadasInvalidasPretas;
@@ -92,7 +91,7 @@ public class Simulador {
             }
             leitorFicheiro.close();
             setNumeroReis();
-            if (numeroPecas == 2){
+            if (numeroPecas == 2 || reisBrancos == 0 || reisPretos == 0){
                 terminou=true;
             }
             return true;
@@ -191,6 +190,7 @@ public class Simulador {
     }
 
     public List<String> getAutores(){
+        List<String> autores = new ArrayList<>();
         String nomeFicheiro = "AUTHORS.txt";
         try {
             File ficheiro = new File(nomeFicheiro);

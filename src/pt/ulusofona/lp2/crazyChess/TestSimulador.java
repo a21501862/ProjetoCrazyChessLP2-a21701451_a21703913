@@ -14,7 +14,7 @@ public class TestSimulador {
         File ficheiro = new File("jogo.txt");
         simulador.iniciaJogo(ficheiro);
         boolean jogadaEsperada = false;
-        boolean jogadaObtida  = simulador.processaJogada(1,0,1,1);
+        boolean jogadaObtida  = simulador.processaJogada(1,0,5,1);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
 }

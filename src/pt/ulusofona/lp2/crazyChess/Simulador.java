@@ -11,7 +11,6 @@ public class Simulador {
     int numeroPecas;
     List<CrazyPiece> pecas = new ArrayList<>();
     List<String> autores = new ArrayList<>();
-    List<String> resultados = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
     int jogadasInvalidasPretas;
@@ -93,7 +92,7 @@ public class Simulador {
             }
             leitorFicheiro.close();
             setNumeroReis();
-            if (numeroPecas == 2 || reisPretos==0 || reisBrancos==0){
+            if (numeroPecas == 2){
                 terminou=true;
             }
             return true;
@@ -110,7 +109,6 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int Yd){
         if (terminou){
-            resultados.clear();
             return true;
         }
         while(!terminou){
@@ -213,6 +211,7 @@ public class Simulador {
     }
 
     public List<String> getResultados(){
+        List<String> resultados = new ArrayList<>();
         resultados.add("JOGO DE CRAZY CHESS");
         if(reisBrancos == 0){
             resultados.add("Resultado: VENCERAM AS PRETAS");

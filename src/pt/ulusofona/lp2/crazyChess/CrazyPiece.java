@@ -4,9 +4,9 @@ public class CrazyPiece {
     int idPeca;
     int tipo;
     int idEquipa;
-    String alcunha;
     int x;
     int y;
+    String alcunha;
     boolean capturada;
 
     CrazyPiece (int idPeca, int tipo, int idEquipa, String alcunha){

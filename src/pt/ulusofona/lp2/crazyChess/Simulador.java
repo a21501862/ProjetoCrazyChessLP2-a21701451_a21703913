@@ -9,9 +9,6 @@ import java.util.Scanner;
 public class Simulador {
     int tamanhoTabuleiro;
     int numeroPecas;
-    List<CrazyPiece> pecas = new ArrayList<>();
-    List<CrazyPiece> pecasJogo = new ArrayList<>();
-    File ficheiro;
     int idEquipaAtual;
     int jogadasInvalidasPretas;
     int jogadasInvalidasBrancas;
@@ -24,6 +21,9 @@ public class Simulador {
     int turnosSemCapturas;
     boolean primeiraCapturaEfetuada;
     boolean terminou;
+    List<CrazyPiece> pecas = new ArrayList<>();
+    List<CrazyPiece> pecasJogo = new ArrayList<>();
+    File ficheiro;
 
     public Simulador(){
         this.idEquipaAtual = 0;

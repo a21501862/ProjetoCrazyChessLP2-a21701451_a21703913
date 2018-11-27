@@ -185,7 +185,7 @@ public class Simulador {
     }
 
     public List<CrazyPiece> getPecasMalucas(){
-        return pecasJogo;
+        return pecas;
     }
 
     public boolean jogoTerminado(){

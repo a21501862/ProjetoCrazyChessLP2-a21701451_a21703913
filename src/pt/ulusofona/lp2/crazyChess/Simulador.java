@@ -91,7 +91,7 @@ public class Simulador {
             }
             leitorFicheiro.close();
             setNumeroReis();
-            if (numeroPecas <= 2){
+            if (numeroPecas <= 2 && (reisPretos!=0 || reisBrancos!= 0)){
                 terminou=true;
             }
             if (reisBrancos == 0 || reisPretos == 0){

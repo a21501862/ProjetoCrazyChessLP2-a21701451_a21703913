@@ -10,7 +10,7 @@ public class Simulador {
     int tamanhoTabuleiro;
     int numeroPecas;
     List<CrazyPiece> pecas = new ArrayList<>();
-    List<CrazyPiece> pecasEmJogo = new ArrayList<>();
+    List<CrazyPiece> pecasJogo = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
     int jogadasInvalidasPretas;
@@ -84,7 +84,7 @@ public class Simulador {
                         for (CrazyPiece peca : pecas){
                             if (peca.getId() == id){
                                 peca.definirCoordenadas(colunaTabuleiro,linhaTabuleiro);
-                                pecasEmJogo.add(peca);
+                                pecasJogo.add(peca);
                             }
                         }
                     }
@@ -92,6 +92,9 @@ public class Simulador {
                 }
             }
             leitorFicheiro.close();
+            if (pecasJogo.size() < numeroPecas){
+                numeroPecas = pecasJogo.size();
+            }
             setNumeroReis();
             if ((numeroPecas == 2 && reisBrancos == 0 && reisPretos == 0) || (numeroPecas == 0)){
                 terminou=true;
@@ -127,9 +130,9 @@ public class Simulador {
                 }
                 return false;
             }
-            for (CrazyPiece peca: pecas){
+            for (CrazyPiece peca: pecasJogo){
                 if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO){
-                    for (CrazyPiece peca2 : pecas){
+                    for (CrazyPiece peca2 : pecasJogo){
                         if (peca2.getIdEquipa() != idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
                             pecaParaRemover = peca2;
                             peca2.capturar();
@@ -153,7 +156,7 @@ public class Simulador {
                         }
                     }
                     peca.definirCoordenadas(xD,Yd);
-                    pecas.remove(pecaParaRemover);
+                    pecasJogo.remove(pecaParaRemover);
                     if (primeiraCapturaEfetuada){
                         turnosSemCapturas ++;
                     }
@@ -167,7 +170,7 @@ public class Simulador {
                     return true;
                 }else{
                     count ++;
-                    if (count == pecas.size()) {
+                    if (count == pecasJogo.size()) {
                         if (idEquipaAtual == 0) {
                             jogadasInvalidasPretas++;
                         } else {
@@ -182,7 +185,7 @@ public class Simulador {
     }
 
     public List<CrazyPiece> getPecasMalucas(){
-        return pecas;
+        return pecasJogo;
     }
 
     public boolean jogoTerminado(){
@@ -238,7 +241,7 @@ public class Simulador {
     }
 
     public int getIDPeca(int x, int y){
-        for (CrazyPiece peca: pecas){
+        for (CrazyPiece peca: pecasJogo){
             if (peca.getX() == x &&  peca.getY() == y){
                 return peca.getId();
             }

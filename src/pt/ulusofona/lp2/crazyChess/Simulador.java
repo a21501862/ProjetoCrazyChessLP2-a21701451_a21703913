@@ -10,6 +10,7 @@ public class Simulador {
     int tamanhoTabuleiro;
     int numeroPecas;
     List<CrazyPiece> pecas = new ArrayList<>();
+    List<CrazyPiece> pecasEmJogo = new ArrayList<>();
     File ficheiro;
     int idEquipaAtual;
     int jogadasInvalidasPretas;
@@ -83,6 +84,7 @@ public class Simulador {
                         for (CrazyPiece peca : pecas){
                             if (peca.getId() == id){
                                 peca.definirCoordenadas(colunaTabuleiro,linhaTabuleiro);
+                                pecasEmJogo.add(peca);
                             }
                         }
                     }

@@ -1,29 +1,30 @@
-//Estes testes destinam-se ao ficheiro de exemplo dado.
 package pt.ulusofona.lp2.crazyChess;
 
 import org.junit.Test;
-
-import java.io.File;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class TestSimulador {
     @Test
     public void test01processaJogada() {
+        CrazyPiece peca = new CrazyPiece(1,0,0,"Teste");
+        peca.definirCoordenadas(0,0);
         Simulador simulador = new Simulador();
-        File ficheiro = new File("jogo.txt");
-        simulador.iniciaJogo(ficheiro);
-        boolean jogadaEsperada = false;
-        boolean jogadaObtida  = simulador.processaJogada(1,0,5,1);
+        simulador.tamanhoTabuleiro = 4;
+        simulador.pecasJogo.add(peca);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(peca.getX(),peca.getY(),1,1);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
     @Test
     public void test02processaJogada() {
+        CrazyPiece peca = new CrazyPiece(1,0,0,"Teste");
+        peca.definirCoordenadas(0,0);
         Simulador simulador = new Simulador();
-        File ficheiro = new File("jogo.txt");
-        simulador.iniciaJogo(ficheiro);
+        simulador.tamanhoTabuleiro = 4;
+        simulador.pecasJogo.add(peca);
         boolean jogadaEsperada = false;
-        boolean jogadaObtida  = simulador.processaJogada(-1,0,0,1);
+        boolean jogadaObtida  = simulador.processaJogada(peca.getX(),peca.getY(),-1,-1);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
 }

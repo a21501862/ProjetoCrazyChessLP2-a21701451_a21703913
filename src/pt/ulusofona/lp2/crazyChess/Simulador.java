@@ -38,7 +38,7 @@ public class Simulador {
     }
 
     public void setNumeroReis(){
-        for(CrazyPiece peca: pecas ){
+        for(CrazyPiece peca: pecasJogo ){
             if(peca.getIdEquipa() == 0){
                 reisPretos++;
             }else{

@@ -10,35 +10,26 @@ public class Simulador {
     int tamanhoTabuleiro;
     int numeroPecas;
     int idEquipaAtual;
-    int jogadasInvalidasPretas;
-    int jogadasInvalidasBrancas;
-    int jogadasValidasPretas;
-    int jogadasValidasBrancas;
     int reisPretos;
     int reisBrancos;
-    int capturasPretas;
-    int capturasBrancas;
     int turnosSemCapturas;
     boolean primeiraCapturaEfetuada;
     boolean terminou;
     List<CrazyPiece> pecas = new ArrayList<>();
     List<CrazyPiece> pecasJogo = new ArrayList<>();
     File ficheiro;
+    Estatistica estatisticas;
+    ;
 
     public Simulador(){
         this.idEquipaAtual = 0;
-        this.jogadasInvalidasPretas = 0;
-        this.jogadasInvalidasBrancas = 0;
-        this.jogadasValidasPretas = 0;
-        this.jogadasValidasBrancas = 0;
-        this.capturasBrancas = 0;
-        this.capturasPretas = 0;
         this.primeiraCapturaEfetuada = false;
         this.terminou = false;
+        this.estatisticas = new Estatistica();
     }
 
     public void setNumeroReis(){
-        for(CrazyPiece peca: pecas ){
+        for(CrazyPiece peca: pecasJogo ){
             if(peca.getIdEquipa() == 0){
                 reisPretos++;
             }else{
@@ -124,9 +115,9 @@ public class Simulador {
             if (xO < 0 || xO >tamanhoTabuleiro || yO <0 || yO >tamanhoTabuleiro || xD < 0 || xD >tamanhoTabuleiro || Yd <0
                     || Yd >tamanhoTabuleiro || xD > xO + 1 || xD < xO - 1 || Yd > yO + 1 || Yd < yO - 1){
                 if (idEquipaAtual == 0){
-                    jogadasInvalidasPretas ++;
+                    estatisticas.adicionaJogadasInvalidasPretas();
                 }else{
-                    jogadasInvalidasBrancas ++;
+                    estatisticas.adicionaJogadasInvalidasBrancas();
                 }
                 return false;
             }
@@ -140,17 +131,17 @@ public class Simulador {
                             turnosSemCapturas = -1;
                             if (idEquipaAtual == 0) {
                                 reisBrancos--;
-                                capturasPretas++;
+                                estatisticas.capturarPretas();
                             } else {
                                 reisPretos--;
-                                capturasBrancas++;
+                                estatisticas.capturarBrancas();
                             }
                         }
                         if (peca2.getIdEquipa() == idEquipaAtual && peca2.getX() == xD && peca2.getY() == Yd){
                             if (idEquipaAtual == 0) {
-                                jogadasInvalidasPretas++;
+                                estatisticas.adicionaJogadasInvalidasPretas();
                             } else {
-                                jogadasInvalidasBrancas++;
+                                estatisticas.adicionaJogadasInvalidasBrancas();
                             }
                             return false;
                         }
@@ -161,10 +152,10 @@ public class Simulador {
                         turnosSemCapturas ++;
                     }
                     if (idEquipaAtual == 0){
-                        jogadasValidasPretas++;
+                        estatisticas.adicionaJogadasValidasPretas();
                         idEquipaAtual = 1;
                     }else{
-                        jogadasValidasBrancas++;
+                        estatisticas.adicionaJogadasValidasBrancas();
                         idEquipaAtual = 0;
                     }
                     return true;
@@ -172,9 +163,9 @@ public class Simulador {
                     count ++;
                     if (count == pecasJogo.size()) {
                         if (idEquipaAtual == 0) {
-                            jogadasInvalidasPretas++;
+                            estatisticas.adicionaJogadasInvalidasPretas();
                         } else {
-                            jogadasInvalidasBrancas++;
+                            estatisticas.adicionaJogadasInvalidasBrancas();
                         }
                         return false;
                     }
@@ -230,13 +221,13 @@ public class Simulador {
         }
         resultados.add("---");
         resultados.add("Equipa das Pretas");
-        resultados.add(String.valueOf(capturasPretas));
-        resultados.add(String.valueOf(jogadasValidasPretas));
-        resultados.add(String.valueOf(jogadasInvalidasPretas));
+        resultados.add(String.valueOf(estatisticas.getCapturasPretas()));
+        resultados.add(String.valueOf(estatisticas.getJogadasValidasPretas()));
+        resultados.add(String.valueOf(estatisticas.getJogadasInvalidasPretas()));
         resultados.add("Equipa das Brancas");
-        resultados.add(String.valueOf(capturasBrancas));
-        resultados.add(String.valueOf(jogadasValidasBrancas));
-        resultados.add(String.valueOf(jogadasInvalidasBrancas));
+        resultados.add(String.valueOf(estatisticas.getCapturasBrancas()));
+        resultados.add(String.valueOf(estatisticas.getJogadasValidasBrancas()));
+        resultados.add(String.valueOf(estatisticas.getJogadasInvalidasBrancas()));
         return resultados;
     }
 

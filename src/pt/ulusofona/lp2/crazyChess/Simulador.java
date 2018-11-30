@@ -19,7 +19,6 @@ public class Simulador {
     List<CrazyPiece> pecasJogo = new ArrayList<>();
     File ficheiro;
     Estatistica estatisticas;
-    ;
 
     public Simulador(){
         this.idEquipaAtual = 0;

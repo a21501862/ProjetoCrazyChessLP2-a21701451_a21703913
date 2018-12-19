@@ -69,43 +69,15 @@ public abstract class CrazyPiece {
 
     public String toString(){
         if (capturada){
-            return idPeca + " | " + tipo + " | " + getValorRelativo() + " | " + idEquipa + " | " + alcunha + " @ (n/a)";
+            return idPeca + " | " + getTipo() + " | " + getValorRelativo() + " | " + idEquipa + " | " + alcunha + " @ (n/a)";
         }else{
-            return idPeca + " | " + tipo + " | " + valorRelativo + " | " + idEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
+            return idPeca + " | " + getTipo() + " | " + getValorRelativo() + " | " + idEquipa + " | " + alcunha + " @ (" + x + ", " + y + ")";
         }
     }
 
     public abstract String getValorRelativo();
 
     public abstract String getTipo();
-
-    public void setVRelativoTipo(int idTipo){
-        if (idTipo == 0){
-            tipo = "Rei";
-            valorRelativo = "(infinito)";
-        }else if(idTipo == 1){
-            tipo = "Rainha";
-            valorRelativo = "8";
-        }else if(idTipo == 2){
-            tipo = "Ponei Mágico";
-            valorRelativo = "5";
-        }else if(idTipo == 3){
-            tipo = "Padre da Vila";
-            valorRelativo = "3";
-        }else if(idTipo == 4){
-            tipo = "TorreH";
-            valorRelativo = "3";
-        }else if(idTipo == 5){
-            tipo = "TorreV";
-            valorRelativo = "3";
-        }else if(idTipo == 6){
-            tipo = "Lebre";
-            valorRelativo = "2";
-        }else if(idTipo == 7){
-            tipo = "Joker";
-            valorRelativo = "4";
-        }
-    }
 
     public int getX(){
         return x;

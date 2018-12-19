@@ -8,14 +8,14 @@ public class TorreHor extends CrazyPiece {
         super(idPeca,tipo,idEquipa,alcunha);
     }
 
-    @Override
     public String getValorRelativo() {
-        return null;
+        valorRelativo = "3";
+        return valorRelativo;
     }
 
-    @Override
     public String getTipo() {
-        return null;
+        tipo = "TorreH";
+        return tipo;
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {

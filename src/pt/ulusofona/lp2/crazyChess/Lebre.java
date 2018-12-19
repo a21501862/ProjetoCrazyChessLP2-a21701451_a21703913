@@ -7,14 +7,14 @@ public class Lebre extends CrazyPiece {
          super(idPeca,tipo,idEquipa,alcunha);
      }
 
-    @Override
     public String getValorRelativo() {
-        return null;
+        valorRelativo = "2";
+        return valorRelativo;
     }
 
-    @Override
     public String getTipo() {
-        return null;
+        tipo = "Lebre";
+        return tipo;
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {

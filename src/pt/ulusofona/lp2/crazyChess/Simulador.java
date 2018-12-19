@@ -244,4 +244,16 @@ public class Simulador {
     public int getIDEquipaAJogar(){
         return idEquipaAtual;
     }
+
+    public List<String> obterSugestoesJogada(int xO, int yO) {
+        return null;
+    }
+
+    public void anularJogadaAnterior(){
+
+    }
+
+    public boolean gravarJogo(File ficheiroDestino){
+        return true;
+    }
 }

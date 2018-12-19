@@ -64,4 +64,13 @@ public class Estatistica {
     public void capturarBrancas(){
         capturasBrancas++;
     }
+
+    public void limpar(){
+        this.jogadasInvalidasPretas = 0;
+        this.jogadasInvalidasBrancas = 0;
+        this.jogadasValidasPretas = 0;
+        this.jogadasValidasBrancas = 0;
+        this.capturasPretas = 0;
+        this.capturasBrancas = 0;
+    }
 }

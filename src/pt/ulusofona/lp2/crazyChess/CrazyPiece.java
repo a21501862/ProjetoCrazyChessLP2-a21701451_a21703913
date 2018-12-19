@@ -104,5 +104,5 @@ public abstract class CrazyPiece {
         return idTipo;
     }
 
-    abstract boolean movePeca(int xO, int yO, int xD, int Yd, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo);
+    abstract boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo);
 }

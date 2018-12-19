@@ -72,23 +72,28 @@ public class Simulador {
                     String alcunha = dados[3];
                     if (tipoPeca == 0){
                         CrazyPiece peca = new Rei(idPeca,tipoPeca,idEquipa,alcunha);
-                        peca.setVRelativoTipo(tipoPeca);
+                        peca.getValorRelativo();
+                        peca.getTipo();
                         pecas.add(peca);
                     }else if (tipoPeca == 1) {
                         CrazyPiece peca = new Rainha(idPeca, tipoPeca, idEquipa, alcunha);
-                        peca.setVRelativoTipo(tipoPeca);
+                        peca.getValorRelativo();
+                        peca.getTipo();
                         pecas.add(peca);
                     }else if(tipoPeca == 4){
                         CrazyPiece peca = new TorreHor(idPeca, tipoPeca, idEquipa, alcunha);
-                        peca.setVRelativoTipo(tipoPeca);
+                        peca.getValorRelativo();
+                        peca.getTipo();
                         pecas.add(peca);
                     }else if(tipoPeca == 5){
                         CrazyPiece peca = new TorreVert(idPeca, tipoPeca, idEquipa, alcunha);
-                        peca.setVRelativoTipo(tipoPeca);
+                        peca.getValorRelativo();
+                        peca.getTipo();
                         pecas.add(peca);
                     }else if(tipoPeca == 6){
                         CrazyPiece peca = new Lebre(idPeca, tipoPeca, idEquipa, alcunha);
-                        peca.setVRelativoTipo(tipoPeca);
+                        peca.getValorRelativo();
+                        peca.getTipo();
                         pecas.add(peca);
                     }
                 }else if (numLinha >= numeroPecas + 3 && numLinha<= numeroPecas + 2 + tamanhoTabuleiro){

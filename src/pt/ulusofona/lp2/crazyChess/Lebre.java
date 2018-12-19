@@ -27,6 +27,11 @@ public class Lebre extends CrazyPiece {
              return false;
          }
         if(xD > xO + 1 || xD < xO - 1 || yD > yO + 1 || yD < yO - 1){
+            if (idEquipa == 10) {
+                estatisticas.adicionaJogadasInvalidasPretas();
+            } else {
+                estatisticas.adicionaJogadasInvalidasBrancas();
+            }
             return false;
         }
         CrazyPiece pecaParaRemover = null;

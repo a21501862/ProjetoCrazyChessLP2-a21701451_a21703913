@@ -20,6 +20,11 @@ public class TorreVert extends CrazyPiece {
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         if (xD != xO){
+            if (idEquipa == 10) {
+                estatisticas.adicionaJogadasInvalidasPretas();
+            } else {
+                estatisticas.adicionaJogadasInvalidasBrancas();
+            }
             return false;
         }
         CrazyPiece pecaParaRemover = null;

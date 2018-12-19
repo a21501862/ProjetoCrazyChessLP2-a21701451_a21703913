@@ -20,6 +20,11 @@ public class Rainha extends CrazyPiece {
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo){
         if(xD > xO + 5 || yD > yO + 5 || xD < xO - 5 || yD < yO - 5){
+            if (idEquipa == 10) {
+                estatisticas.adicionaJogadasInvalidasPretas();
+            } else {
+                estatisticas.adicionaJogadasInvalidasBrancas();
+            }
             return false;
         }
         CrazyPiece pecaParaRemover = null;

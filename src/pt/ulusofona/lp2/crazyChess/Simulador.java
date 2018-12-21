@@ -164,6 +164,8 @@ public class Simulador {
                         }
                         jogo.incrementarTurno();
                         return true;
+                    }else{
+                        return false;
                     }
                 }else{
                     count ++;

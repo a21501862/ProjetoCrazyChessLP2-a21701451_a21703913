@@ -4,6 +4,8 @@ public class InfoJogo {
 
     int pecasPretas;
     int pecasBrancas;
+    int reisPretos;
+    int reisBrancos;
     int turnosSemCapturas;
     int turno;
     boolean primeiraCapturaEfetuada;
@@ -32,6 +34,22 @@ public class InfoJogo {
         pecasPretas--;
     }
 
+    void incrementaReisBrancos(){
+        reisBrancos++;
+    }
+
+    void incrementaReisPretos(){
+        reisPretos++;
+    }
+
+    void decrementaReisBrancos(){
+        reisBrancos--;
+    }
+
+    void decrementaReisPretos(){
+        reisPretos--;
+    }
+
     int getPecasPretas(){
         return pecasPretas;
     }
@@ -40,9 +58,18 @@ public class InfoJogo {
         return pecasBrancas;
     }
 
+    int getReisPretos(){
+        return reisPretos;
+    }
+
+    int getReisBrancos(){
+        return reisBrancos;
+    }
+
     int getTurno(){
         return turno;
     }
+
     void primeiraCapturaFeita(){
         primeiraCapturaEfetuada = true;
     }

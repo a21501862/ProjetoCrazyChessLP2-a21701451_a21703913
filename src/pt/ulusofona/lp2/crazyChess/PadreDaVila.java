@@ -14,7 +14,6 @@ public class PadreDaVila extends CrazyPiece {
         return valorRelativo;
     }
 
-    @Override
     public String getTipo() {
         tipo = "Padre Da Vila";
         return tipo;
@@ -109,9 +108,15 @@ public class PadreDaVila extends CrazyPiece {
                 if (idEquipa == 10) {
                     jogo.decrementaPecasBrancas();
                     estatisticas.capturarPretas();
+                    if(peca.getId()==0){
+                        jogo.decrementaReisBrancos();
+                    }
                 } else {
                     jogo.decrementaPecasPretas();
                     estatisticas.capturarBrancas();
+                    if(peca.getId()==0){
+                        jogo.decrementaReisPretos();
+                    }
                 }
             }
             if (peca.getIdEquipa() == idEquipa && peca.getX() == xD && peca.getY() == yD) {

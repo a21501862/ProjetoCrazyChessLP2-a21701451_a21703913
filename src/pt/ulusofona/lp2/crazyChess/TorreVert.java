@@ -51,13 +51,13 @@ public class TorreVert extends CrazyPiece {
                 if (idEquipa == 10) {
                     jogo.decrementaPecasBrancas();
                     estatisticas.capturarPretas();
-                    if(peca.getId()==0){
+                    if(peca.getIdTipo()==0){
                         jogo.decrementaReisBrancos();
                     }
                 } else {
                     jogo.decrementaPecasPretas();
                     estatisticas.capturarBrancas();
-                    if(peca.getId()==0){
+                    if(peca.getIdTipo()==0){
                         jogo.decrementaReisPretos();
                     }
                 }

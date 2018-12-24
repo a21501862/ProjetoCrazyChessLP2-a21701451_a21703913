@@ -33,7 +33,7 @@ public abstract class CrazyPiece {
             }else if(idTipo==1){
                 return "rainha_black.png";
             }else if(idTipo==2){
-                return "ponei_magico_black.pngg";
+                return "ponei_magico_black.png";
             }else if(idTipo==3){
                 return "padre_vila_black.png";
             }else if(idTipo==4){
@@ -51,7 +51,7 @@ public abstract class CrazyPiece {
             } else if (idTipo == 1) {
                 return "rainha_white.png";
             } else if (idTipo == 2) {
-                return "ponei_magico_white.pngg";
+                return "ponei_magico_white.png";
             } else if (idTipo == 3) {
                 return "padre_vila_white.png";
             } else if (idTipo == 4) {

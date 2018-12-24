@@ -80,6 +80,16 @@ public class Simulador {
                         peca.getValorRelativo();
                         peca.getTipo();
                         pecas.add(peca);
+                    }else if (tipoPeca == 2) {
+                        CrazyPiece peca = new PoneiMagico(idPeca, tipoPeca, idEquipa, alcunha);
+                        peca.getValorRelativo();
+                        peca.getTipo();
+                        pecas.add(peca);
+                    }else if (tipoPeca == 3) {
+                        CrazyPiece peca = new PadreDaVila(idPeca, tipoPeca, idEquipa, alcunha);
+                        peca.getValorRelativo();
+                        peca.getTipo();
+                        pecas.add(peca);
                     }else if(tipoPeca == 4){
                         CrazyPiece peca = new TorreHor(idPeca, tipoPeca, idEquipa, alcunha);
                         peca.getValorRelativo();

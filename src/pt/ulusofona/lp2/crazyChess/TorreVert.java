@@ -19,6 +19,7 @@ public class TorreVert extends CrazyPiece {
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
+        int count = 0;
         if (xD != xO){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();
@@ -27,16 +28,21 @@ public class TorreVert extends CrazyPiece {
             }
             return false;
         }
+        while (count < pecasJogo.size()){
+            for (CrazyPiece peca : pecasJogo) {
+                if ((peca.getY() > yO && peca.getY() < yD && peca.getX() == xO) || (peca.getY() < yO && peca.getY() > yD && peca.getX() == xO)) {
+                    if (idEquipa == 10) {
+                        estatisticas.adicionaJogadasInvalidasPretas();
+                    } else {
+                        estatisticas.adicionaJogadasInvalidasBrancas();
+                    }
+                    return false;
+                }
+                count++;
+            }
+        }
         CrazyPiece pecaParaRemover = null;
         for (CrazyPiece peca : pecasJogo) {
-            if((peca.getY()>yO && peca.getY()<yD && peca.getX()==xO) || (peca.getY()<yO && peca.getY()>yD && peca.getX()==xO)){
-                if (idEquipa == 10) {
-                    estatisticas.adicionaJogadasInvalidasPretas();
-                } else {
-                    estatisticas.adicionaJogadasInvalidasBrancas();
-                }
-                return false;
-            }
             if (peca.getIdEquipa() != idEquipa && peca.getX() == xD && peca.getY() == yD) {
                 pecaParaRemover = peca;
                 peca.capturar();

@@ -111,6 +111,11 @@ public class Simulador {
                         peca.getValorRelativo();
                         peca.getTipo();
                         pecas.add(peca);
+                    }else if(tipoPeca == 7){
+                        CrazyPiece peca = new Joker(idPeca, tipoPeca, idEquipa, alcunha);
+                        peca.getValorRelativo();
+                        peca.getTipo();
+                        pecas.add(peca);
                     }
                 }else if (numLinha >= numeroPecas + 3 && numLinha<= numeroPecas + 2 + tamanhoTabuleiro){
                     for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){

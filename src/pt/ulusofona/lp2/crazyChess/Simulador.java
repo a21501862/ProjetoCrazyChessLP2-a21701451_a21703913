@@ -28,14 +28,8 @@ public class Simulador {
         for(CrazyPiece peca: pecasJogo ){
             if(peca.getIdEquipa() == 10){
                 jogo.incrementaPecasPretas();
-                if (peca.getIdTipo() == 0){
-                    jogo.incrementaReisPretos();
-                }
             }else{
                 jogo.incrementaPecasBrancas();
-                if(peca.getIdTipo() == 0){
-                    jogo.incrementaReisBrancos();
-                }
             }
         }
     }
@@ -112,10 +106,10 @@ public class Simulador {
                         peca.getTipo();
                         pecas.add(peca);
                     }else if(tipoPeca == 7){
-                        CrazyPiece peca = new Joker(idPeca, tipoPeca, idEquipa, alcunha);
-                        peca.getValorRelativo();
-                        peca.getTipo();
-                        pecas.add(peca);
+                    CrazyPiece peca = new Joker(idPeca, tipoPeca, idEquipa, alcunha);
+                    peca.getValorRelativo();
+                    peca.getTipo();
+                    pecas.add(peca);
                     }
                 }else if (numLinha >= numeroPecas + 3 && numLinha<= numeroPecas + 2 + tamanhoTabuleiro){
                     for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
@@ -135,7 +129,7 @@ public class Simulador {
                 numeroPecas = pecasJogo.size();
             }
             setNumeroPecas();
-            if (jogo.getReisBrancos() == 0 || jogo.getReisPretos() == 0 || numeroPecas == 0 || (jogo.getReisBrancos() == 1 && jogo.getReisPretos() == 1)){
+            if ((numeroPecas == 2 && jogo.getPecasBrancas() == 0 && jogo.getPecasPretas() == 0) || (numeroPecas == 0)){
                 terminou=true;
             }
             if (jogo.getPecasBrancas() == 0 || jogo.getPecasPretas() == 0){
@@ -208,7 +202,7 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if (jogo.getPecasPretas() == 0 || jogo.getPecasBrancas()== 0 || jogo.getReisPretos() == 0 || jogo.getReisBrancos() == 0 || (jogo.getReisPretos() == 1 && jogo.getReisBrancos() == 1) || jogo.getTurnosSemCapturas()== 10 ){
+        if ((jogo.getPecasPretas() == 0 || jogo.getPecasBrancas()== 0) || (jogo.getPecasPretas() == 1 && jogo.getPecasBrancas() == 1) || jogo.getTurnosSemCapturas()== 10 || numeroPecas<=2){
             terminou = true;
             return true;
         }else{
@@ -240,9 +234,9 @@ public class Simulador {
     public List<String> getResultados(){
         List<String> resultados = new ArrayList<>();
         resultados.add("JOGO DE CRAZY CHESS");
-        if(jogo.getPecasBrancas() == 0 || jogo.getReisBrancos() == 0){
+        if(jogo.getPecasBrancas() == 0){
             resultados.add("Resultado: VENCERAM AS PRETAS");
-        }else if(jogo.getPecasPretas() == 0 || jogo.getReisPretos() == 0){
+        }else if(jogo.getPecasPretas() == 0){
             resultados.add("Resultado: VENCERAM AS BRANCAS");
         }else{
             resultados.add("Resultado: EMPATE");

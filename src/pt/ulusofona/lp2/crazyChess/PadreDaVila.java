@@ -87,7 +87,7 @@ public class PadreDaVila extends CrazyPiece {
                         }
                     }
                 }
-                if (peca.getIdTipo() == 1 && (abs(peca.getX() - xD) > 2 || abs(peca.getY() - yD) > 2)){
+                if (peca.getIdTipo() == 1 && peca.getIdEquipa() != idEquipa && (abs(peca.getX() - xD) > 2 || abs(peca.getY() - yD) > 2)){
                     if (idEquipa == 10) {
                         estatisticas.adicionaJogadasInvalidasPretas();
                     } else {

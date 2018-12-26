@@ -142,6 +142,16 @@ public class Joker extends CrazyPiece {
                     count++;
                 }
             }
+            for (CrazyPiece verificaJoker : pecasJogo){
+                if (verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha")){
+                    if (idEquipa == 10) {
+                        estatisticas.adicionaJogadasInvalidasPretas();
+                    } else {
+                        estatisticas.adicionaJogadasInvalidasBrancas();
+                    }
+                    return false;
+                }
+            }
             CrazyPiece pecaParaRemover = null;
             for (CrazyPiece peca : pecasJogo) {
                 if (peca.getIdEquipa() != idEquipa && peca.getX() == xD && peca.getY() == yD && peca.getIdTipo() != idTipo) {

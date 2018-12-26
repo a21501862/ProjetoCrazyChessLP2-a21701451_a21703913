@@ -68,4 +68,9 @@ public class TorreVert extends CrazyPiece {
         pecasJogo.remove(pecaParaRemover);
         return true;
     }
+
+    @Override
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
+        return null;
+    }
 }

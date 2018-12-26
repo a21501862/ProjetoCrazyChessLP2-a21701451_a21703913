@@ -284,7 +284,13 @@ public class Simulador {
     }
 
     public List<String> obterSugestoesJogada(int xO, int yO) {
-        return null;
+        List <String> sugestoes = new ArrayList<>();
+        for (CrazyPiece peca: pecasJogo){
+            if (peca.getX() == xO && peca.getY() == yO){
+                sugestoes = peca.sugerirJogadas(xO,yO,peca,pecasJogo);
+            }
+        }
+        return sugestoes;
     }
 
     public void anularJogadaAnterior(){

@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rei extends CrazyPiece {
@@ -13,13 +14,22 @@ public class Rei extends CrazyPiece {
         return valorRelativo;
     }
 
-    @Override
     public String getTipo() {
         tipo = "Rei";
         return tipo;
     }
 
-    boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas,List<CrazyPiece> pecasJogo, InfoJogo jogo) {
+    List<String> sugerirJogadas(int xO,int yO,CrazyPiece ref,List<CrazyPiece> pecasJogo) {
+        List <String> jogadaRei = new ArrayList<>();
+        for (CrazyPiece peca: pecasJogo){
+           if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getX() == xO + 1){
+               jogadaRei.add(xO+1 + "," + yO);
+           }
+        }
+        return jogadaRei;
+    }
+
+    boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         if(xD > xO + 1 || xD < xO - 1 || yD > yO + 1 || yD < yO - 1){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();

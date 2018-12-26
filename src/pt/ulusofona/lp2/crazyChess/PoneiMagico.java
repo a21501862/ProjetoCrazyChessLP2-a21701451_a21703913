@@ -20,6 +20,7 @@ public class PoneiMagico extends CrazyPiece {
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
+        int count = 0;
         if(xD > xO + 2 || xD < xO - 2 || yD > yO + 2 || yD < yO - 2){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();
@@ -36,55 +37,29 @@ public class PoneiMagico extends CrazyPiece {
             }
             return false;
         }
+        while(count<pecasJogo.size()){
+            if(xO < xD && yO > yD){
+                for(CrazyPiece peca : pecasJogo){
+                    if(peca.getIdTipo() == 0 && peca.getX() == xO && (peca.getY() == yO-1 || peca.getY() == yD)){
+                        for (CrazyPiece peca2 : pecasJogo){
+                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO+1 || peca2.getX() == xD)) {
+                                return false;
+                            }
+                        }
+                    }else{
+                        if (peca.getIdTipo() == 0 && peca.getY() == yD && peca.getX() == xO+1) {
+                            return false;
+                        }
+                        if(peca.getIdTipo() == 0 && peca.getX() == xD && peca.getY() == yO-1 ) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            count++;
+        }
         CrazyPiece pecaParaRemover = null;
         for (CrazyPiece peca : pecasJogo) {
-            if (xO < xD && yO>yD){ // cima direita
-                if (peca.getIdTipo() == 0 && (peca.getX() == xO + 1 || peca.getY() == yD+1)) {
-                    return false;
-                }
-            }
-            if (xO > xD && yO>yD){ // cima esquerda
-                if (peca.getIdTipo() == 0 && peca.getX() == xO - 1) {
-                    for (CrazyPiece peca2 : pecasJogo) {
-                        if (peca2.getIdTipo() == 0 && peca2.getY() == yO - 1 && peca2.getId() != peca.getId()) {
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }
-                }
-            }
-            if (xO < xD && yO<yD){ // diagonal baixo direita
-                if (peca.getIdTipo() == 0 && peca.getX() == xO + 1) {
-                    for (CrazyPiece peca2 : pecasJogo) {
-                        if (peca2.getIdTipo() == 0 && peca2.getY() == yO - 1 && peca2.getId() != peca.getId()) {
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }
-                }
-            }
-            if (xO > xD && yO<yD){ // diagonal baixo esquerda
-                if (peca.getIdTipo() == 0 && peca.getX() == xO + 1) {
-                    for (CrazyPiece peca2 : pecasJogo) {
-                        if (peca2.getIdTipo() == 0 && peca2.getY() == yO - 1 && peca2.getId() != peca.getId()) {
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }
-                }
-            }
             if (peca.getIdEquipa() != idEquipa && peca.getX() == xD && peca.getY() == yD) {
                 pecaParaRemover = peca;
                 peca.capturar();
@@ -109,5 +84,10 @@ public class PoneiMagico extends CrazyPiece {
         }
         pecasJogo.remove(pecaParaRemover);
         return true;
+    }
+
+    @Override
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
+        return null;
     }
 }

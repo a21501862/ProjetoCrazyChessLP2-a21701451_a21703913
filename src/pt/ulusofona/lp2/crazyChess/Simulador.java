@@ -248,6 +248,8 @@ public class Simulador {
 
     public List<String> getResultados(){
         List<String> resultados = new ArrayList<>();
+        resultados.add("Bruna Vieites a21703913");
+        resultados.add("Rafael Lemos a21701451");
         resultados.add("JOGO DE CRAZY CHESS");
         if(jogo.getPecasBrancas() == 0){
             resultados.add("Resultado: VENCERAM AS PRETAS");

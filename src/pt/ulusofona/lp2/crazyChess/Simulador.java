@@ -2,6 +2,8 @@ package pt.ulusofona.lp2.crazyChess;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -122,6 +124,14 @@ public class Simulador {
                         }
                     }
                     linhaTabuleiro ++;
+                }else if(numLinha == numeroPecas + 3 + tamanhoTabuleiro){
+                    idEquipaAtual = Integer.parseInt(dados[0]);
+                    estatisticas.setJogadasValidasPretas(Integer.parseInt(dados[1]));
+                    estatisticas.setCapturasPretas(Integer.parseInt(dados[2]));
+                    estatisticas.setJogadasInvalidasPretas(Integer.parseInt(dados[3]));
+                    estatisticas.setJogadasValidasBrancas(Integer.parseInt(dados[4]));
+                    estatisticas.setCapturasBrancas(Integer.parseInt(dados[5]));
+                    estatisticas.setJogadasInvalidasBrancas(Integer.parseInt(dados[6]));
                 }
             }
             leitorFicheiro.close();
@@ -279,7 +289,67 @@ public class Simulador {
 
     }
 
-    public boolean gravarJogo(File ficheiroDestino){
+    public boolean gravarJogo(File ficheiroDestino) {
+        ficheiro = ficheiroDestino;
+        String newLine = System.getProperty( "line.separator" );
+        int numeroLinha = 1;
+        int linhaTabuleiro = 0;
+        try {
+            FileWriter writer = new FileWriter(ficheiro);
+            if (numeroLinha == 1){
+                writer.write(tamanhoTabuleiro + "");
+                writer.write(newLine);
+                numeroLinha ++;
+            }
+            if(numeroLinha == 2){
+                writer.write(numeroPecas + "");
+                writer.write(newLine);
+                numeroLinha ++;
+            }
+            while(numeroLinha >= 3 && numeroLinha <= numeroPecas + 2){
+                for (CrazyPiece peca : pecas){
+                    writer.write(peca.getId() + ":" + peca.getIdTipo() + ":" + peca.getIdEquipa() + ":" + peca.getAlcunha());
+                    writer.write(newLine);
+                    numeroLinha++;
+                }
+            }
+            while (numeroLinha >= numeroPecas + 3 && numeroLinha<= numeroPecas + 2 + tamanhoTabuleiro){
+                for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
+                    int count = 0;
+                    for (CrazyPiece peca : pecasJogo){
+                        if (peca.getX() == colunaTabuleiro && peca.getY()== linhaTabuleiro){
+                            if (colunaTabuleiro == tamanhoTabuleiro - 1){
+                                writer.write(peca.getId() + "");
+                            }else{
+                                writer.write(peca.getId() + ":");
+                            }
+                        }else{
+                            count++;
+                        }
+                    }
+                    if (count == pecasJogo.size()){
+                        if (colunaTabuleiro == tamanhoTabuleiro - 1){
+                            writer.write(Integer.toString(0));
+                        }else{
+                            writer.write("0:");
+                        }
+                    }
+                }
+                writer.write(newLine);
+                linhaTabuleiro++;
+                numeroLinha++;
+            }
+            if(numeroLinha== numeroPecas + 3 + tamanhoTabuleiro){
+                writer.write(idEquipaAtual + ":" + estatisticas.getJogadasValidasPretas() + ":" + estatisticas.getCapturasPretas()
+                        + ":" + estatisticas.getJogadasInvalidasPretas() + ":" + estatisticas.getJogadasValidasBrancas() + ":" + estatisticas.getCapturasBrancas() + ":" +
+                        estatisticas.getJogadasInvalidasBrancas());
+            }
+            writer.close();
+        }
+        catch (IOException e) {
+            System.out.println("Ocorreu um erro.");
+            return false;
+        }
         return true;
     }
 }

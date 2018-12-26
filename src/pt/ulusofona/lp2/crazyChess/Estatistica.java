@@ -60,6 +60,29 @@ public class Estatistica {
     public void capturarPretas(){
         capturasPretas++;
     }
+    public void setJogadasInvalidasPretas(int jogadasInvalidasPretas) {
+        this.jogadasInvalidasPretas = jogadasInvalidasPretas;
+    }
+
+    public void setJogadasInvalidasBrancas(int jogadasInvalidasBrancas) {
+        this.jogadasInvalidasBrancas = jogadasInvalidasBrancas;
+    }
+
+    public void setJogadasValidasPretas(int jogadasValidasPretas) {
+        this.jogadasValidasPretas = jogadasValidasPretas;
+    }
+
+    public void setJogadasValidasBrancas(int jogadasValidasBrancas) {
+        this.jogadasValidasBrancas = jogadasValidasBrancas;
+    }
+
+    public void setCapturasPretas(int capturasPretas) {
+        this.capturasPretas = capturasPretas;
+    }
+
+    public void setCapturasBrancas(int capturasBrancas) {
+        this.capturasBrancas = capturasBrancas;
+    }
 
     public void capturarBrancas(){
         capturasBrancas++;

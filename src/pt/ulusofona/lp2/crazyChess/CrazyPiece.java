@@ -103,5 +103,9 @@ public abstract class CrazyPiece {
         return idTipo;
     }
 
+    String getAlcunha() {
+        return alcunha;
+    }
+
     abstract boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo);
 }

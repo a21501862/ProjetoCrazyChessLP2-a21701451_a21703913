@@ -177,6 +177,11 @@ public class Simulador {
                             idEquipaAtual = 10;
                         }
                         jogo.incrementarTurno();
+                        for (CrazyPiece verificaJoker : pecasJogo){
+                            if (verificaJoker.getIdTipo() == 7){
+                                ((Joker) verificaJoker).mudaTipoJoker();
+                            }
+                        }
                         return true;
                     }else{
                         return false;

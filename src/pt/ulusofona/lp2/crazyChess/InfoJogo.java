@@ -43,6 +43,7 @@ public class InfoJogo {
     int getTurno(){
         return turno;
     }
+
     void primeiraCapturaFeita(){
         primeiraCapturaEfetuada = true;
     }

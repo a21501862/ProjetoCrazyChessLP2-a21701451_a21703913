@@ -74,5 +74,4 @@ public class InfoJogo {
         this.turnosSemCapturas = -1;
         this.primeiraCapturaEfetuada = false;
     }
-
 }

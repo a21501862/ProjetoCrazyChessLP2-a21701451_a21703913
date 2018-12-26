@@ -85,6 +85,11 @@ public class Simulador {
                         peca.getValorRelativo();
                         peca.getTipo();
                         pecas.add(peca);
+                    }else if (tipoPeca == 3) {
+                        CrazyPiece peca = new PadreDaVila(idPeca, tipoPeca, idEquipa, alcunha);
+                        peca.getValorRelativo();
+                        peca.getTipo();
+                        pecas.add(peca);
                     }else if(tipoPeca == 4){
                         CrazyPiece peca = new TorreHor(idPeca, tipoPeca, idEquipa, alcunha);
                         peca.getValorRelativo();
@@ -97,6 +102,11 @@ public class Simulador {
                         pecas.add(peca);
                     }else if(tipoPeca == 6){
                         CrazyPiece peca = new Lebre(idPeca, tipoPeca, idEquipa, alcunha);
+                        peca.getValorRelativo();
+                        peca.getTipo();
+                        pecas.add(peca);
+                    }else if(tipoPeca == 7){
+                        CrazyPiece peca = new Joker(idPeca, tipoPeca, idEquipa, alcunha);
                         peca.getValorRelativo();
                         peca.getTipo();
                         pecas.add(peca);
@@ -139,7 +149,6 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int yD){
         int count = 0;
-        CrazyPiece pecaAtual = null;
         if (terminou){
             return true;
         }
@@ -155,7 +164,7 @@ public class Simulador {
             }
             for (CrazyPiece peca: pecasJogo) {
                 if (peca.getIdEquipa() == idEquipaAtual && peca.getX() == xO && peca.getY() == yO) {
-                    if (peca.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)) {
+                    if (peca.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
                         peca.definirCoordenadas(xD, yD);
                         if (jogo.primeiraCapturaFoiEfetuada()) {
                             jogo.incrementaTurnoSemCapturas();
@@ -169,7 +178,7 @@ public class Simulador {
                         }
                         jogo.incrementarTurno();
                         return true;
-                    } else {
+                    }else{
                         return false;
                     }
                 }else{

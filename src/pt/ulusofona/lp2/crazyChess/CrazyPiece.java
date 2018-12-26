@@ -1,4 +1,3 @@
-
 package pt.ulusofona.lp2.crazyChess;
 
 import java.util.List;

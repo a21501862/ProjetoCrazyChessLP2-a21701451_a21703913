@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TorreVert extends CrazyPiece {
@@ -16,6 +17,67 @@ public class TorreVert extends CrazyPiece {
     public String getTipo() {
         tipo = "TorreV";
         return tipo;
+    }
+
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece ref, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <String> jogadaTorreVer = new ArrayList<>();
+        int count = 0;
+        int yRef = tamanhoTabuleiro - 1;
+        int idRef = idEquipa;
+        for (CrazyPiece peca: pecasJogo){//baixo
+            if (peca.getY() > yO && peca.getY() < yRef && peca.getX() == xO){
+                yRef = peca.getY();
+                idRef = peca.getIdEquipa();
+            }
+            count ++;
+            if (count == pecasJogo.size()){
+                if(yRef != yO && idRef != idEquipa){
+                    while (yO + 1 <= yRef){
+                        jogadaTorreVer.add(xO + ", " + (yO+1));
+                        yO++;
+                    }
+                }else if (yRef != yO && idRef == idEquipa) {
+                    while (yO+1 < yRef) {
+                        jogadaTorreVer.add(xO + ", " + (yO+1));
+                        yO++;
+                    }
+                }else{
+                    while (yO + 1<tamanhoTabuleiro){
+                        jogadaTorreVer.add(xO + ", " + (yO+1));
+                        yO++;
+                    }
+                }
+            }
+        }
+        count = 0;
+        yRef = 0;
+        idRef = idEquipa;
+        for (CrazyPiece peca: pecasJogo){//cima
+            if (peca.getY() < yO && peca.getY() >yRef && peca.getX() == xO){
+                yRef = peca.getY();
+                idRef = peca.getIdEquipa();
+            }
+            count ++;
+            if (count == pecasJogo.size()){
+                if(yRef != yO && idRef != idEquipa){
+                    while (yO - 1 >= yRef){
+                        jogadaTorreVer.add(xO + ", " + (yO-1));
+                        yO--;
+                    }
+                }else if (yRef != yO && idRef == idEquipa) {
+                    while (yO-1 > yRef) {
+                        jogadaTorreVer.add(xO + ", " + (yO-1));
+                        yO--;
+                    }
+                }else{
+                    while (yO - 1>=0){
+                        jogadaTorreVer.add(xO + ", " + (yO-1));
+                        yO--;
+                    }
+                }
+            }
+        }
+        return jogadaTorreVer;
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
@@ -69,8 +131,5 @@ public class TorreVert extends CrazyPiece {
         return true;
     }
 
-    @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
-        return null;
-    }
+
 }

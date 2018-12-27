@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TorreHor extends CrazyPiece {
@@ -16,6 +17,69 @@ public class TorreHor extends CrazyPiece {
     public String getTipo() {
         tipo = "TorreH";
         return tipo;
+    }
+
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece ref, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <String> jogadaTorreHor = new ArrayList<>();
+        int count = 0;
+        int valorX = xO;
+        int xRef = tamanhoTabuleiro - 1;
+        int idRef = idEquipa;
+        for (CrazyPiece peca: pecasJogo){//direita
+            if (peca.getX() > valorX && peca.getX() <xRef && peca.getY() == yO){
+                xRef = peca.getX();
+                idRef = peca.getIdEquipa();
+            }
+            count ++;
+            if (count == pecasJogo.size()){
+                if(xRef != valorX && idRef != idEquipa){
+                    while (valorX + 1 <= xRef){
+                        jogadaTorreHor.add(valorX+1 + ", " + yO);
+                        valorX++;
+                    }
+                }else if (xRef != valorX && idRef == idEquipa) {
+                    while (valorX+1 < xRef) {
+                        jogadaTorreHor.add(valorX+1 + ", " + yO);
+                        valorX++;
+                    }
+                }else{
+                    while (valorX + 1<tamanhoTabuleiro){
+                        jogadaTorreHor.add(valorX + 1 + ", " + yO);
+                        valorX++;
+                    }
+                }
+            }
+        }
+        valorX = xO;
+        count = 0;
+        xRef = 0;
+        idRef = idEquipa;
+        for (CrazyPiece peca: pecasJogo){//esquerda
+            if (peca.getX() < valorX && peca.getX() >=xRef && peca.getY() == yO){
+                xRef = peca.getX();
+                idRef = peca.getIdEquipa();
+            }
+            count ++;
+            if (count == pecasJogo.size()){
+                if(xRef != valorX && idRef != idEquipa){
+                    while (valorX - 1 >= xRef){
+                        jogadaTorreHor.add(valorX-1 + ", " + yO);
+                        valorX--;
+                    }
+                }else if (xRef != valorX && idRef == idEquipa) {
+                    while (valorX-1 > xRef) {
+                        jogadaTorreHor.add(valorX-1 + ", " + yO);
+                        valorX--;
+                    }
+                }else{
+                    while (valorX - 1>=0){
+                        jogadaTorreHor.add(valorX - 1 + ", " + yO);
+                        valorX--;
+                    }
+                }
+            }
+        }
+        return jogadaTorreHor;
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
@@ -69,8 +133,5 @@ public class TorreHor extends CrazyPiece {
         return true;
     }
 
-    @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
-        return null;
-    }
+
 }

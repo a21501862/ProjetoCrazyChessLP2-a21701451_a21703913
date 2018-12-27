@@ -143,7 +143,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             for (CrazyPiece verificaJoker : pecasJogo){
-                if (verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha")){
+                if (verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha") && verificaJoker.getX() == xD && verificaJoker.getY() == yD){
                     if (idEquipa == 10) {
                         estatisticas.adicionaJogadasInvalidasPretas();
                     } else {
@@ -635,7 +635,7 @@ public class Joker extends CrazyPiece {
     }
 
     @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
         return null;
     }
 }

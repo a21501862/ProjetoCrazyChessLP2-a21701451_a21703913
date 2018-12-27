@@ -88,12 +88,47 @@ public class PadreDaVila extends CrazyPiece {
                     }
                 }
                 if (peca.getIdTipo() == 1 && peca.getIdEquipa() != idEquipa && (abs(peca.getX() - xD) > 2 || abs(peca.getY() - yD) > 2)){
-                    if (idEquipa == 10) {
-                        estatisticas.adicionaJogadasInvalidasPretas();
-                    } else {
-                        estatisticas.adicionaJogadasInvalidasBrancas();
+                    int procuraJoker = 0;
+                    for(CrazyPiece verificaJoker : pecasJogo){
+                        if(verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha") && verificaJoker.getIdEquipa() != idEquipa && (abs(verificaJoker.getX() - xD) > 2 || abs(verificaJoker.getY() - yD) > 2)) {
+                            if (idEquipa == 10) {
+                                estatisticas.adicionaJogadasInvalidasPretas();
+                            } else {
+                                estatisticas.adicionaJogadasInvalidasBrancas();
+                            }
+                            return false;
+                        }
+                        procuraJoker++;
+                        if (procuraJoker == pecasJogo.size()){
+                            if (idEquipa == 10) {
+                                estatisticas.adicionaJogadasInvalidasPretas();
+                            } else {
+                                estatisticas.adicionaJogadasInvalidasBrancas();
+                            }
+                            return false;
+                        }
                     }
-                    return false;
+                }else if (peca.getIdTipo() == 7 && ((Joker) peca).getTipoJoker().equals("Rainha") && peca.getIdEquipa() != idEquipa && (abs(peca.getX() - xD) > 2 || abs(peca.getY() - yD) > 2)){
+                    int procuraRainha = 0;
+                    for(CrazyPiece verificaRainha : pecasJogo){
+                        if(verificaRainha.getIdTipo() == 1 && verificaRainha.getIdEquipa() != idEquipa && (abs(verificaRainha.getX() - xD) > 2 || abs(verificaRainha.getY() - yD) > 2)) {
+                            if (idEquipa == 10) {
+                                estatisticas.adicionaJogadasInvalidasPretas();
+                            } else {
+                                estatisticas.adicionaJogadasInvalidasBrancas();
+                            }
+                            return false;
+                        }
+                        procuraRainha++;
+                        if (procuraRainha == pecasJogo.size()){
+                            if (idEquipa == 10) {
+                                estatisticas.adicionaJogadasInvalidasPretas();
+                            } else {
+                                estatisticas.adicionaJogadasInvalidasBrancas();
+                            }
+                            return false;
+                        }
+                    }
                 }
                 count++;
             }
@@ -126,8 +161,7 @@ public class PadreDaVila extends CrazyPiece {
         return true;
     }
 
-    @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         return null;
     }
 }

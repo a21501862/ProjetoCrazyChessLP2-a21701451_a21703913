@@ -21,7 +21,7 @@ public class PoneiMagico extends CrazyPiece {
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         int count = 0;
-        if((abs(xO-xD) != 2) || abs(yO-yD) != 2 ){
+        if(abs(xO-xD) != 2|| abs(yO-yD) != 2 ){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();
             } else {
@@ -233,7 +233,7 @@ public class PoneiMagico extends CrazyPiece {
     }
 
     @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         return null;
     }
 }

@@ -287,7 +287,7 @@ public class Simulador {
         List <String> sugestoes = new ArrayList<>();
         for (CrazyPiece peca: pecasJogo){
             if (peca.getX() == xO && peca.getY() == yO){
-                sugestoes = peca.sugerirJogadas(xO,yO,peca,pecasJogo);
+                sugestoes = peca.sugerirJogadas(xO,yO,peca,pecasJogo,tamanhoTabuleiro);
             }
         }
         return sugestoes;

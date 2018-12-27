@@ -19,12 +19,95 @@ public class Rei extends CrazyPiece {
         return tipo;
     }
 
-    List<String> sugerirJogadas(int xO,int yO,CrazyPiece ref,List<CrazyPiece> pecasJogo) {
+    List<String> sugerirJogadas(int xO,int yO,CrazyPiece ref,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
         List <String> jogadaRei = new ArrayList<>();
-        for (CrazyPiece peca: pecasJogo){
-           if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getX() == xO + 1){
-               jogadaRei.add(xO+1 + "," + yO);
+        int count = 0;
+        for (CrazyPiece peca: pecasJogo){//direita
+           if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getX() == xO + 1 && peca.getY() == yO){
+               jogadaRei.add(xO+1 + ", " + yO);
+               break;
            }
+           count ++;
+           if (count == pecasJogo.size() && xO + 1 < tamanhoTabuleiro){
+               jogadaRei.add(xO+1 + ", " + yO);
+           }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//esquerda
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getX() == xO - 1 && peca.getY() == yO){
+                jogadaRei.add(xO-1 + ", " + yO);
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && xO - 1 >= 0){
+                jogadaRei.add(xO-1 + ", " + yO);
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO){
+                jogadaRei.add(xO + ", " + (yO-1));
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && yO - 1 >= 0){
+                jogadaRei.add(xO + ", " + (yO-1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO){
+                jogadaRei.add(xO + ", " + (yO+1));
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro){
+                jogadaRei.add(xO + ", " + (yO+1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima direita
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO + 1){
+                jogadaRei.add(xO+1 + ", " + (yO-1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO - 1 >= 0 && xO + 1 < tamanhoTabuleiro){
+                jogadaRei.add(xO+1 + ", " + (yO-1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima esquerda
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO - 1){
+                jogadaRei.add(xO-1 + ", " + (yO-1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO - 1 >= 0 && xO - 1 >= 0){
+                jogadaRei.add(xO-1 + ", " + (yO-1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo esquerda
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO - 1){
+                jogadaRei.add(xO-1 + ", " + (yO+1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro && xO - 1 >= 0){
+                jogadaRei.add(xO-1 + ", " + (yO+1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo direita
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO + 1){
+                jogadaRei.add(xO+1 + ", " + (yO+1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro && xO + 1 < tamanhoTabuleiro){
+                jogadaRei.add(xO+1 + ", " + (yO+1));
+            }
         }
         return jogadaRei;
     }

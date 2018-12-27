@@ -1,6 +1,9 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Math.abs;
 
 public class Lebre extends CrazyPiece {
      Lebre(int idPeca, int tipo, int idEquipa, String alcunha){
@@ -17,6 +20,55 @@ public class Lebre extends CrazyPiece {
         return tipo;
     }
 
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece ref, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <String> jogadaLebre = new ArrayList<>();
+        int count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima direita
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO + 1){
+                jogadaLebre.add(xO+1 + ", " + (yO-1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO - 1 >= 0 && xO + 1 < tamanhoTabuleiro){
+                jogadaLebre.add(xO+1 + ", " + (yO-1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima esquerda
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO - 1){
+                jogadaLebre.add(xO-1 + ", " + (yO-1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO - 1 >= 0 && xO - 1 >= 0){
+                jogadaLebre.add(xO-1 + ", " + (yO-1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo esquerda
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO - 1){
+                jogadaLebre.add(xO-1 + ", " + (yO+1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro && xO - 1 >= 0){
+                jogadaLebre.add(xO-1 + ", " + (yO+1));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo direita
+            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO + 1){
+                jogadaLebre.add(xO+1 + ", " + (yO+1));
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro && xO + 1 < tamanhoTabuleiro){
+                jogadaLebre.add(xO+1 + ", " + (yO+1));
+            }
+        }
+        return jogadaLebre;
+     }
+
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
          if (jogo.getTurno() %2 != 0){
              if (idEquipa == 10) {
@@ -26,7 +78,15 @@ public class Lebre extends CrazyPiece {
              }
              return false;
          }
-        if(xD > xO + 1 || xD < xO - 1 || yD > yO + 1 || yD < yO - 1){
+        if(abs(xO-xD) != 1 || abs(yO-yD) != 1){
+            if (idEquipa == 10) {
+                estatisticas.adicionaJogadasInvalidasPretas();
+            } else {
+                estatisticas.adicionaJogadasInvalidasBrancas();
+            }
+            return false;
+        }
+        if(abs(xO - xD) != abs(yO - yD)) {
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();
             } else {
@@ -62,8 +122,5 @@ public class Lebre extends CrazyPiece {
         return true;
     }
 
-    @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo) {
-        return null;
-    }
+
 }

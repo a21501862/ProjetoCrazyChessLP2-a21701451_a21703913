@@ -80,7 +80,7 @@ public class TorreHor extends CrazyPiece {
                         valorX--;
                     }
                 }else if (xRef != 0 && idRef == idEquipa) {
-                    while (valorX-1 < xRef) {
+                    while (valorX-1 > xRef) {
                         jogadaTorreHor.add(valorX-1 + ", " + yO);
                         valorX--;
                     }
@@ -88,7 +88,7 @@ public class TorreHor extends CrazyPiece {
                     int verificarPecaFronteira = 0;
                     for (CrazyPiece pecaFronteira : pecasJogo){
                         if(pecaFronteira.getX()== 0 && pecaFronteira.getY() == yO && idRef == idEquipa){
-                            while (valorX - 1 > tamanhoTabuleiro -1){
+                            while (valorX - 1 > 0){
                                 jogadaTorreHor.add(valorX - 1 + ", " + yO);
                                 valorX--;
                             }

@@ -596,7 +596,15 @@ public class Joker extends CrazyPiece {
                 }
                 return false;
             }
-            if(xD > xO + 1 || xD < xO - 1 || yD > yO + 1 || yD < yO - 1){
+            if(abs(xO-xD) != 1 || abs(yO-yD) != 1){
+                if (idEquipa == 10) {
+                    estatisticas.adicionaJogadasInvalidasPretas();
+                } else {
+                    estatisticas.adicionaJogadasInvalidasBrancas();
+                }
+                return false;
+            }
+            if(abs(xO - xD) != abs(yO - yD)) {
                 if (idEquipa == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {

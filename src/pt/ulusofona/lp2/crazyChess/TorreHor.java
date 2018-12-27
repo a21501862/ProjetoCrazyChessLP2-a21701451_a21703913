@@ -26,26 +26,39 @@ public class TorreHor extends CrazyPiece {
         int xRef = tamanhoTabuleiro - 1;
         int idRef = idEquipa;
         for (CrazyPiece peca: pecasJogo){//direita
-            if (peca.getX() > valorX && peca.getX() <xRef && peca.getY() == yO){
+            if (peca.getX() > valorX && peca.getX() <= xRef && peca.getY() == yO){
                 xRef = peca.getX();
                 idRef = peca.getIdEquipa();
             }
             count ++;
             if (count == pecasJogo.size()){
-                if(xRef != valorX && idRef != idEquipa){
+                if(xRef != tamanhoTabuleiro-1 && idRef != idEquipa){
                     while (valorX + 1 <= xRef){
                         jogadaTorreHor.add(valorX+1 + ", " + yO);
                         valorX++;
                     }
-                }else if (xRef != valorX && idRef == idEquipa) {
+                }else if (xRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
                     while (valorX+1 < xRef) {
                         jogadaTorreHor.add(valorX+1 + ", " + yO);
                         valorX++;
                     }
                 }else{
-                    while (valorX + 1<tamanhoTabuleiro){
-                        jogadaTorreHor.add(valorX + 1 + ", " + yO);
-                        valorX++;
+                    int verificarPecaFronteira = 0;
+                    for (CrazyPiece pecaFronteira : pecasJogo){
+                        if(pecaFronteira.getX()== tamanhoTabuleiro-1 && pecaFronteira.getY() == yO && idRef == idEquipa){
+                            while (valorX + 1 < tamanhoTabuleiro -1){
+                                jogadaTorreHor.add(valorX + 1 + ", " + yO);
+                                valorX++;
+                            }
+                            break;
+                        }
+                        verificarPecaFronteira ++;
+                        if (verificarPecaFronteira == pecasJogo.size()){
+                            while (valorX + 1 <= tamanhoTabuleiro -1){
+                                jogadaTorreHor.add(valorX + 1 + ", " + yO);
+                                valorX++;
+                            }
+                        }
                     }
                 }
             }
@@ -55,26 +68,39 @@ public class TorreHor extends CrazyPiece {
         xRef = 0;
         idRef = idEquipa;
         for (CrazyPiece peca: pecasJogo){//esquerda
-            if (peca.getX() < valorX && peca.getX() >=xRef && peca.getY() == yO){
+            if (peca.getX() < valorX && peca.getX() >= xRef && peca.getY() == yO){
                 xRef = peca.getX();
                 idRef = peca.getIdEquipa();
             }
             count ++;
             if (count == pecasJogo.size()){
-                if(xRef != valorX && idRef != idEquipa){
+                if(xRef != 0 && idRef != idEquipa){
                     while (valorX - 1 >= xRef){
                         jogadaTorreHor.add(valorX-1 + ", " + yO);
                         valorX--;
                     }
-                }else if (xRef != valorX && idRef == idEquipa) {
-                    while (valorX-1 > xRef) {
+                }else if (xRef != 0 && idRef == idEquipa) {
+                    while (valorX-1 < xRef) {
                         jogadaTorreHor.add(valorX-1 + ", " + yO);
                         valorX--;
                     }
                 }else{
-                    while (valorX - 1>=0){
-                        jogadaTorreHor.add(valorX - 1 + ", " + yO);
-                        valorX--;
+                    int verificarPecaFronteira = 0;
+                    for (CrazyPiece pecaFronteira : pecasJogo){
+                        if(pecaFronteira.getX()== 0 && pecaFronteira.getY() == yO && idRef == idEquipa){
+                            while (valorX - 1 > tamanhoTabuleiro -1){
+                                jogadaTorreHor.add(valorX - 1 + ", " + yO);
+                                valorX--;
+                            }
+                            break;
+                        }
+                        verificarPecaFronteira ++;
+                        if (verificarPecaFronteira == pecasJogo.size()){
+                            while (valorX - 1 >= 0){
+                                jogadaTorreHor.add(valorX - 1 + ", " + yO);
+                                valorX--;
+                            }
+                        }
                     }
                 }
             }
@@ -132,6 +158,4 @@ public class TorreHor extends CrazyPiece {
         pecasJogo.remove(pecaParaRemover);
         return true;
     }
-
-
 }

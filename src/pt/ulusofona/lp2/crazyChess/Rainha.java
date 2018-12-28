@@ -170,6 +170,56 @@ public class Rainha extends CrazyPiece {
                 }
             }
         }
+        count = 0;
+        valorY = yO;
+        yRef = tamanhoTabuleiro - 1;
+        idRef = idEquipa;
+        tipoRef = -1;
+        for (CrazyPiece peca: pecasJogo){//baixo
+            if (peca.getY() > valorY && peca.getY() <= yRef && peca.getX() == xO){
+                yRef = peca.getY();
+                idRef = peca.getIdEquipa();
+                tipoRef = peca.getIdTipo();
+            }
+            count ++;
+            if (count == pecasJogo.size()){
+                count=0;
+                if(yRef != tamanhoTabuleiro - 1 && idRef != idEquipa && tipoRef!=1){
+                    while (valorY + 1 <= yRef && count < 5){
+                        jogadaRainha.add(xO + ", " + (valorY+1));
+                        valorY++;
+                        count++;
+                    }
+                }else if (yRef != tamanhoTabuleiro - 1 && (idRef == idEquipa || tipoRef == 1)) {
+                    while (valorY+1 < yRef && count < 5) {
+                        jogadaRainha.add(xO + ", " + (valorY+1));
+                        valorY++;
+                        count++;
+                    }
+                }else{
+                    int verificarPecaFronteira = 0;
+                    for (CrazyPiece pecaFronteira : pecasJogo){
+                        if(pecaFronteira.getY()== tamanhoTabuleiro - 1 && pecaFronteira.getX() == xO && (idRef == idEquipa || pecaFronteira.getIdTipo()==1)){
+                            while (valorY + 1 < tamanhoTabuleiro - 1 && count<5){
+                                jogadaRainha.add(xO + ", " + (valorY+1));
+                                valorY++;
+                                count++;
+                            }
+                            break;
+                        }
+                        verificarPecaFronteira ++;
+                        if (verificarPecaFronteira == pecasJogo.size()){
+                            while (valorY + 1 <= tamanhoTabuleiro - 1 && count<5){
+                                jogadaRainha.add(xO + ", " + (valorY+1));
+                                valorY++;
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return jogadaRainha;
     }
 

@@ -50,6 +50,10 @@ public class Joker extends CrazyPiece {
         }
     }
 
+    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
+        return null;
+    }
+
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         if (tipoJoker.equals("Rainha")) {
             int count = 0;
@@ -640,10 +644,5 @@ public class Joker extends CrazyPiece {
         }
         return true;
 
-    }
-
-    @Override
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
-        return null;
     }
 }

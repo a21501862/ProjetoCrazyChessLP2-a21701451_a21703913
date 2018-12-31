@@ -137,6 +137,10 @@ public class TorreHor extends CrazyPiece {
                 pecaParaRemover = peca;
                 peca.capturar();
                 jogo.primeiraCapturaFeita();
+                if (jogo.getTurnoPrimeiraCaptura() == -1){
+                    jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                }
+                jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                 jogo.resetTurnosSemCapturas();
                 if (idEquipa == 10) {
                     jogo.decrementaPecasBrancas();
@@ -156,6 +160,7 @@ public class TorreHor extends CrazyPiece {
             }
         }
         pecasJogo.remove(pecaParaRemover);
+        jogo.setUltimaPecaCapturada(pecaParaRemover);
         return true;
     }
 }

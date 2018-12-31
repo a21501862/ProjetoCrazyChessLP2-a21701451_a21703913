@@ -162,6 +162,10 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    if (jogo.getTurnoPrimeiraCaptura() == -1){
+                        jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                    }
+                    jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                     jogo.resetTurnosSemCapturas();
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
@@ -181,6 +185,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             pecasJogo.remove(pecaParaRemover);
+            jogo.setUltimaPecaCapturada(pecaParaRemover);
         } else if (tipoJoker.equals("Ponei Mágico")) {
             int count = 0;
             if((abs(xO-xD) != 2) || abs(yO-yD) != 2 ){
@@ -372,6 +377,10 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    if (jogo.getTurnoPrimeiraCaptura() == -1){
+                        jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                    }
+                    jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                     jogo.resetTurnosSemCapturas();
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
@@ -391,6 +400,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             pecasJogo.remove(pecaParaRemover);
+            jogo.setUltimaPecaCapturada(pecaParaRemover);
         } else if(tipoJoker.equals("Padre da Vila")){
             int count = 0;
             int rainhas = 0;
@@ -490,6 +500,10 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    if (jogo.getTurnoPrimeiraCaptura() == -1){
+                        jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                    }
+                    jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                     jogo.resetTurnosSemCapturas();
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
@@ -509,6 +523,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             pecasJogo.remove(pecaParaRemover);
+            jogo.setUltimaPecaCapturada(pecaParaRemover);
         } else if(tipoJoker.equals("TorreH")){
             int count = 0;
             if (yD != yO){
@@ -538,6 +553,10 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    if (jogo.getTurnoPrimeiraCaptura() == -1){
+                        jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                    }
+                    jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                     jogo.resetTurnosSemCapturas();
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
@@ -557,6 +576,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             pecasJogo.remove(pecaParaRemover);
+            jogo.setUltimaPecaCapturada(pecaParaRemover);
         }else if(tipoJoker.equals("TorreV")){
             int count = 0;
             if (xD != xO){
@@ -586,6 +606,10 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    if (jogo.getTurnoPrimeiraCaptura() == -1){
+                        jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                    }
+                    jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                     jogo.resetTurnosSemCapturas();
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
@@ -605,6 +629,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             pecasJogo.remove(pecaParaRemover);
+            jogo.setUltimaPecaCapturada(pecaParaRemover);
         }else if(tipoJoker.equals("Lebre")){
             if (jogo.getTurno() %2 != 0){
                 if (idEquipa == 10) {
@@ -636,6 +661,10 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    if (jogo.getTurnoPrimeiraCaptura() == -1){
+                        jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                    }
+                    jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                     jogo.resetTurnosSemCapturas();
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
@@ -655,6 +684,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             pecasJogo.remove(pecaParaRemover);
+            jogo.setUltimaPecaCapturada(pecaParaRemover);
         }
         return true;
 

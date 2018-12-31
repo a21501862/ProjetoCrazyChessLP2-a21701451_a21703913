@@ -295,8 +295,7 @@ public class Simulador {
         List <String> sugestoes = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){
-            if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre")) ){
-                sugestoes.add("Pedido inválido");
+            if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){
                 break;
             }
             if (peca.getX() == xO && peca.getY() == yO && peca.getIdEquipa() == getIDEquipaAJogar()){
@@ -311,28 +310,66 @@ public class Simulador {
         return sugestoes;
     }
 
-    public void anularJogadaAnterior(){
+    public void anularJogadaAnterior(){ //decrementarTurnosSemCapturas
         if (jogo.getTurno()!=0){
             if (idEquipaAtual ==  10){
                 idEquipaAtual = 20;
             }else{
                 idEquipaAtual = 10;
             }
-            for (CrazyPiece peca: pecasJogo){
-                if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
-                    processaJogada(ultimoxD,ultimoYD,ultimoxO,ultimoyO);
+            if(jogo.ultimaPecaRemovida == null){
+                for (CrazyPiece peca: pecasJogo){
+                    if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
+                        processaJogada(ultimoxD,ultimoYD,ultimoxO,ultimoyO);
+                    }
                 }
-            }
-            if (idEquipaAtual ==  10){
-                for(int i = 0; i<2; i++){
-                    estatisticas.decrementaJogadasValidasBrancas();
+                if (idEquipaAtual ==  10){
+                    for(int i = 0; i<2; i++){
+                        estatisticas.decrementaJogadasValidasBrancas();
+                    }
+                    idEquipaAtual = 20;
+                }else{
+                    for(int i = 0; i<2; i++){
+                        estatisticas.decrementaJogadasValidasPretas();
+                    }
+                    idEquipaAtual = 10;
                 }
-                idEquipaAtual = 20;
+                if (jogo.getTurnosSemCapturas() != 0 && jogo.primeiraCapturaEfetuada){
+                    for(int i = 0; i<2; i++){
+                        jogo.decrementaTurnoSemCapturas();
+                    }
+                }
             }else{
-                for(int i = 0; i<2; i++){
-                    estatisticas.decrementaJogadasValidasPretas();
+                CrazyPiece pecaRemovida = jogo.obterPeca();
+                pecaRemovida.anularCaptura();
+                pecasJogo.add(pecaRemovida);
+                jogo.setUltimaPecaCapturada(null);
+                for (CrazyPiece peca: pecasJogo){
+                    if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
+                        processaJogada(ultimoxD,ultimoYD,ultimoxO,ultimoyO);
+                    }
                 }
-                idEquipaAtual = 10;
+                if (idEquipaAtual ==  10){
+                    for(int i = 0; i<2; i++){
+                        estatisticas.decrementaJogadasValidasBrancas();
+                    }
+                    jogo.incrementaPecasPretas();
+                    estatisticas.decrementaCapturasBrancas();
+                    idEquipaAtual = 20;
+                }else{
+                    for(int i = 0; i<2; i++){
+                        estatisticas.decrementaJogadasValidasPretas();
+                    }
+                    jogo.incrementaPecasBrancas();
+                    estatisticas.decrementaCapturasPretas();
+                    idEquipaAtual = 10;
+                }
+                if (jogo.primeiraCapturaEfetuada && jogo.getTurnoPrimeiraCaptura() == jogo.getTurno()-1){
+                    jogo.setTurnoPrimeiraCaptura(-1);
+                    jogo.anularPrimeiraCaptura();
+                }else{
+                    jogo.setTurnosSemCapturas(jogo.getTurnosAteCaptura());
+                }
             }
             jogo.decrementaTurno();
         }

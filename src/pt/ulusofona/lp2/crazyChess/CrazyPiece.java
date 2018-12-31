@@ -99,6 +99,10 @@ public abstract class CrazyPiece {
         capturada = true;
     }
 
+    public void anularCaptura(){
+        capturada = false;
+    }
+
     int getIdTipo(){
         return idTipo;
     }

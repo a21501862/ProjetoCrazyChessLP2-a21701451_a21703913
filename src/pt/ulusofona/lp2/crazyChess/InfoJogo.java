@@ -6,6 +6,8 @@ public class InfoJogo {
     int pecasBrancas;
     int turnosSemCapturas;
     int turno;
+    int turnoPrimeiraCaptura;
+    int turnosAteCaptura;
     CrazyPiece ultimaPecaRemovida;
     boolean primeiraCapturaEfetuada;
 
@@ -13,8 +15,11 @@ public class InfoJogo {
         this.pecasPretas = 0;
         this.pecasBrancas = 0;
         this.turno = 0;
+        this.turnoPrimeiraCaptura = -1;
         this.turnosSemCapturas = -1;
+        this.turnosAteCaptura = 0;
         this.primeiraCapturaEfetuada = false;
+        this.ultimaPecaRemovida = null;
     }
 
     void incrementaPecasBrancas(){
@@ -49,6 +54,14 @@ public class InfoJogo {
         turno--;
     }
 
+    void setUltimaPecaCapturada(CrazyPiece peca){
+        ultimaPecaRemovida = peca;
+    }
+
+    CrazyPiece obterPeca(){
+        return ultimaPecaRemovida;
+    }
+
     void primeiraCapturaFeita(){
         primeiraCapturaEfetuada = true;
     }
@@ -61,8 +74,20 @@ public class InfoJogo {
         return turnosSemCapturas;
     }
 
+    void setTurnosSemCapturas(int turnosSemCapturas){
+        this.turnosSemCapturas = turnosSemCapturas;
+    }
+
+    void anularPrimeiraCaptura(){
+        primeiraCapturaEfetuada = false;
+    }
+
     void incrementaTurnoSemCapturas(){
         turnosSemCapturas++;
+    }
+
+    void decrementaTurnoSemCapturas(){
+        turnosSemCapturas--;
     }
 
     void resetTurnosSemCapturas(){
@@ -73,11 +98,32 @@ public class InfoJogo {
         turno++;
     }
 
+
+    public int getTurnoPrimeiraCaptura() {
+        return turnoPrimeiraCaptura;
+    }
+
+    public void setTurnoPrimeiraCaptura(int turnoPrimeiraCaptura) {
+        this.turnoPrimeiraCaptura = turnoPrimeiraCaptura;
+    }
+
+
+    public int getTurnosAteCaptura() {
+        return turnosAteCaptura;
+    }
+
+    public void setTurnosAteCaptura(int turnosAteCaptura) {
+        this.turnosAteCaptura = turnosAteCaptura;
+    }
+
     void limpar(){
         this.pecasPretas = 0;
         this.pecasBrancas = 0;
         this.turno = 0;
+        this.turnoPrimeiraCaptura = -1;
         this.turnosSemCapturas = -1;
+        this.turnosAteCaptura = 0;
+        this.ultimaPecaRemovida = null;
         this.primeiraCapturaEfetuada = false;
     }
 }

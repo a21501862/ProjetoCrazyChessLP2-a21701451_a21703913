@@ -45,14 +45,14 @@ public class PadreDaVila extends CrazyPiece {
             count++;
             if (count == pecasJogo.size()){
                 count=0;
-                if(xRef != 0 && yRef != 0 && idRef != idEquipa && tipoRef!=1 && !(tipoJoker.equals("Rainha"))){
+                if(xRef != 0 && yRef != 0 && idRef != idEquipa){
                     while (valorY - 1 >= yRef  && valorX - 1>= xRef && count < 3){
                         jogadaPadre.add(valorX - 1 + ", " + (valorY-1));
                         valorX--;
                         valorY--;
                         count++;
                     }
-                }else if (yRef != 0 && xRef != 0 && (idRef == idEquipa || tipoRef == 1 || tipoJoker.equals("Rainha"))) {
+                }else if (yRef != 0 && xRef != 0 && idRef == idEquipa) {
                     while (valorY-1 > yRef && valorX-1 > xRef && count < 3) {
                         jogadaPadre.add(valorX-1 + ", " + (valorY-1));
                         valorX--;
@@ -62,7 +62,7 @@ public class PadreDaVila extends CrazyPiece {
                 }else{
                     int verificarPecaFronteira = 0;
                     for (CrazyPiece pecaFronteira : pecasJogo){
-                        if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == 0 && (idRef == idEquipa || pecaFronteira.getIdTipo()==1 || ((Joker)pecaFronteira).getTipoJoker().equals("Rainha"))){
+                        if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == 0 && idRef == idEquipa){
                             while (valorY - 1 > 0 && valorX - 1 > 0 && count<3){
                                 jogadaPadre.add(valorX - 1 + ", " + (valorY-1));
                                 valorX--;
@@ -372,6 +372,10 @@ public class PadreDaVila extends CrazyPiece {
                 pecaParaRemover = peca;
                 peca.capturar();
                 jogo.primeiraCapturaFeita();
+                if (jogo.getTurnoPrimeiraCaptura() == -1){
+                    jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                }
+                jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                 jogo.resetTurnosSemCapturas();
                 if (idEquipa == 10) {
                     jogo.decrementaPecasBrancas();
@@ -391,6 +395,7 @@ public class PadreDaVila extends CrazyPiece {
             }
         }
         pecasJogo.remove(pecaParaRemover);
+        jogo.setUltimaPecaCapturada(pecaParaRemover);
         return true;
     }
 

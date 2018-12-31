@@ -66,13 +66,6 @@ public class PoneiMagico extends CrazyPiece {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
                                 return false;
-                            }else if(peca.getIdTipo() == 0 && peca.getX() == xD && peca.getY() == yO-1){
-                                if (idEquipa == 10) {
-                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                } else {
-                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                }
-                                return false;
                             }
                         }
                     }else if(peca.getIdTipo() == 0 && peca.getY() == yD && peca.getX() == xO+1){
@@ -227,6 +220,10 @@ public class PoneiMagico extends CrazyPiece {
                 pecaParaRemover = peca;
                 peca.capturar();
                 jogo.primeiraCapturaFeita();
+                if (jogo.getTurnoPrimeiraCaptura() == -1){
+                    jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
+                }
+                jogo.setTurnosAteCaptura(jogo.getTurnosSemCapturas());
                 jogo.resetTurnosSemCapturas();
                 if (idEquipa == 10) {
                     jogo.decrementaPecasBrancas();
@@ -246,6 +243,7 @@ public class PoneiMagico extends CrazyPiece {
             }
         }
         pecasJogo.remove(pecaParaRemover);
+        jogo.setUltimaPecaCapturada(pecaParaRemover);
         return true;
     }
 

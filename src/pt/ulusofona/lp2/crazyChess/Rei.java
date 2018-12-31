@@ -19,12 +19,14 @@ public class Rei extends CrazyPiece {
         return tipo;
     }
 
-    List<String> sugerirJogadas(int xO,int yO,CrazyPiece ref,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
+    List<String> sugerirJogadas(int xO,int yO,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
         List <String> jogadaRei = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//direita
-           if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getX() == xO + 1 && peca.getY() == yO){
+           if (peca.getIdEquipa() != idEquipa && peca.getX() == xO + 1 && peca.getY() == yO){
                jogadaRei.add(xO+1 + ", " + yO);
+               break;
+           }else if(peca.getIdEquipa() == idEquipa && peca.getX() == xO + 1 && peca.getY() == yO){
                break;
            }
            count ++;
@@ -34,8 +36,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//esquerda
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getX() == xO - 1 && peca.getY() == yO){
+            if (peca.getIdEquipa() != idEquipa && peca.getX() == xO - 1 && peca.getY() == yO){
                 jogadaRei.add(xO-1 + ", " + yO);
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getX() == xO - 1 && peca.getY() == yO){
                 break;
             }
             count ++;
@@ -45,8 +49,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//cima
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO){
                 jogadaRei.add(xO + ", " + (yO-1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO){
                 break;
             }
             count ++;
@@ -56,8 +62,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO){
                 jogadaRei.add(xO + ", " + (yO+1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO){
                 break;
             }
             count ++;
@@ -67,8 +75,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO + 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO + 1){
                 jogadaRei.add(xO+1 + ", " + (yO-1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO+1){
                 break;
             }
             count++;
@@ -78,8 +88,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//cima esquerda
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO - 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO - 1){
                 jogadaRei.add(xO-1 + ", " + (yO-1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO-1){
                 break;
             }
             count++;
@@ -89,8 +101,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo esquerda
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO - 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO - 1){
                 jogadaRei.add(xO-1 + ", " + (yO+1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO-1){
                 break;
             }
             count++;
@@ -100,8 +114,10 @@ public class Rei extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo direita
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO + 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO + 1){
                 jogadaRei.add(xO+1 + ", " + (yO+1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO+1){
                 break;
             }
             count++;

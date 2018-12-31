@@ -57,6 +57,14 @@ public class Estatistica {
         jogadasValidasBrancas++;
     }
 
+    public void decrementaJogadasValidasPretas(){
+        jogadasValidasPretas--;
+    }
+
+    public void decrementaJogadasValidasBrancas(){
+        jogadasValidasBrancas--;
+    }
+
     public void capturarPretas(){
         capturasPretas++;
     }

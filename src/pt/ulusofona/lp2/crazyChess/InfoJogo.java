@@ -6,6 +6,7 @@ public class InfoJogo {
     int pecasBrancas;
     int turnosSemCapturas;
     int turno;
+    CrazyPiece ultimaPecaRemovida;
     boolean primeiraCapturaEfetuada;
 
     InfoJogo(){
@@ -42,6 +43,10 @@ public class InfoJogo {
 
     int getTurno(){
         return turno;
+    }
+
+    void decrementaTurno(){
+        turno--;
     }
 
     void primeiraCapturaFeita(){

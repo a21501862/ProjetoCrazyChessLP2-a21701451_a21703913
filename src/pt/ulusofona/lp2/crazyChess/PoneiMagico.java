@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -19,8 +20,20 @@ public class PoneiMagico extends CrazyPiece {
         return tipo;
     }
 
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        return null;
+    List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <String> jogadaPonei = new ArrayList<>();
+        for (CrazyPiece peca: pecasJogo){//diagonal cima direita
+            if(peca.getX()>xO && peca.getX()<=xO+2 && peca.getY() == yO && peca.getIdTipo()!=0){
+                for (CrazyPiece peca2: pecasJogo){
+                    if (peca2.getX() == xO +2 && peca2.getY()<yO-1 && peca.getIdTipo()!=0){
+                        if(peca2.getY()== y){
+
+                        }
+                    }
+                }
+            }
+        }
+        return jogadaPonei;
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {

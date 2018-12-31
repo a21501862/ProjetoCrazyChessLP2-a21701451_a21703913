@@ -109,5 +109,5 @@ public abstract class CrazyPiece {
 
     abstract boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo);
 
-    abstract List<String> sugerirJogadas(int xO, int yO, CrazyPiece peca,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro);
+    abstract List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro);
 }

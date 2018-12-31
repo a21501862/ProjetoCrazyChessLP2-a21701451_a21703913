@@ -20,12 +20,14 @@ public class Lebre extends CrazyPiece {
         return tipo;
     }
 
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece ref, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+    List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List <String> jogadaLebre = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO + 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO + 1){
                 jogadaLebre.add(xO+1 + ", " + (yO-1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO+1){
                 break;
             }
             count++;
@@ -35,8 +37,10 @@ public class Lebre extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//cima esquerda
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO - 1 && peca.getX() == xO - 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO - 1){
                 jogadaLebre.add(xO-1 + ", " + (yO-1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO-1){
                 break;
             }
             count++;
@@ -46,8 +50,10 @@ public class Lebre extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo esquerda
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO - 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO - 1){
                 jogadaLebre.add(xO-1 + ", " + (yO+1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO-1){
                 break;
             }
             count++;
@@ -57,8 +63,10 @@ public class Lebre extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo direita
-            if (peca.getIdEquipa() != ref.getIdEquipa() && peca.getY() == yO + 1 && peca.getX() == xO + 1){
+            if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO + 1){
                 jogadaLebre.add(xO+1 + ", " + (yO+1));
+                break;
+            }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO+1){
                 break;
             }
             count++;

@@ -19,7 +19,7 @@ public class TorreVert extends CrazyPiece {
         return tipo;
     }
 
-    List<String> sugerirJogadas(int xO, int yO, CrazyPiece ref, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+    List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List <String> jogadaTorreVer = new ArrayList<>();
         int count = 0;
         int valorY = yO;

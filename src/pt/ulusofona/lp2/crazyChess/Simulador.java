@@ -13,6 +13,10 @@ public class Simulador {
     int numeroPecas;
     int idEquipaAtual;
     boolean terminou;
+    int ultimoxO;
+    int ultimoyO;
+    int ultimoxD;
+    int ultimoYD;
     List<CrazyPiece> pecas = new ArrayList<>();
     List<CrazyPiece> pecasJogo = new ArrayList<>();
     File ficheiro;
@@ -192,6 +196,10 @@ public class Simulador {
                                 ((Joker) verificaJoker).mudaTipoJoker();
                             }
                         }
+                        ultimoxO = xO;
+                        ultimoxD = xD;
+                        ultimoyO = yO;
+                        ultimoYD = yD;
                         return true;
                     }else{
                         return false;
@@ -285,16 +293,49 @@ public class Simulador {
 
     public List<String> obterSugestoesJogada(int xO, int yO) {
         List <String> sugestoes = new ArrayList<>();
+        int count = 0;
         for (CrazyPiece peca: pecasJogo){
-            if (peca.getX() == xO && peca.getY() == yO){
-                sugestoes = peca.sugerirJogadas(xO,yO,peca,pecasJogo,tamanhoTabuleiro);
+            if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre")) ){
+                sugestoes.add("Pedido inválido");
+                break;
+            }
+            if (peca.getX() == xO && peca.getY() == yO && peca.getIdEquipa() == getIDEquipaAJogar()){
+                sugestoes = peca.sugerirJogadas(xO,yO,pecasJogo,tamanhoTabuleiro);
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size()){
+                sugestoes.add("Pedido inválido");
             }
         }
         return sugestoes;
     }
 
     public void anularJogadaAnterior(){
-
+        if (jogo.getTurno()!=0){
+            if (idEquipaAtual ==  10){
+                idEquipaAtual = 20;
+            }else{
+                idEquipaAtual = 10;
+            }
+            for (CrazyPiece peca: pecasJogo){
+                if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
+                    processaJogada(ultimoxD,ultimoYD,ultimoxO,ultimoyO);
+                }
+            }
+            if (idEquipaAtual ==  10){
+                for(int i = 0; i<2; i++){
+                    estatisticas.decrementaJogadasValidasBrancas();
+                }
+                idEquipaAtual = 20;
+            }else{
+                for(int i = 0; i<2; i++){
+                    estatisticas.decrementaJogadasValidasPretas();
+                }
+                idEquipaAtual = 10;
+            }
+            jogo.decrementaTurno();
+        }
     }
 
     public boolean gravarJogo(File ficheiroDestino) {

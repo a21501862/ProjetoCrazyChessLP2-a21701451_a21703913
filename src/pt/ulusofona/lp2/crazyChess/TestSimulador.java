@@ -626,7 +626,6 @@ public class TestSimulador {
     @Test
     public void test01obterSugestoesJogadaComerLebreInvalido() {
         simulador.iniciaJogo(ficheiroLebre);
-        simulador.idEquipaAtual = 10;
         List<String> sugestoesEsperadas = Arrays.asList();
         Collections.sort(sugestoesEsperadas);
         List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(6,4);
@@ -636,13 +635,38 @@ public class TestSimulador {
     @Test
     public void test01obterSugestoesJogadaLebreValida() {
         simulador.iniciaJogo(ficheiroLebre);
-        simulador.idEquipaAtual = 10;
         List<String> sugestoesEsperadas = Arrays.asList("0, 0", "2, 0","2, 2","0, 2");
         Collections.sort(sugestoesEsperadas);
         List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,1);
         Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
+    @Test
+    public void test01processaJogadaLebreInvalidaDiagonaisDiferentes() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaLebreInvalidaTurnoImparPreto() {
+        simulador.iniciaJogo(ficheiroLebre);
+        simulador.jogo.turno = 1;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaLebreInvalidaTurnoImparBranco() {
+        simulador.iniciaJogo(ficheiroLebre);
+        simulador.jogo.turno = 1;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,3,2,4);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+
+
     //JOKER
 }
 

@@ -256,8 +256,6 @@ public class Simulador {
 
     public List<String> getResultados(){
         List<String> resultados = new ArrayList<>();
-        resultados.add("Bruna Vieites a21703913");
-        resultados.add("Rafael Lemos a21701451");
         resultados.add("JOGO DE CRAZY CHESS");
         if(jogo.getPecasBrancas() == 0){
             resultados.add("Resultado: VENCERAM AS PRETAS");
@@ -270,11 +268,11 @@ public class Simulador {
         resultados.add("Equipa das Pretas");
         resultados.add(" Capturas: " + estatisticas.getCapturasPretas());
         resultados.add(" Jogadas válidas: " + estatisticas.getJogadasValidasPretas());
-        resultados.add(" Tentativas inválidas : " + estatisticas.getJogadasInvalidasPretas());
+        resultados.add(" Tentativas inválidas:" + estatisticas.getJogadasInvalidasPretas());
         resultados.add("Equipa das Brancas");
         resultados.add(" Capturas: " + estatisticas.getCapturasBrancas());
         resultados.add(" Jogadas válidas: " + estatisticas.getJogadasValidasBrancas());
-        resultados.add(" Tentativas inválidas: " + estatisticas.getJogadasInvalidasBrancas());
+        resultados.add(" Tentativas inválidas:" + estatisticas.getJogadasInvalidasBrancas());
         return resultados;
     }
 

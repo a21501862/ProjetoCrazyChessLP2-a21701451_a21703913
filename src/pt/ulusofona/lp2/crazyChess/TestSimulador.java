@@ -14,6 +14,7 @@ public class TestSimulador {
     File ficheiroRei = new File("test-files/rei.txt");
     File ficheiroTorreHor = new File("test-files/torreHor.txt");
     File ficheiroTorreVert = new File("test-files/torreVert.txt");
+    File ficheiroLebre = new File("test-files/lebre.txt");
 
     //GERAL
     @Test
@@ -503,7 +504,136 @@ public class TestSimulador {
     }
 
     //LEBRE
-
+    @Test
+    public void test03processaJogadaInvalidaLebreCima() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,1,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test04processaJogadaValidaLebreCimaDireita() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test05processaJogadaInvalidaLebreDireita() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test07processaJogadaValidaLebreBaixoDireita() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test06processaJogadaInvalidaLebreBaixo() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,1,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test08processaJogadaValidaLebreBaixoEsquerda() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,0,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test09processaJogadaInvalidaLebreEsquerda() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,0,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test10processaJogadaValidaLebreCimaEsquerda() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,0,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test11processaJogadaValidaComerLebreBranca() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(4,4,3,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test12processaJogadaInvalidaComerLebreMesmaEquipa() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(4,2,3,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test14processaJogadaInvalidaLebreBranca() {
+        simulador.iniciaJogo(ficheiroLebre);
+        simulador.idEquipaAtual = 20;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,3,3,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test15processaJogadaValidaComerLebrePreta() {
+        simulador.iniciaJogo(ficheiroLebre);
+        simulador.idEquipaAtual = 20;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,3,2,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test16processaJogadaInvalidaLebrePretoMaiorQue1Casa() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,0,5,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test17processaJogadaInvalidaLebreBrancoMaiorQue1Casa() {
+        simulador.iniciaJogo(ficheiroLebre);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(5,5,7,7);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01obterSugestoesJogadaLebre() {
+        simulador.iniciaJogo(ficheiroLebre);
+        List<String> sugestoesEsperadas = Arrays.asList("0, 0", "2, 0", "2, 2", "0, 2");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,1);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test01obterSugestoesJogadaComerLebreValido() {
+        simulador.iniciaJogo(ficheiroLebre);
+        List<String> sugestoesEsperadas = Arrays.asList("3, 3", "3, 5", "5, 3", "5, 5");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test01obterSugestoesJogadaComerLebreInvalido() {
+        simulador.iniciaJogo(ficheiroLebre);
+        simulador.idEquipaAtual = 20;
+        simulador.jogo.turno = 1;
+        List<String> sugestoesEsperadas = Arrays.asList();
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(6,4);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
     //JOKER
 }
 

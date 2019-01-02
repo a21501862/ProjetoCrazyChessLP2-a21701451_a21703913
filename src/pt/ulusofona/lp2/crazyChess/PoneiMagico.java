@@ -49,8 +49,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        if(valida){
-                        }
                     }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO+1 || peca1.getX() == xO+2)){
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo){
@@ -67,8 +65,6 @@ public class PoneiMagico extends CrazyPiece {
                                     }
                                 }
                             }
-                        }
-                        if(valida){
                         }
                     }else if(peca1.getIdTipo() != 0 && peca1.getX() == xO && (peca1.getY() == yO-1 || peca1.getY() == yO-2)) {
                         int count1 = 0;
@@ -167,8 +163,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        if(valida){
-                        }
                     }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO-1 || peca1.getX() == xO-2)){
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo){
@@ -185,8 +179,6 @@ public class PoneiMagico extends CrazyPiece {
                                     }
                                 }
                             }
-                        }
-                        if(valida){
                         }
                     }else if(peca1.getIdTipo() != 0 && peca1.getX() == xO && (peca1.getY() == yO-1 || peca1.getY() == yO-2)) {
                         int count1 = 0;
@@ -270,22 +262,20 @@ public class PoneiMagico extends CrazyPiece {
                 for(CrazyPiece peca1 : pecasJogo){
                     if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)){
                         int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO-1 || peca2.getX() == xO-2)) {
+                        for (CrazyPiece peca2 : pecasJogo) {
+                            if (peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2)) {
                                 valida = false;
                                 break;
                             }
                             count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO-2 && peca3.getY() == yO+1) {
+                            if (count1 == pecasJogo.size()) {
+                                for (CrazyPiece peca3 : pecasJogo) {
+                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO + 1) {
                                         valida = false;
                                         break;
                                     }
                                 }
                             }
-                        }
-                        if(valida){
                         }
                     }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO-1 || peca1.getX() == xO-2)){
                         int count1 = 0;
@@ -303,8 +293,6 @@ public class PoneiMagico extends CrazyPiece {
                                     }
                                 }
                             }
-                        }
-                        if(valida){
                         }
                     }else if(peca1.getIdTipo() != 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)) {
                         int count1 = 0;
@@ -403,8 +391,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        if(valida){
-                        }
                     }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO+1 || peca1.getX() == xO+2)){
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo){
@@ -421,8 +407,6 @@ public class PoneiMagico extends CrazyPiece {
                                     }
                                 }
                             }
-                        }
-                        if(valida){
                         }
                     }else if(peca1.getIdTipo() != 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)) {
                         int count1 = 0;

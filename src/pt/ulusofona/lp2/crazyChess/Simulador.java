@@ -364,7 +364,7 @@ public class Simulador {
                     estatisticas.decrementaCapturasPretas();
                     idEquipaAtual = 10;
                 }
-                if (jogo.primeiraCapturaEfetuada && jogo.getTurnoPrimeiraCaptura() == jogo.getTurno()-1){
+                if (jogo.primeiraCapturaFoiEfetuada() && jogo.getTurnoPrimeiraCaptura() == jogo.getTurno()-1){
                     jogo.setTurnoPrimeiraCaptura(-1);
                     jogo.anularPrimeiraCaptura();
                 }else{

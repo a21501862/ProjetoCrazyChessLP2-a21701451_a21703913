@@ -617,20 +617,29 @@ public class TestSimulador {
     @Test
     public void test01obterSugestoesJogadaComerLebreValido() {
         simulador.iniciaJogo(ficheiroLebre);
-        List<String> sugestoesEsperadas = Arrays.asList("3, 3", "3, 5", "5, 3", "5, 5");
+        List<String> sugestoesEsperadas = Arrays.asList("0, 5", "0, 7","2, 5", "2, 7");
         Collections.sort(sugestoesEsperadas);
-        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,6);
         Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
     @Test
     public void test01obterSugestoesJogadaComerLebreInvalido() {
         simulador.iniciaJogo(ficheiroLebre);
-        simulador.idEquipaAtual = 20;
-        simulador.jogo.turno = 1;
+        simulador.idEquipaAtual = 10;
         List<String> sugestoesEsperadas = Arrays.asList();
         Collections.sort(sugestoesEsperadas);
         List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(6,4);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test01obterSugestoesJogadaLebreValida() {
+        simulador.iniciaJogo(ficheiroLebre);
+        simulador.idEquipaAtual = 10;
+        List<String> sugestoesEsperadas = Arrays.asList("0, 0", "2, 0","2, 2","0, 2");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,1);
         Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }

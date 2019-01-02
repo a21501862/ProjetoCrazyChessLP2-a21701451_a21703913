@@ -167,8 +167,8 @@ public class Simulador {
             return true;
         }
         while(!terminou) {
-            if (xO < 0 || xO > tamanhoTabuleiro || yO < 0 || yO > tamanhoTabuleiro || xD < 0 || xD > tamanhoTabuleiro || yD < 0
-                    || yD > tamanhoTabuleiro) {
+            if (xO < 0 || xO > tamanhoTabuleiro-1 || yO < 0 || yO > tamanhoTabuleiro-1 || xD < 0 || xD > tamanhoTabuleiro-1 || yD < 0
+                    || yD > tamanhoTabuleiro-1) {
                 if (idEquipaAtual == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {

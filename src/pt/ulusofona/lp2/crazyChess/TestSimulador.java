@@ -13,6 +13,7 @@ public class TestSimulador {
     Simulador simulador = new Simulador();
     File ficheiroRei = new File("test-files/rei.txt");
     File ficheiroRainha = new File("test-files/rainha.txt");
+    File ficheiroPonei = new File("test-files/poneiMagico.txt");
     File ficheiroTorreHor = new File("test-files/torreHor.txt");
     File ficheiroTorreVert = new File("test-files/torreVert.txt");
     File ficheiroLebre = new File("test-files/lebre.txt");
@@ -412,6 +413,46 @@ public class TestSimulador {
 //    }
 
     //PONEI
+    @Test
+    public void test13processaJogadaInvalidaPonei90Branca() {
+        simulador.iniciaJogo(ficheiroPonei);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(2,4,5,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test13processaJogadaInvalidaPonei90Preta() {
+        simulador.iniciaJogo(ficheiroPonei);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(4,2,2,5);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test13processaJogadaValidaPonei90BrancaComer() {
+        simulador.iniciaJogo(ficheiroPonei);
+        boolean jogadaEsperada = true;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(2,4,4,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test13processaJogadaValidaPonei90PretaComer() {
+        simulador.iniciaJogo(ficheiroPonei);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(6,4,4,6);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test13processaJogadaInvalidaPonei90BrancaComRei() {
+        simulador.iniciaJogo(ficheiroPonei);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(2,4,0,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+
+
 
     //PADRE
 

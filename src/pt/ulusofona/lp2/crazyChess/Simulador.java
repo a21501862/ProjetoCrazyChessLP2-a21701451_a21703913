@@ -301,6 +301,10 @@ public class Simulador {
             if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){
                 break;
             }
+            if (peca.idTipo == 8 && jogo.getTurno()%2!=0){
+                sugestoes = ((Recruta) peca).sugerirJogadasTurnoImpar(xO,yO,pecasJogo,tamanhoTabuleiro);
+                break;
+            }
             if (peca.getX() == xO && peca.getY() == yO && peca.getIdEquipa() == getIDEquipaAJogar()){
                 sugestoes = peca.sugerirJogadas(xO,yO,pecasJogo,tamanhoTabuleiro);
                 break;

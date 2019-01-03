@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.crazyChess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -19,9 +20,94 @@ public class Recruta extends CrazyPiece {
         return tipo;
     }
 
-    List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+    List<String> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+        List<String> sugestaoRecruta = new ArrayList<>();
+        int count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima direita
+            if (peca.getY() == yO - 2 && peca.getX() == xO + 2){
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO - 2 >= 0 && xO +2 < tamanhoTabuleiro){
+                sugestaoRecruta.add(xO+2 + ", " + (yO-2));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima esquerda
+            if (peca.getY() == yO - 2 && peca.getX() == xO - 2){
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO - 2 >= 0 && xO - 2 >= 0){
+                sugestaoRecruta.add(xO-2 + ", " + (yO-2));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo esquerda
+            if (peca.getY() == yO + 2 && peca.getX() == xO - 2){
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO + 2 < tamanhoTabuleiro && xO - 2 >= 0){
+                sugestaoRecruta.add(xO-2 + ", " + (yO+2));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo direita
+            if (peca.getY() == yO + 2 && peca.getX() == xO + 2){
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size() && yO + 2 < tamanhoTabuleiro && xO + 2 < tamanhoTabuleiro){
+                sugestaoRecruta.add(xO+2 + ", " + (yO+2));
+            }
+        }
+        return sugestaoRecruta;
+    }
 
-        return null;
+    List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+        List<String> sugestaoRecruta = new ArrayList<>();
+        int count = 0;
+        for (CrazyPiece peca: pecasJogo){//direita
+            if (peca.getX() == xO + 2 && peca.getY() == yO){
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && xO + 2 < tamanhoTabuleiro){
+                sugestaoRecruta.add(xO+2 + ", " + yO);
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//esquerda
+            if (peca.getX() == xO - 2 && peca.getY() == yO){
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && xO - 2 >= 0){
+                sugestaoRecruta.add(xO-2 + ", " + yO);
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//cima
+            if (peca.getY() == yO - 2 && peca.getX() == xO){
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && yO - 2 >= 0){
+                sugestaoRecruta.add(xO + ", " + (yO-2));
+            }
+        }
+        count = 0;
+        for (CrazyPiece peca: pecasJogo){//baixo
+            if (peca.getY() == yO + 2 && peca.getX() == xO){
+                break;
+            }
+            count ++;
+            if (count == pecasJogo.size() && yO + 2 < tamanhoTabuleiro){
+                sugestaoRecruta.add(xO + ", " + (yO+2));
+            }
+        }
+        return sugestaoRecruta;
     }
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo){
@@ -119,6 +205,4 @@ public class Recruta extends CrazyPiece {
         }
         return true;
     }
-
-
 }

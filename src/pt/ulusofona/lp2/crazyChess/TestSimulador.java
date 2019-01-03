@@ -17,6 +17,7 @@ public class TestSimulador {
     File ficheiroTorreHor = new File("test-files/torreHor.txt");
     File ficheiroTorreVert = new File("test-files/torreVert.txt");
     File ficheiroLebre = new File("test-files/lebre.txt");
+    File ficheiroRecruta = new File("test-files/recruta.txt");
 
     //GERAL
     @Test
@@ -451,9 +452,6 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(2,4,0,2);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
-
-
-
     //PADRE
 
     //TORRE HORIZONTAL
@@ -937,5 +935,47 @@ public class TestSimulador {
         assertEquals(jogadaEsperada,jogadaObtida);
     }
     //JOKER
+
+    //RECRUTA
+    @Test
+    public void test01processaJogadaRecrutaPretoInvalido() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,0,6,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaRecrutaBrancoInvalido() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        simulador.idEquipaAtual = 20;
+        simulador.jogo.turno = 1;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,2,4,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaRecrutaBrancoInvalidoTurno0() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        simulador.idEquipaAtual = 20;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,2,4,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaRecrutaTrocaEquipaPreta() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(5,3,5,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaRecrutaTrocaEquipaBranco() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        boolean jogadaEsperada = true;
+        simulador.idEquipaAtual = 20;
+        simulador.jogo.turno = 1;
+        boolean jogadaObtida  = simulador.processaJogada(3,2,1,4);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
 }
 

@@ -12,6 +12,7 @@ import static junit.framework.TestCase.assertEquals;
 public class TestSimulador {
     Simulador simulador = new Simulador();
     File ficheiroRei = new File("test-files/rei.txt");
+    File ficheiroRainha = new File("test-files/rainha.txt");
     File ficheiroTorreHor = new File("test-files/torreHor.txt");
     File ficheiroTorreVert = new File("test-files/torreVert.txt");
     File ficheiroLebre = new File("test-files/lebre.txt");
@@ -42,8 +43,8 @@ public class TestSimulador {
 
     //REI
     @Test
-    public void test03processaJogadaValidaReiCima() {
-        simulador.iniciaJogo(ficheiroRei);
+    public void test03processaJogadaValidaRainhaCima() {
+        simulador.iniciaJogo(ficheiroRainha);
         boolean jogadaEsperada = true;
         boolean jogadaObtida  = simulador.processaJogada(1,1,1,0);
         assertEquals(jogadaEsperada,jogadaObtida);
@@ -180,6 +181,137 @@ public class TestSimulador {
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
     //RAINHA
+    @Test
+    public void test03processaJogadaValidaReiCima() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,1,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test04processaJogadaValidaRainhaCimaDireita() { //não é valida porque tem uma rainha
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test05processaJogadaIvalidaRainhaDireita() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,2,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test06processaJogadaInvalidaRainhaBaixo() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,1,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test07processaJogadaValidaRainhaBaixoDireita() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,3,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test08processaJogadaValidaRainhaBaixoEsquerda() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,0,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test09processaJogadaValidaRainhaEsquerda() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,0,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test10processaJogadaValidaRainhaCimaEsquerda() {
+        simulador.iniciaJogo(ficheiroRainha);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,1,0,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test11processaJogadaValidaRainhaBrancaComerReiPreto() {
+        simulador.iniciaJogo(ficheiroRainha);
+        simulador.idEquipaAtual = 20;
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(3,2,4,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test13processaJogadaValidaRainhaComerRainha() {
+        simulador.iniciaJogo(ficheiroRainha);
+        simulador.idEquipaAtual = 20;
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,4,4,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+//    @Test
+//    public void test14processaJogadaInvalidaReiBranco() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        simulador.idEquipaAtual = 20;
+//        boolean jogadaEsperada = false;
+//        boolean jogadaObtida  = simulador.processaJogada(3,3,3,2);
+//        assertEquals(jogadaEsperada,jogadaObtida);
+//    }
+//    @Test
+//    public void test15processaJogadaValidaComerReiPreto() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        simulador.idEquipaAtual = 20;
+//        boolean jogadaEsperada = true;
+//        boolean jogadaObtida  = simulador.processaJogada(1,3,2,3);
+//        assertEquals(jogadaEsperada,jogadaObtida);
+//    }
+//    @Test
+//    public void test16processaJogadaInvalidaReiPretoMaiorQue1Casa() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        boolean jogadaEsperada = false;
+//        boolean jogadaObtida  = simulador.processaJogada(3,0,3,2);
+//        assertEquals(jogadaEsperada,jogadaObtida);
+//    }
+//    @Test
+//    public void test17processaJogadaInvalidaReiBrancoMaiorQue1Casa() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        boolean jogadaEsperada = false;
+//        simulador.idEquipaAtual = 20;
+//        boolean jogadaObtida  = simulador.processaJogada(1,3,3,1);
+//        assertEquals(jogadaEsperada,jogadaObtida);
+//    }
+//    @Test
+//    public void test01obterSugestoesJogadaRei() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        List<String> sugestoesEsperadas = Arrays.asList("0, 0", "1, 0", "2, 0", "2, 1", "2, 2", "1, 2", "0, 2", "0, 1");
+//        Collections.sort(sugestoesEsperadas);
+//        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,1);
+//        Collections.sort(sugestoesObtidas);
+//        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+//    }
+//    @Test
+//    public void test01obterSugestoesJogadaComerReiValido() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        List<String> sugestoesEsperadas = Arrays.asList("3, 3", "3, 4", "3, 5", "4, 3", "4, 5", "5, 3", "5, 4", "5, 5");
+//        Collections.sort(sugestoesEsperadas);
+//        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
+//        Collections.sort(sugestoesObtidas);
+//        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+//    }
+//    @Test
+//    public void test01obterSugestoesJogadaComerReiInvalido() {
+//        simulador.iniciaJogo(ficheiroRei);
+//        simulador.idEquipaAtual = 20;
+//        List<String> sugestoesEsperadas = Arrays.asList();
+//        Collections.sort(sugestoesEsperadas);
+//        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(6,4);
+//        Collections.sort(sugestoesObtidas);
+//        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+//    }
 
     //PONEI
 

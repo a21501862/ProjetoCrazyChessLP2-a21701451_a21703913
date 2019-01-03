@@ -225,7 +225,7 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if ((jogo.getPecasPretas() == 0 || jogo.getPecasBrancas()== 0) || (jogo.getPecasPretas() == 1 && jogo.getPecasBrancas() == 1) || jogo.getTurnosSemCapturas()== 10 || numeroPecas<=2){
+        if (jogo.getPecasPretas() == 0 || jogo.getPecasBrancas()== 0 ||  jogo.getTurnosSemCapturas()== 10){
             terminou = true;
             return true;
         }else{

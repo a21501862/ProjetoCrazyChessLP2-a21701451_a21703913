@@ -99,6 +99,10 @@ public abstract class CrazyPiece {
         return idEquipa;
     }
 
+    void setIdEquipa(int idEquipa){
+        this.idEquipa = idEquipa;
+    }
+
     public void capturar(){
         capturada = true;
     }

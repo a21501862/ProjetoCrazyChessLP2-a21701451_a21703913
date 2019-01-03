@@ -9,6 +9,7 @@ public class InfoJogo {
     int turnoPrimeiraCaptura;
     int turnosAteCaptura;
     CrazyPiece ultimaPecaRemovida;
+    CrazyPiece ultimaPecaRecrutada;
     boolean primeiraCapturaEfetuada;
 
     InfoJogo(){
@@ -20,6 +21,7 @@ public class InfoJogo {
         this.turnosAteCaptura = 0;
         this.primeiraCapturaEfetuada = false;
         this.ultimaPecaRemovida = null;
+        this.ultimaPecaRecrutada = null;
     }
 
     void incrementaPecasBrancas(){
@@ -58,8 +60,16 @@ public class InfoJogo {
         ultimaPecaRemovida = peca;
     }
 
+    void setUltimaPecaRecrutada(CrazyPiece peca){
+        ultimaPecaRecrutada = peca;
+    }
+
     CrazyPiece obterPeca(){
         return ultimaPecaRemovida;
+    }
+
+    CrazyPiece obterPecaRecrutada(){
+        return ultimaPecaRecrutada;
     }
 
     void primeiraCapturaFeita(){
@@ -124,6 +134,7 @@ public class InfoJogo {
         this.turnosSemCapturas = -1;
         this.turnosAteCaptura = 0;
         this.ultimaPecaRemovida = null;
+        this.ultimaPecaRecrutada = null;
         this.primeiraCapturaEfetuada = false;
     }
 }

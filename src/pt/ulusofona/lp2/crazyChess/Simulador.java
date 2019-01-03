@@ -326,6 +326,9 @@ public class Simulador {
                     if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
                         processaJogada(ultimoxD,ultimoYD,ultimoxO,ultimoyO);
                     }
+                }if (jogo.obterPecaRecrutada()!= null){
+                    jogo.obterPecaRecrutada().setIdEquipa(idEquipaAtual);
+                    jogo.setUltimaPecaRecrutada(null);
                 }
                 if (idEquipaAtual ==  10){
                     for(int i = 0; i<2; i++){
@@ -376,6 +379,7 @@ public class Simulador {
                 }
             }
         }
+        jogo.decrementaTurno();
     }
 
     public boolean gravarJogo(File ficheiroDestino) {

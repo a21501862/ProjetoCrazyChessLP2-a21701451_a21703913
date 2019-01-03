@@ -68,7 +68,8 @@ public class Recruta extends CrazyPiece {
             }
             for (CrazyPiece peca : pecasJogo) {
                 if (peca.getIdEquipa() != idEquipa && peca.getIdTipo() != idTipo && ((abs(peca.getX()- xD) == 1 && peca.getY() == yD) || ((abs(peca.getY()- yD) == 1 && peca.getX() == xD)))) {
-                    peca.idEquipa = idEquipa;
+                    peca.setIdEquipa(idEquipa);
+                    jogo.setUltimaPecaRecrutada(peca);
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
                         jogo.incrementaPecasPretas();
@@ -103,7 +104,8 @@ public class Recruta extends CrazyPiece {
             }
             for (CrazyPiece peca : pecasJogo) {
                 if (peca.getIdEquipa() != idEquipa && peca.getIdTipo() != idTipo && (abs(peca.getX()- xD) == 1 && abs(peca.getY()- yD) == 1 )) {
-                    peca.idEquipa = idEquipa;
+                    peca.setIdEquipa(idEquipa);
+                    jogo.setUltimaPecaRecrutada(peca);
                     if (idEquipa == 10) {
                         jogo.decrementaPecasBrancas();
                         jogo.incrementaPecasPretas();
@@ -114,7 +116,6 @@ public class Recruta extends CrazyPiece {
                 }
             }
         }
-
         return true;
     }
 

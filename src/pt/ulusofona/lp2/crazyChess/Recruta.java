@@ -20,6 +20,7 @@ public class Recruta extends CrazyPiece {
     }
 
     List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+
         return null;
     }
 

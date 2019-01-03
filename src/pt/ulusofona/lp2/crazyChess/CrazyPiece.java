@@ -43,6 +43,8 @@ public abstract class CrazyPiece {
                 return "lebre_black.png";
             }else if(idTipo==7){
                 return "joker_black.png";
+            }else if(idTipo==8){
+                return "box-water-2.png";
             }
         }else {
             if (idTipo == 0) {
@@ -61,6 +63,8 @@ public abstract class CrazyPiece {
                 return "lebre_white.png";
             } else if (idTipo == 7) {
                 return "joker_white.png";
+            }else if(idTipo==8){
+                return "bird.png";
             }
         }
         return null;

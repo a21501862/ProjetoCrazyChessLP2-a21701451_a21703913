@@ -116,6 +116,11 @@ public class Simulador {
                         peca.getValorRelativo();
                         peca.getTipo();
                         pecas.add(peca);
+                    }else if(tipoPeca == 8) {
+                        CrazyPiece peca = new Recruta(idPeca, tipoPeca, idEquipa, alcunha);
+                        peca.getValorRelativo();
+                        peca.getTipo();
+                        pecas.add(peca);
                     }
                 }else if (numLinha >= numeroPecas + 3 && numLinha<= numeroPecas + 2 + tamanhoTabuleiro){
                     for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
@@ -315,6 +320,7 @@ public class Simulador {
             }else{
                 idEquipaAtual = 10;
             }
+            jogo.decrementaTurno();
             if(jogo.ultimaPecaRemovida == null){
                 for (CrazyPiece peca: pecasJogo){
                     if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
@@ -362,14 +368,13 @@ public class Simulador {
                     estatisticas.decrementaCapturasPretas();
                     idEquipaAtual = 10;
                 }
-                if (jogo.primeiraCapturaFoiEfetuada() && jogo.getTurnoPrimeiraCaptura() == jogo.getTurno()-1){
+                if (jogo.primeiraCapturaFoiEfetuada() && jogo.getTurnoPrimeiraCaptura() == jogo.getTurno()){
                     jogo.setTurnoPrimeiraCaptura(-1);
                     jogo.anularPrimeiraCaptura();
                 }else{
                     jogo.setTurnosSemCapturas(jogo.getTurnosAteCaptura());
                 }
             }
-            jogo.decrementaTurno();
         }
     }
 

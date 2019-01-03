@@ -665,8 +665,6 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(1,3,2,4);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
-
-
     //JOKER
 }
 

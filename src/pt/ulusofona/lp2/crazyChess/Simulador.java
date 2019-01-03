@@ -268,11 +268,11 @@ public class Simulador {
         resultados.add("Equipa das Pretas");
         resultados.add(" Capturas: " + estatisticas.getCapturasPretas());
         resultados.add(" Jogadas válidas: " + estatisticas.getJogadasValidasPretas());
-        resultados.add(" Tentativas inválidas:" + estatisticas.getJogadasInvalidasPretas());
+        resultados.add(" Tentativas inválidas: " + estatisticas.getJogadasInvalidasPretas());
         resultados.add("Equipa das Brancas");
         resultados.add(" Capturas: " + estatisticas.getCapturasBrancas());
         resultados.add(" Jogadas válidas: " + estatisticas.getJogadasValidasBrancas());
-        resultados.add(" Tentativas inválidas:" + estatisticas.getJogadasInvalidasBrancas());
+        resultados.add(" Tentativas inválidas: " + estatisticas.getJogadasInvalidasBrancas());
         return resultados;
     }
 

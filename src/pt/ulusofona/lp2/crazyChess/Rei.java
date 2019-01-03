@@ -128,7 +128,7 @@ public class Rei extends CrazyPiece {
         return jogadaRei;
     }
 
-    boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
+    boolean movePeca(int xO, int yO, int xD, int yD,Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         if(xD > xO + 1 || xD < xO - 1 || yD > yO + 1 || yD < yO - 1){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();

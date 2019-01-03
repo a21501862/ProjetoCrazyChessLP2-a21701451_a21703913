@@ -1,0 +1,34 @@
+8
+24
+1:2:10:Chefe
+2:2:10:Selvagem
+3:2:10:Grande Artista
+4:0:10:O Maior
+5:2:10:O Amigo
+6:2:20:O Beberolas
+7:2:10:O Beberola
+8:2:20:O sdfgw4
+9:2:20:O dsntr
+10:2:20:O dbrgn brg
+11:2:10:O btrnbtrb
+12:2:20:O 3g34th35
+13:2:20:O rtbtyn
+14:2:20:O rthbryn
+15:2:20:O ergtrh
+16:2:10:O vh1
+17:2:20:O ed5h7u
+18:2:20:O edh5u
+19:2:20:O erhdt
+20:2:20:O ergtddtrhtyhrh
+21:2:20:O ergtrhdrttf
+22:2:10: wdefkbwefwe
+23:2:10: wdefkbwefweerg
+24:2:20: wdefkbwefweerg
+0:0:0:0:0:0:0:0
+0:0:0:0:0:0:0:0
+1:0:0:0:2:0:0:0
+0:0:0:0:0:0:0:0
+0:0:6:0:0:0:7:0
+0:0:0:0:0:0:0:0
+4:0:0:0:3:0:0:0
+0:0:0:0:0:0:0:0

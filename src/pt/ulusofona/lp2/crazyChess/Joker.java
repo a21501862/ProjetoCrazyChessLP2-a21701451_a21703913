@@ -1497,7 +1497,7 @@ public class Joker extends CrazyPiece {
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         if (tipoJoker.equals("Rainha")) {
             int count = 0;
-            if (xD > xO + 5 || yD > yO + 5 || xD < xO - 5 || yD < yO - 5) {
+            if(xD > xO + 5 || yD > yO + 5 || xD < xO - 5 || yD < yO - 5){
                 if (idEquipa == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {
@@ -1505,7 +1505,7 @@ public class Joker extends CrazyPiece {
                 }
                 return false;
             }
-            if (abs(xO - xD) != abs(yO - yD) && abs(xO - xD) != 0 && abs(yO - yD) != 0) {
+            if (abs(xO - xD) != abs(yO - yD) && abs(xO - xD) != 0 && abs(yO - yD) != 0){
                 if (idEquipa == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {
@@ -1513,11 +1513,11 @@ public class Joker extends CrazyPiece {
                 }
                 return false;
             }
-            while (count < pecasJogo.size()) {
-                for (CrazyPiece peca : pecasJogo) {
-                    if (xO < xD && yO > yD) { // diagonal cima direita
-                        for (int posX = xO + 1, posY = yO - 1; posX < xD && posY > yD; posX++, posY--) {
-                            if (peca.getX() == posX && peca.getY() == posY) {
+            while (count < pecasJogo.size()){
+                for (CrazyPiece peca: pecasJogo){
+                    if (xO < xD && yO>yD){ // diagonal cima direita
+                        for (int posX = xO + 1, posY = yO - 1; posX < xD && posY > yD; posX++, posY--){
+                            if (peca.getX() == posX && peca.getY() == posY){
                                 if (idEquipa == 10) {
                                     estatisticas.adicionaJogadasInvalidasPretas();
                                 } else {
@@ -1527,9 +1527,9 @@ public class Joker extends CrazyPiece {
                             }
                         }
                     }
-                    if (xO > xD && yO > yD) { // diagonal cima esquerda
-                        for (int posX = xO - 1, posY = yO - 1; posX > xD && posY > yD; posX--, posY--) {
-                            if (peca.getX() == posX && peca.getY() == posY) {
+                    if (xO > xD && yO>yD){ // diagonal cima esquerda
+                        for (int posX = xO -1, posY = yO - 1; posX > xD && posY > yD; posX--, posY--){
+                            if (peca.getX() == posX && peca.getY() == posY){
                                 if (idEquipa == 10) {
                                     estatisticas.adicionaJogadasInvalidasPretas();
                                 } else {
@@ -1539,9 +1539,9 @@ public class Joker extends CrazyPiece {
                             }
                         }
                     }
-                    if (xO < xD && yO < yD) { // diagonal baixo direita
-                        for (int posX = xO + 1, posY = yO + 1; posX < xD && posY < yD; posX++, posY++) {
-                            if (peca.getX() == posX && peca.getY() == posY) {
+                    if (xO < xD && yO<yD){ // diagonal baixo direita
+                        for (int posX = xO + 1, posY = yO + 1; posX < xD && posY < yD; posX++, posY++){
+                            if (peca.getX() == posX && peca.getY() == posY){
                                 if (idEquipa == 10) {
                                     estatisticas.adicionaJogadasInvalidasPretas();
                                 } else {
@@ -1551,9 +1551,9 @@ public class Joker extends CrazyPiece {
                             }
                         }
                     }
-                    if (xO > xD && yO < yD) { // diagonal baixo esquerda
-                        for (int posX = xO - 1, posY = yO + 1; posX > xD && posY < yD; posX--, posY++) {
-                            if (peca.getX() == posX && peca.getY() == posY) {
+                    if (xO > xD && yO<yD){ // diagonal baixo esquerda
+                        for (int posX = xO - 1, posY = yO + 1; posX > xD && posY < yD; posX--, posY++){
+                            if (peca.getX() == posX && peca.getY() == posY){
                                 if (idEquipa == 10) {
                                     estatisticas.adicionaJogadasInvalidasPretas();
                                 } else {
@@ -1563,7 +1563,7 @@ public class Joker extends CrazyPiece {
                             }
                         }
                     }
-                    if (yO == yD) { // movimento horizontal
+                    if (yO == yD){ // movimento horizontal
                         if ((peca.getX() > xO && peca.getX() < xD && peca.getY() == yO) || (peca.getX() < xO && peca.getX() > xD && peca.getY() == yO)) {
                             if (idEquipa == 10) {
                                 estatisticas.adicionaJogadasInvalidasPretas();
@@ -1573,7 +1573,7 @@ public class Joker extends CrazyPiece {
                             return false;
                         }
                     }
-                    if (xO == xD) { // movimento vertical
+                    if (xO == xD){ // movimento vertical
                         if ((peca.getY() > yO && peca.getY() < yD && peca.getX() == xO) || (peca.getY() < yO && peca.getY() > yD && peca.getX() == xO)) {
                             if (idEquipa == 10) {
                                 estatisticas.adicionaJogadasInvalidasPretas();
@@ -1587,7 +1587,7 @@ public class Joker extends CrazyPiece {
                 }
             }
             for (CrazyPiece verificaJoker : pecasJogo){
-                if (verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha") && verificaJoker.getX() == xD && verificaJoker.getY() == yD){
+                if (((verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha")) || verificaJoker.getIdTipo() == 1)  && verificaJoker.getX() == xD && verificaJoker.getY() == yD){
                     if (idEquipa == 10) {
                         estatisticas.adicionaJogadasInvalidasPretas();
                     } else {

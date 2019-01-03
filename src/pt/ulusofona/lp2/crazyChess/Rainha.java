@@ -578,7 +578,7 @@ public class Rainha extends CrazyPiece {
             }
         }
         for (CrazyPiece verificaJoker : pecasJogo){
-            if (verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha") && verificaJoker.getX() == xD && verificaJoker.getY() == yD){
+            if (((verificaJoker.getIdTipo() == 7 && ((Joker) verificaJoker).getTipoJoker().equals("Rainha")) || verificaJoker.getIdTipo() == 1)  && verificaJoker.getX() == xD && verificaJoker.getY() == yD){
                 if (idEquipa == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {
@@ -619,6 +619,4 @@ public class Rainha extends CrazyPiece {
         jogo.setUltimaPecaCapturada(pecaParaRemover);
         return true;
     }
-
-
 }

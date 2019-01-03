@@ -1067,6 +1067,4 @@ public class PoneiMagico extends CrazyPiece {
         jogo.setUltimaPecaCapturada(pecaParaRemover);
         return true;
     }
-
-
 }

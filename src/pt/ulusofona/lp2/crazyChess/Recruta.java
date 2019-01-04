@@ -110,6 +110,7 @@ public class Recruta extends CrazyPiece {
         return sugestaoRecruta;
     }
 
+
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo){
         if(xD > xO + 2 || yD > yO + 2 || xD < xO - 2 || yD < yO - 2){
             if (idEquipa == 10) {
@@ -154,15 +155,58 @@ public class Recruta extends CrazyPiece {
                 }
             }
             for (CrazyPiece peca : pecasJogo) {
-                if (peca.getIdEquipa() != idEquipa && peca.getIdTipo() != idTipo && ((abs(peca.getX()- xD) == 1 && peca.getY() == yD) || ((abs(peca.getY()- yD) == 1 && peca.getX() == xD)))) {
-                    peca.setIdEquipa(idEquipa);
-                    jogo.setUltimaPecaRecrutada(peca);
-                    if (idEquipa == 10) {
-                        jogo.decrementaPecasBrancas();
-                        jogo.incrementaPecasPretas();
-                    } else {
-                        jogo.decrementaPecasPretas();
-                        jogo.incrementaPecasBrancas();
+                if (peca.getIdEquipa() != idEquipa && peca.getIdTipo() != idTipo){
+                    if(xD<xO){
+                        if(peca.getX() == xD + 1 && peca.getY()==yO){
+                            peca.setIdEquipa(idEquipa);
+                            jogo.setUltimaPecaRecrutada(peca);
+                            if (idEquipa == 10) {
+                                jogo.decrementaPecasBrancas();
+                                jogo.incrementaPecasPretas();
+                            } else {
+                                jogo.decrementaPecasPretas();
+                                jogo.incrementaPecasBrancas();
+                            }
+                        }
+                    }
+                    if(xD>xO){
+                        if(peca.getX() == xD - 1 && peca.getY()==yO){
+                            peca.setIdEquipa(idEquipa);
+                            jogo.setUltimaPecaRecrutada(peca);
+                            if (idEquipa == 10) {
+                                jogo.decrementaPecasBrancas();
+                                jogo.incrementaPecasPretas();
+                            } else {
+                                jogo.decrementaPecasPretas();
+                                jogo.incrementaPecasBrancas();
+                            }
+                        }
+                    }
+                    if(yD<yO){
+                        if(peca.getY() == yD + 1 && peca.getX()==xO){
+                            peca.setIdEquipa(idEquipa);
+                            jogo.setUltimaPecaRecrutada(peca);
+                            if (idEquipa == 10) {
+                                jogo.decrementaPecasBrancas();
+                                jogo.incrementaPecasPretas();
+                            } else {
+                                jogo.decrementaPecasPretas();
+                                jogo.incrementaPecasBrancas();
+                            }
+                        }
+                    }
+                    if(yD>yO){
+                        if(peca.getX() == yD - 1 && peca.getX()==xO){
+                            peca.setIdEquipa(idEquipa);
+                            jogo.setUltimaPecaRecrutada(peca);
+                            if (idEquipa == 10) {
+                                jogo.decrementaPecasBrancas();
+                                jogo.incrementaPecasPretas();
+                            } else {
+                                jogo.decrementaPecasPretas();
+                                jogo.incrementaPecasBrancas();
+                            }
+                        }
                     }
                 }
             }

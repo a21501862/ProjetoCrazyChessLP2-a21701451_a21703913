@@ -154,12 +154,6 @@ public class Simulador {
                 numeroPecas = pecasJogo.size();
             }
             setNumeroPecas();
-            if ((jogo.getReisPretos() == 1 && jogo.getReisBrancos() == 1) || (numeroPecas == 0)){
-                terminou=true;
-            }
-            if (jogo.getReisBrancos() == 0 || jogo.getReisPretos() == 0){
-                terminou=true;
-            }
             return true;
         }
         catch(FileNotFoundException exception) {
@@ -174,9 +168,6 @@ public class Simulador {
 
     public boolean processaJogada(int xO, int yO, int xD, int yD){
         int count = 0;
-        if (terminou){
-            return true;
-        }
         while(!terminou) {
             if (xO < 0 || xO > tamanhoTabuleiro-1 || yO < 0 || yO > tamanhoTabuleiro-1 || xD < 0 || xD > tamanhoTabuleiro-1 || yD < 0
                     || yD > tamanhoTabuleiro-1) {

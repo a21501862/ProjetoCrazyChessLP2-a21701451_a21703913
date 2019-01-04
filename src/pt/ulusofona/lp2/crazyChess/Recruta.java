@@ -196,7 +196,7 @@ public class Recruta extends CrazyPiece {
                         }
                     }
                     if(yD>yO){
-                        if(peca.getX() == yD - 1 && peca.getX()==xO){
+                        if(peca.getY() == yD - 1 && peca.getX()==xO){
                             peca.setIdEquipa(idEquipa);
                             jogo.setUltimaPecaRecrutada(peca);
                             if (idEquipa == 10) {
@@ -212,7 +212,7 @@ public class Recruta extends CrazyPiece {
             }
         }else if (jogo.getTurno()%2!=0){
             int count = 0;
-            if(abs(xO - xD) != abs(yO - yD)){
+            if(abs(xO - xD) != abs(yO - yD) || abs(xO - xD) != 2 || abs(yO - yD) != 2){
                 if (idEquipa == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {

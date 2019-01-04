@@ -334,7 +334,8 @@ public class Simulador {
                     if(peca.getX() == ultimoxD && peca.getY() == ultimoYD){
                         processaJogada(ultimoxD,ultimoYD,ultimoxO,ultimoyO);
                     }
-                }if (jogo.obterPecaRecrutada()!= null){
+                }
+                if (jogo.obterPecaRecrutada()!= null){
                     jogo.obterPecaRecrutada().setIdEquipa(idEquipaAtual);
                     jogo.setUltimaPecaRecrutada(null);
                 }

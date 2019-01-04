@@ -4,6 +4,8 @@ public class InfoJogo {
 
     int pecasPretas;
     int pecasBrancas;
+    int reisBrancos;
+    int reisPretos;
     int turnosSemCapturas;
     int turno;
     int turnoPrimeiraCaptura;
@@ -15,6 +17,8 @@ public class InfoJogo {
     InfoJogo(){
         this.pecasPretas = 0;
         this.pecasBrancas = 0;
+        this.reisPretos = 0;
+        this.reisBrancos = 0;
         this.turno = 0;
         this.turnoPrimeiraCaptura = -1;
         this.turnosSemCapturas = -1;
@@ -38,6 +42,25 @@ public class InfoJogo {
 
     void decrementaPecasPretas(){
         pecasPretas--;
+    }
+
+    void incrementaReisBrancos(){ reisBrancos++; }
+
+    void incrementaReisPretos(){ reisPretos++; }
+
+    void decrementaReisBrancos(){ reisBrancos--;
+    }
+
+    void decrementaReisPretos(){
+        reisPretos--;
+    }
+
+    public int getReisBrancos() {
+        return reisBrancos;
+    }
+
+    public int getReisPretos() {
+        return reisPretos;
     }
 
     int getPecasPretas(){
@@ -129,6 +152,8 @@ public class InfoJogo {
     void limpar(){
         this.pecasPretas = 0;
         this.pecasBrancas = 0;
+        this.reisPretos = 0;
+        this.reisBrancos = 0;
         this.turno = 0;
         this.turnoPrimeiraCaptura = -1;
         this.turnosSemCapturas = -1;

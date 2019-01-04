@@ -34,8 +34,14 @@ public class Simulador {
         for(CrazyPiece peca: pecasJogo ){
             if(peca.getIdEquipa() == 10){
                 jogo.incrementaPecasPretas();
+                if (peca.getIdTipo() == 0){
+                    jogo.incrementaReisPretos();
+                }
             }else{
                 jogo.incrementaPecasBrancas();
+                if (peca.getIdTipo() == 0){
+                    jogo.incrementaReisBrancos();
+                }
             }
         }
     }
@@ -148,10 +154,10 @@ public class Simulador {
                 numeroPecas = pecasJogo.size();
             }
             setNumeroPecas();
-            if ((numeroPecas == 2 && jogo.getPecasBrancas() == 0 && jogo.getPecasPretas() == 0) || (numeroPecas == 0)){
+            if ((jogo.getReisPretos() == 1 && jogo.getReisBrancos() == 1) || (numeroPecas == 0)){
                 terminou=true;
             }
-            if (jogo.getPecasBrancas() == 0 || jogo.getPecasPretas() == 0){
+            if (jogo.getReisBrancos() == 0 || jogo.getReisPretos() == 0){
                 terminou=true;
             }
             return true;
@@ -187,6 +193,13 @@ public class Simulador {
                         peca.definirCoordenadas(xD, yD);
                         if (jogo.primeiraCapturaFoiEfetuada()) {
                             jogo.incrementaTurnoSemCapturas();
+                        }
+                        if (jogo.ultimaPecaRemovida != null && jogo.ultimaPecaRemovida.getIdTipo() == 0){
+                            if(idEquipaAtual == 10){
+                                jogo.decrementaReisBrancos();
+                            }else{
+                                jogo.decrementaReisPretos();
+                            }
                         }
                         if (idEquipaAtual == 10) {
                             estatisticas.adicionaJogadasValidasPretas();
@@ -230,7 +243,7 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if (jogo.getPecasPretas() == 0 || jogo.getPecasBrancas()== 0 ||  jogo.getTurnosSemCapturas()== 10){
+        if (jogo.getReisPretos() == 0 || jogo.getReisBrancos()== 0 ||(jogo.getReisBrancos() == 1 && jogo.getReisPretos() == 1) || jogo.getTurnosSemCapturas()== 10){
             terminou = true;
             return true;
         }else{
@@ -262,9 +275,9 @@ public class Simulador {
     public List<String> getResultados(){
         List<String> resultados = new ArrayList<>();
         resultados.add("JOGO DE CRAZY CHESS");
-        if(jogo.getPecasBrancas() == 0){
+        if(jogo.getReisBrancos() == 0 && jogo.getReisPretos()!=0){
             resultados.add("Resultado: VENCERAM AS PRETAS");
-        }else if(jogo.getPecasPretas() == 0){
+        }else if(jogo.getReisPretos() == 0 && jogo.getReisBrancos()!=0){
             resultados.add("Resultado: VENCERAM AS BRANCAS");
         }else{
             resultados.add("Resultado: EMPATE");
@@ -361,6 +374,9 @@ public class Simulador {
                     }
                 }
                 if (idEquipaAtual ==  10){
+                    if(pecaRemovida.getIdTipo() == 0){
+                        jogo.incrementaReisPretos();
+                    }
                     for(int i = 0; i<2; i++){
                         estatisticas.decrementaJogadasValidasBrancas();
                     }
@@ -368,6 +384,9 @@ public class Simulador {
                     estatisticas.decrementaCapturasBrancas();
                     idEquipaAtual = 20;
                 }else{
+                    if(pecaRemovida.getIdTipo() == 0){
+                        jogo.incrementaReisBrancos();
+                    }
                     for(int i = 0; i<2; i++){
                         estatisticas.decrementaJogadasValidasPretas();
                     }

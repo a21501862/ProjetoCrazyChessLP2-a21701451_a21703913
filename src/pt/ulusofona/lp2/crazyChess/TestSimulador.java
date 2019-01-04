@@ -11,6 +11,7 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestSimulador {
     Simulador simulador = new Simulador();
+    File ficheiroJogo = new File("test-files/jogoTerm.txt");
     File ficheiroRei = new File("test-files/rei.txt");
     File ficheiroRainha = new File("test-files/rainha.txt");
     File ficheiroPonei = new File("test-files/poneiMagico.txt");
@@ -42,7 +43,17 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(3,0,simulador.tamanhoTabuleiro,0);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
-
+    @Test
+    public void sugestaoPedidoInvalido() {
+        simulador.iniciaJogo(ficheiroTorreHor);
+        simulador.idEquipaAtual = 20;
+        List<String> sugestoesEsperadas = Arrays.asList("Pedido inválido");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(0,0);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    
     //REI
     @Test
     public void test03processaJogadaValidaRainhaCima() {
@@ -444,14 +455,14 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(6,4,4,6);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
-    @Test
-    public void test13processaJogadaInvalidaPonei90BrancaComRei() {
-        simulador.iniciaJogo(ficheiroPonei);
-        boolean jogadaEsperada = false;
-        simulador.idEquipaAtual = 20;
-        boolean jogadaObtida  = simulador.processaJogada(2,4,0,2);
-        assertEquals(jogadaEsperada,jogadaObtida);
-    }
+//    @Test
+//    public void test13processaJogadaInvalidaPonei90BrancaComRei() {
+//        simulador.iniciaJogo(ficheiroPonei);
+//        boolean jogadaEsperada = false;
+//        simulador.idEquipaAtual = 20;
+//        boolean jogadaObtida  = simulador.processaJogada(2,4,0,2);
+//        assertEquals(jogadaEsperada,jogadaObtida);
+//    }
     //PADRE
 
     //TORRE HORIZONTAL
@@ -934,6 +945,7 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(1,3,2,4);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
+
     //JOKER
 
     //RECRUTA
@@ -976,6 +988,17 @@ public class TestSimulador {
         simulador.jogo.turno = 1;
         boolean jogadaObtida  = simulador.processaJogada(3,2,1,4);
         assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01obterSugestaoTurnoImpar() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        simulador.idEquipaAtual = 20;
+        simulador.jogo.turno = 1;
+        List<String> sugestoesEsperadas = Arrays.asList("2, 1", "6, 1", "6, 5", "2, 5");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,3);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
 }
 

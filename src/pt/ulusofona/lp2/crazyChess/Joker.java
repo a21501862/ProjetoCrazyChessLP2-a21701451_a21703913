@@ -2196,47 +2196,6 @@ public class Joker extends CrazyPiece {
                 }
                 count++;
             }
-            if (!encontrouPeca){
-                for (CrazyPiece peca : pecasJogo){
-                    if (xD>xO && yD<yO){
-                        if ((peca.getX()==xD && peca.getY()==yO-1)||(peca.getY()==yD && peca.getX()==xO+1)){
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }else if (xD<xO && yD<yO) {
-                        if ((peca.getX() == xD && peca.getY() == yO - 1) || (peca.getY() == yD && peca.getX() == xO - 1)) {
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }else if (xD<xO && yD>yO) {
-                        if ((peca.getX() == xD && peca.getY() == yO + 1) || (peca.getY() == yD && peca.getX() == xO - 1)) {
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }else if (xD>xO && yD>yO) {
-                        if ((peca.getX() == xD && peca.getY() == yO + 1) || (peca.getY() == yD && peca.getX() == xO + 1)) {
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
-                    }
-                }
-            }
             CrazyPiece pecaParaRemover = null;
             for (CrazyPiece peca : pecasJogo) {
                 if (peca.getIdEquipa() != idEquipa && peca.getX() == xD && peca.getY() == yD) {

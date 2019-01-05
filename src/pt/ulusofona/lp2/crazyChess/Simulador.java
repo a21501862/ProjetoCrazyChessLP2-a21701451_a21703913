@@ -147,6 +147,9 @@ public class Simulador {
                     estatisticas.setJogadasValidasBrancas(Integer.parseInt(dados[4]));
                     estatisticas.setCapturasBrancas(Integer.parseInt(dados[5]));
                     estatisticas.setJogadasInvalidasBrancas(Integer.parseInt(dados[6]));
+                    if (Integer.parseInt(dados[2]) > 0 || Integer.parseInt(dados[5]) > 0){
+                        jogo.primeiraCapturaFeita();
+                    }
                 }
             }
             leitorFicheiro.close();
@@ -170,7 +173,7 @@ public class Simulador {
         int count = 0;
         while(!terminou) {
             if (xO < 0 || xO > tamanhoTabuleiro-1 || yO < 0 || yO > tamanhoTabuleiro-1 || xD < 0 || xD > tamanhoTabuleiro-1 || yD < 0
-                    || yD > tamanhoTabuleiro-1) {
+                    || yD > tamanhoTabuleiro-1 || (xO == xD && yO == yD)) {
                 if (idEquipaAtual == 10) {
                     estatisticas.adicionaJogadasInvalidasPretas();
                 } else {

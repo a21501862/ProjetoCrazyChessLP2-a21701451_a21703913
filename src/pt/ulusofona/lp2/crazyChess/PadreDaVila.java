@@ -305,12 +305,6 @@ public class PadreDaVila extends CrazyPiece {
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         int count = 0;
-        int rainhas = 0;
-        for (CrazyPiece peca : pecasJogo){
-            if (peca.getIdTipo()==1 || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Rainha"))){
-                rainhas++;
-            }
-        }
         if(xD > xO + 3 || xD < xO - 3 || yD > yO + 3 || yD < yO - 3){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();
@@ -377,21 +371,13 @@ public class PadreDaVila extends CrazyPiece {
                         }
                     }
                 }
-                if ((peca.getIdTipo() == 1 || (peca.getIdTipo()==7 && ((Joker) peca).getTipoJoker().equals("Rainha"))) && peca.getIdEquipa() != idEquipa && (abs(peca.getX() - xD) > 2 || abs(peca.getY() - yD) > 2)){
-                    int verificaRainhas = 0;
-                    for(CrazyPiece verificaPecaChegada : pecasJogo) {
-                        if ((verificaPecaChegada.getIdTipo() == 1 || (verificaPecaChegada.getIdTipo() == 7 && ((Joker) verificaPecaChegada).getTipoJoker().equals("Rainha"))) && verificaPecaChegada.getIdEquipa() != idEquipa && (abs(verificaPecaChegada.getX() - xD) > 2 || abs(verificaPecaChegada.getY() - yD) > 2)) {
-                            verificaRainhas++;
-                        }
-                        if(verificaRainhas == rainhas){
-                            if (idEquipa == 10) {
-                                estatisticas.adicionaJogadasInvalidasPretas();
-                            } else {
-                                estatisticas.adicionaJogadasInvalidasBrancas();
-                            }
-                            return false;
-                        }
+                if ((peca.getIdTipo() == 1 || (peca.getIdTipo()==7 && ((Joker) peca).getTipoJoker().equals("Rainha"))) && peca.getIdEquipa() != idEquipa && (abs(peca.getX() - xD) == 1 || abs(peca.getY() - yD) == 1)){
+                    if (idEquipa == 10) {
+                        estatisticas.adicionaJogadasInvalidasPretas();
+                    } else {
+                        estatisticas.adicionaJogadasInvalidasBrancas();
                     }
+                    return false;
                 }
                 count++;
             }

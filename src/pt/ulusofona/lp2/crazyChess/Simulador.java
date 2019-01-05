@@ -234,7 +234,7 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if (jogo.getReisPretos() == 0 || jogo.getReisBrancos()== 0 ||(jogo.getReisBrancos() == 1 && jogo.getReisPretos() == 1) || jogo.getTurnosSemCapturas()== 11){
+        if (jogo.getReisPretos() == 0 || jogo.getReisBrancos()== 0 ||(jogo.getPecasBrancas() + jogo.getPecasPretas() == 2 && jogo.getReisBrancos() == 1 && jogo.getReisPretos() == 1) || jogo.getTurnosSemCapturas()== 11){
             terminou = true;
             return true;
         }else{

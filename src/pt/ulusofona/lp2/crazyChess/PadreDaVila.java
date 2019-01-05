@@ -371,7 +371,7 @@ public class PadreDaVila extends CrazyPiece {
                         }
                     }
                 }
-                if ((peca.getIdTipo() == 1 || (peca.getIdTipo()==7 && ((Joker) peca).getTipoJoker().equals("Rainha"))) && peca.getIdEquipa() != idEquipa && (abs(peca.getX() - xD) == 1 || abs(peca.getY() - yD) == 1)){
+                if ((peca.getIdTipo() == 1 || (peca.getIdTipo()==7 && ((Joker) peca).getTipoJoker().equals("Rainha"))) && peca.getIdEquipa() != idEquipa && ((abs(peca.getX() - xD) == 1 && peca.getY() == yD) || (abs(peca.getY() - yD) == 1 && peca.getX()==xD) || (abs(peca.getY() - yD) == 1 && abs(peca.getX() - xD) == 1))){
                     if (idEquipa == 10) {
                         estatisticas.adicionaJogadasInvalidasPretas();
                     } else {

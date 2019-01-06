@@ -1053,24 +1053,42 @@ public class TestSimulador {
     @Test
     public void test01processaJogadaJokerTorreV() {
         simulador.iniciaJogo(ficheiroJoker);
-        simulador.jogo.turno = 4;
-        simulador.idEquipaAtual = 10;
+        for (CrazyPiece verificaJoker : simulador.pecasJogo){
+            if (verificaJoker.getIdTipo() == 7){
+                ((Joker) verificaJoker).tipoJoker = "TorreV";
+            }
+        }
         boolean jogadaEsperada = true;
         boolean jogadaObtida  = simulador.processaJogada(1,2,1,1);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
     @Test
-    public void test01obterSugestaoJoker() {
+    public void test01obterSugestaoJokerPoneiMagico() {
         simulador.iniciaJogo(ficheiroJoker);
         simulador.idEquipaAtual = 20;
         for (CrazyPiece verificaJoker : simulador.pecasJogo){
             if (verificaJoker.getIdTipo() == 7){
-                ((Joker) verificaJoker).mudaTipoJoker();
+                ((Joker) verificaJoker).tipoJoker = "Ponei Mágico";
             }
         }
         List<String> sugestoesEsperadas = Arrays.asList("0, 1", "4, 1");
         Collections.sort(sugestoesEsperadas);
         List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(2,3);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test01obterSugestaoJokerTorreH() {
+        simulador.iniciaJogo(ficheiroJoker);
+        simulador.idEquipaAtual = 20;
+        for (CrazyPiece verificaJoker : simulador.pecasJogo){
+            if (verificaJoker.getIdTipo() == 7){
+                ((Joker) verificaJoker).tipoJoker = "TorreH";
+            }
+        }
+        List<String> sugestoesEsperadas = Arrays.asList("0, 3");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,3);
         Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }

@@ -18,6 +18,7 @@ public class TestSimulador {
     File ficheiroTorreHor = new File("test-files/torreHor.txt");
     File ficheiroTorreVert = new File("test-files/torreVert.txt");
     File ficheiroLebre = new File("test-files/lebre.txt");
+    File ficheiroJoker = new File("test-files/joker.txt");
     File ficheiroRecruta = new File("test-files/recruta.txt");
 
     //GERAL
@@ -1019,7 +1020,51 @@ public class TestSimulador {
     }
 
     //JOKER
-
+    @Test
+    public void test01processaJogadaJokerRainha() {
+        simulador.iniciaJogo(ficheiroJoker);
+        simulador.jogo.turno = 1;
+        simulador.idEquipaAtual = 10;
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,0,0,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaJokerLebre() {
+        simulador.iniciaJogo(ficheiroJoker);
+        for (CrazyPiece verificaJoker : simulador.pecasJogo){
+            if (verificaJoker.getIdTipo() == 7){
+                ((Joker) verificaJoker).mudaTipoJoker();
+            }
+        }
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(0,4,1,4);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01processaJogadaJokerTorreV() {
+        simulador.iniciaJogo(ficheiroJoker);
+        simulador.jogo.turno = 4;
+        simulador.idEquipaAtual = 10;
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(1,2,1,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test01obterSugestaoJoker() {
+        simulador.iniciaJogo(ficheiroJoker);
+        simulador.idEquipaAtual = 20;
+        for (CrazyPiece verificaJoker : simulador.pecasJogo){
+            if (verificaJoker.getIdTipo() == 7){
+                ((Joker) verificaJoker).mudaTipoJoker();
+            }
+        }
+        List<String> sugestoesEsperadas = Arrays.asList("0, 1", "4, 1");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(2,3);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
     //RECRUTA
     @Test
     public void test01processaJogadaRecrutaPretoInvalido() {

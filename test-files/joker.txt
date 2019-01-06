@@ -1,0 +1,17 @@
+5
+10
+1:7:10:Chefe
+2:7:10:Selvagem
+3:7:10:Grande Artista
+4:7:20:O Maior
+5:7:20:O Amigo
+6:7:20:O Beberolas
+7:7:20:O gerhwtr
+8:0:10:O Bebyjyjyum
+9:0:20:O g5gxte
+10:0:10:O Betgrgcx4
+0:1:0:2:0
+0:0:10:0:8
+0:3:0:6:0
+0:5:4:0:0
+7:0:9:0:10

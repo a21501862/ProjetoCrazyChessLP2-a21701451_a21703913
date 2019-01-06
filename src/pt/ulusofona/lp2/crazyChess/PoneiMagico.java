@@ -108,7 +108,6 @@ public class PoneiMagico extends CrazyPiece {
                     if (count == pecasJogo.size() && valida){
                         jogadaPonei.add(xO + 2 + ", " + (yO - 2));
                     }
-                    valida = true;
                 }
             }
         }
@@ -197,7 +196,6 @@ public class PoneiMagico extends CrazyPiece {
                     if (count == pecasJogo.size() && valida){
                         jogadaPonei.add(xO - 2 + ", " + (yO - 2));
                     }
-                    valida = true;
                 }
             }
         }
@@ -286,7 +284,6 @@ public class PoneiMagico extends CrazyPiece {
                     if (count == pecasJogo.size() && valida){
                         jogadaPonei.add(xO - 2 + ", " + (yO + 2));
                     }
-                    valida = true;
                 }
             }
         }
@@ -375,7 +372,6 @@ public class PoneiMagico extends CrazyPiece {
                     if (count == pecasJogo.size() && valida){
                         jogadaPonei.add(xO + 2 + ", " + (yO + 2));
                     }
-                    valida = true;
                 }
             }
         }

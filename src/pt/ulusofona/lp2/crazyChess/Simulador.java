@@ -10,27 +10,27 @@ import java.util.Scanner;
 
 public class Simulador {
     int tamanhoTabuleiro;
-    int numeroPecas;
+    private int numeroPecas;
     int idEquipaAtual;
-    boolean terminou;
-    int ultimoxO;
-    int ultimoyO;
-    int ultimoxD;
-    int ultimoYD;
-    List<CrazyPiece> pecas = new ArrayList<>();
+    private boolean terminou;
+    private int ultimoxO;
+    private int ultimoyO;
+    private int ultimoxD;
+    private int ultimoYD;
+    private List<CrazyPiece> pecas = new ArrayList<>();
     List<CrazyPiece> pecasJogo = new ArrayList<>();
-    File ficheiro;
+    private File ficheiro;
     Estatistica estatisticas;
     InfoJogo jogo;
 
-    public Simulador(){
+    Simulador(){
         this.idEquipaAtual = 10;
         this.terminou = false;
         this.estatisticas = new Estatistica();
         this.jogo = new InfoJogo();
     }
 
-    public void setNumeroPecas(){
+    private void setNumeroPecas(){
         for(CrazyPiece peca: pecasJogo ){
             if(peca.getIdEquipa() == 10){
                 jogo.incrementaPecasPretas();

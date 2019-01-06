@@ -2,16 +2,16 @@ package pt.ulusofona.lp2.crazyChess;
 
 public class InfoJogo {
 
-    int pecasPretas;
-    int pecasBrancas;
-    int reisBrancos;
-    int reisPretos;
-    int turnosSemCapturas;
+    private int pecasPretas;
+    private int pecasBrancas;
+    private int reisBrancos;
+    private int reisPretos;
+    private int turnosSemCapturas;
     int turno;
-    int turnoPrimeiraCaptura;
-    int turnosAteCaptura;
+    private int turnoPrimeiraCaptura;
+    private int turnosAteCaptura;
     CrazyPiece ultimaPecaRemovida;
-    CrazyPiece ultimaPecaRecrutada;
+    private CrazyPiece ultimaPecaRecrutada;
     boolean primeiraCapturaEfetuada;
 
     InfoJogo(){
@@ -55,11 +55,11 @@ public class InfoJogo {
         reisPretos--;
     }
 
-    public int getReisBrancos() {
+    int getReisBrancos() {
         return reisBrancos;
     }
 
-    public int getReisPretos() {
+    int getReisPretos() {
         return reisPretos;
     }
 
@@ -141,11 +141,11 @@ public class InfoJogo {
     }
 
 
-    public int getTurnosAteCaptura() {
+    int getTurnosAteCaptura() {
         return turnosAteCaptura;
     }
 
-    public void setTurnosAteCaptura(int turnosAteCaptura) {
+    void setTurnosAteCaptura(int turnosAteCaptura) {
         this.turnosAteCaptura = turnosAteCaptura;
     }
 

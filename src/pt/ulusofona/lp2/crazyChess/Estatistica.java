@@ -1,12 +1,12 @@
 package pt.ulusofona.lp2.crazyChess;
 
 public class Estatistica {
-    int jogadasInvalidasPretas;
-    int jogadasInvalidasBrancas;
-    int jogadasValidasPretas;
-    int jogadasValidasBrancas;
-    int capturasPretas;
-    int capturasBrancas;
+    private int jogadasInvalidasPretas;
+    private int jogadasInvalidasBrancas;
+    private int jogadasValidasPretas;
+    private int jogadasValidasBrancas;
+    private int capturasPretas;
+    private int capturasBrancas;
 
     Estatistica(){
         this.jogadasInvalidasPretas = 0;
@@ -17,27 +17,27 @@ public class Estatistica {
         this.capturasBrancas = 0;
     }
 
-    public int getCapturasBrancas() {
+    int getCapturasBrancas() {
         return capturasBrancas;
     }
 
-    public int getCapturasPretas() {
+    int getCapturasPretas() {
         return capturasPretas;
     }
 
-    public int getJogadasInvalidasBrancas() {
+    int getJogadasInvalidasBrancas() {
         return jogadasInvalidasBrancas;
     }
 
-    public int getJogadasInvalidasPretas() {
+    int getJogadasInvalidasPretas() {
         return jogadasInvalidasPretas;
     }
 
-    public int getJogadasValidasBrancas() {
+    int getJogadasValidasBrancas() {
         return jogadasValidasBrancas;
     }
 
-    public int getJogadasValidasPretas() {
+    int getJogadasValidasPretas() {
         return jogadasValidasPretas;
     }
 
@@ -49,50 +49,50 @@ public class Estatistica {
         jogadasInvalidasBrancas++;
     }
 
-    public void adicionaJogadasValidasPretas(){
+    void adicionaJogadasValidasPretas(){
         jogadasValidasPretas++;
     }
 
-    public void adicionaJogadasValidasBrancas(){
+    void adicionaJogadasValidasBrancas(){
         jogadasValidasBrancas++;
     }
 
-    public void decrementaJogadasValidasPretas(){
+    void decrementaJogadasValidasPretas(){
         jogadasValidasPretas--;
     }
 
-    public void decrementaJogadasValidasBrancas(){
+    void decrementaJogadasValidasBrancas(){
         jogadasValidasBrancas--;
     }
 
-    public void capturarPretas(){
+    void capturarPretas(){
         capturasPretas++;
     }
-    public void setJogadasInvalidasPretas(int jogadasInvalidasPretas) {
+    void setJogadasInvalidasPretas(int jogadasInvalidasPretas) {
         this.jogadasInvalidasPretas = jogadasInvalidasPretas;
     }
 
-    public void setJogadasInvalidasBrancas(int jogadasInvalidasBrancas) {
+    void setJogadasInvalidasBrancas(int jogadasInvalidasBrancas) {
         this.jogadasInvalidasBrancas = jogadasInvalidasBrancas;
     }
 
-    public void setJogadasValidasPretas(int jogadasValidasPretas) {
+    void setJogadasValidasPretas(int jogadasValidasPretas) {
         this.jogadasValidasPretas = jogadasValidasPretas;
     }
 
-    public void setJogadasValidasBrancas(int jogadasValidasBrancas) {
+    void setJogadasValidasBrancas(int jogadasValidasBrancas) {
         this.jogadasValidasBrancas = jogadasValidasBrancas;
     }
 
-    public void setCapturasPretas(int capturasPretas) {
+    void setCapturasPretas(int capturasPretas) {
         this.capturasPretas = capturasPretas;
     }
 
-    public void setCapturasBrancas(int capturasBrancas) {
+    void setCapturasBrancas(int capturasBrancas) {
         this.capturasBrancas = capturasBrancas;
     }
 
-    public void capturarBrancas(){
+    void capturarBrancas(){
         capturasBrancas++;
     }
 
@@ -104,7 +104,7 @@ public class Estatistica {
         capturasPretas--;
     }
 
-    public void limpar(){
+    void limpar(){
         this.jogadasInvalidasPretas = 0;
         this.jogadasInvalidasBrancas = 0;
         this.jogadasValidasPretas = 0;

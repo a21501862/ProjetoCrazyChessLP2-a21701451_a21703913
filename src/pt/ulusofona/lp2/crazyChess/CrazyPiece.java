@@ -90,7 +90,7 @@ public abstract class CrazyPiece {
         return y;
     }
 
-    public void definirCoordenadas (int x, int y){
+    void definirCoordenadas(int x, int y){
         this.x = x;
         this.y = y;
     }
@@ -103,11 +103,11 @@ public abstract class CrazyPiece {
         this.idEquipa = idEquipa;
     }
 
-    public void capturar(){
+    void capturar(){
         capturada = true;
     }
 
-    public void anularCaptura(){
+    void anularCaptura(){
         capturada = false;
     }
 

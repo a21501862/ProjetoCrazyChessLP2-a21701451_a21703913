@@ -380,7 +380,6 @@ public class PoneiMagico extends CrazyPiece {
 
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         int count = 0;
-        boolean encontrouPeca = false;
         if(abs(xO-xD) != 2|| abs(yO-yD) != 2 ){
             if (idEquipa == 10) {
                 estatisticas.adicionaJogadasInvalidasPretas();
@@ -425,7 +424,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
                     }else if(peca.getIdTipo() == 0 && peca.getY() == yO && (peca.getX() == xO+1 || peca.getX() == xD)) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
@@ -451,14 +449,21 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
-                    }else if(peca.getIdTipo() != 0 && peca.getX() == xO && (peca.getY() == yO-1 || peca.getY() == yD)) {
+                    }else if(peca.getIdTipo() == 0 && peca.getX() == xO+2 && peca.getY() == yO-1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getY() == yD && peca2.getX() == xO + 1) {
-                                int count2 = 0;
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getY() == yO && (peca3.getX() == xO + 1 || peca3.getX() == xD)) {
+                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO-1 || peca2.getY() == yO-2) && peca2.getX() == xO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
+                                for (CrazyPiece peca3: pecasJogo){
+                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO+1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -466,39 +471,24 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getX() == xD && peca4.getY() == yO - 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
-                    }else if(peca.getIdTipo() != 0 && peca.getY() == yO && (peca.getX() == xO+1 || peca.getX() == xD)) {
+                    }else if(peca.getIdTipo() == 0 && peca.getY() == yO-2 && peca.getX() == xO+1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getX() == xD && peca2.getX() == yO - 1) {
-                                int count2 = 0;
+                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO + 1 || peca2.getX() == xO + 2) && peca2.getY() == yO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
                                 for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO && (peca3.getY() == yO - 1 || peca3.getY() == yD)) {
+                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO + 2 && peca3.getY() == yO - 1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -506,30 +496,7 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getY() == yD && peca4.getX() == xO + 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
                     }
@@ -562,7 +529,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
                     } else if (peca.getIdTipo() == 0 && peca.getY() == yO && (peca.getX() == xO - 1 || peca.getX() == xD)) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
@@ -588,14 +554,21 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
-                    } else if (peca.getIdTipo() != 0 && peca.getX() == xO && (peca.getY() == yO - 1 || peca.getY() == yD)) {
+                    } else if(peca.getIdTipo() == 0 && peca.getX() == xO-2 && peca.getY() == yO-1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getY() == yD && peca2.getX() == xO - 1) {
-                                int count2 = 0;
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getY() == yO && (peca3.getX() == xO - 1 || peca3.getX() == xD)) {
+                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO-1 || peca2.getY() == yO-2) && peca2.getX() == xO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
+                                for (CrazyPiece peca3: pecasJogo){
+                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO-1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -603,39 +576,24 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getX() == xD && peca4.getY() == yO - 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
-                    } else if (peca.getIdTipo() != 0 && peca.getY() == yO && (peca.getX() == xO - 1 || peca.getX() == xD)) {
+                    }else if(peca.getIdTipo() == 0 && peca.getY() == yO-2 && peca.getX() == xO-1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getX() == xD && peca2.getX() == yO - 1) {
-                                int count2 = 0;
+                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2) && peca2.getY() == yO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
                                 for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO && (peca3.getY() == yO - 1 || peca3.getY() == yD)) {
+                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO - 1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -643,30 +601,7 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getY() == yD && peca4.getX() == xO - 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
                     }
@@ -699,7 +634,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
                     } else if (peca.getIdTipo() == 0 && peca.getY() == yO && (peca.getX() == xO - 1 || peca.getX() == xD)) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
@@ -725,14 +659,21 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
-                    } else if (peca.getIdTipo() != 0 && peca.getX() == xO && (peca.getY() == yO + 1 || peca.getY() == yD)) {
+                    } else if(peca.getIdTipo() == 0 && peca.getX() == xO-2 && peca.getY() == yO+1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getY() == yD && peca2.getX() == xO - 1) {
-                                int count2 = 0;
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getY() == yO && (peca3.getX() == xO - 1 || peca3.getX() == xD)) {
+                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO+1 || peca2.getY() == yO+2) && peca2.getX() == xO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
+                                for (CrazyPiece peca3: pecasJogo){
+                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO-1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -740,39 +681,24 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getX() == xD && peca4.getY() == yO + 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
-                    } else if (peca.getIdTipo() != 0 && peca.getY() == yO && (peca.getX() == xO - 1 || peca.getX() == xD)) {
+                    }else if(peca.getIdTipo() == 0 && peca.getY() == yO+2 && peca.getX() == xO-1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getX() == xD && peca2.getX() == yO + 1) {
-                                int count2 = 0;
+                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2) && peca2.getY() == yO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
                                 for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO && (peca3.getY() == yO + 1 || peca3.getY() == yD)) {
+                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO + 1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -780,30 +706,7 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getY() == yD && peca4.getX() == xO - 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
                     }
@@ -836,7 +739,6 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
                     } else if (peca.getIdTipo() == 0 && peca.getY() == yO && (peca.getX() == xO + 1 || peca.getX() == xD)) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
@@ -862,14 +764,21 @@ public class PoneiMagico extends CrazyPiece {
                                 }
                             }
                         }
-                        encontrouPeca = true;
-                    } else if (peca.getIdTipo() != 0 && peca.getX() == xO && (peca.getY() == yO + 1 || peca.getY() == yD)) {
+                    } else if(peca.getIdTipo() == 0 && peca.getX() == xO+2 && peca.getY() == yO+1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getY() == yD && peca2.getX() == xO + 1) {
-                                int count2 = 0;
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getY() == yO && (peca3.getX() == xO + 1 || peca3.getX() == xD)) {
+                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO+1 || peca2.getY() == yO+2) && peca2.getX() == xO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
+                                for (CrazyPiece peca3: pecasJogo){
+                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO+1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -877,39 +786,24 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getX() == xD && peca4.getY() == yO + 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
-                    } else if (peca.getIdTipo() != 0 && peca.getY() == yO && (peca.getX() == xO + 1 || peca.getX() == xD)) {
+                    }else if(peca.getIdTipo() == 0 && peca.getY() == yO+2 && peca.getX() == xO+1) {
                         int count1 = 0;
                         for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getX() == xD && peca2.getX() == yO + 1) {
-                                int count2 = 0;
+                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO + 1 || peca2.getX() == xO + 2) && peca2.getY() == yO) {
+                                if (idEquipa == 10) {
+                                    estatisticas.adicionaJogadasInvalidasPretas();
+                                } else {
+                                    estatisticas.adicionaJogadasInvalidasBrancas();
+                                }
+                                return false;
+                            }
+                            count1++;
+                            if (count1 == pecasJogo.size()) {
                                 for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO && (peca3.getY() == yO + 1 || peca3.getY() == yD)) {
+                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO + 2 && peca3.getY() == yO + 1) {
                                         if (idEquipa == 10) {
                                             estatisticas.adicionaJogadasInvalidasPretas();
                                         } else {
@@ -917,30 +811,7 @@ public class PoneiMagico extends CrazyPiece {
                                         }
                                         return false;
                                     }
-                                    count2++;
-                                    if (count2 == pecasJogo.size()) {
-                                        int count3 = 0;
-                                        for (CrazyPiece peca4 : pecasJogo) {
-                                            if (peca4.getIdTipo() == 0 && peca4.getY() == yD && peca4.getX() == xO + 1) {
-                                                if (idEquipa == 10) {
-                                                    estatisticas.adicionaJogadasInvalidasPretas();
-                                                } else {
-                                                    estatisticas.adicionaJogadasInvalidasBrancas();
-                                                }
-                                                return false;
-                                            }
-                                            count3++;
-                                            if (count3 == pecasJogo.size()) {
-                                                break;
-                                            }
-                                        }
-                                    }
                                 }
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                encontrouPeca = true;
-                                break;
                             }
                         }
                     }

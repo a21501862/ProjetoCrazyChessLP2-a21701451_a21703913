@@ -25,6 +25,9 @@ public class PoneiMagico extends CrazyPiece {
         boolean valida = true;
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//diagonal cima direita
+            if (xO+2 > tamanhoTabuleiro - 1 || yO-2 < 0){
+                break;
+            }
             if(peca.getX()==xO+2 && peca.getY()==yO-2 && peca.getIdEquipa()==idEquipa){
                 break;
             }
@@ -142,6 +145,9 @@ public class PoneiMagico extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//diagonal cima esquerda
+            if (xO-2 < 0 || yO-2 < 0){
+                break;
+            }
             if(peca.getX()==xO-2 && peca.getY()==yO-2 && peca.getIdEquipa()==idEquipa){
                 break;
             }
@@ -259,6 +265,9 @@ public class PoneiMagico extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//diagonal baixo esquerda
+            if (yO+2 > tamanhoTabuleiro - 1 || xO-2 < 0){
+                break;
+            }
             if(peca.getX()==xO-2 && peca.getY()==yO+2 && peca.getIdEquipa()==idEquipa){
                 break;
             }
@@ -376,6 +385,9 @@ public class PoneiMagico extends CrazyPiece {
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//diagonal baixo direita
+            if (xO+2 > tamanhoTabuleiro - 1 || yO+2 > tamanhoTabuleiro-1){
+                break;
+            }
             if(peca.getX()==xO+2 && peca.getY()==yO+2 && peca.getIdEquipa()==idEquipa){
                 break;
             }

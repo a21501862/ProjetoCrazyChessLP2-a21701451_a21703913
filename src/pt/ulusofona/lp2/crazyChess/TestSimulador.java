@@ -397,35 +397,24 @@ public class TestSimulador {
         assertEquals(jogadaEsperada,jogadaObtida);
     }
 
-//    @Test
-//    public void test01obterSugestoesJogadaRei() {
-//        simulador.iniciaJogo(ficheiroRei);
-//        List<String> sugestoesEsperadas = Arrays.asList("0, 0", "1, 0", "2, 0", "2, 1", "2, 2", "1, 2", "0, 2", "0, 1");
-//        Collections.sort(sugestoesEsperadas);
-//        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(1,1);
-//        Collections.sort(sugestoesObtidas);
-//        assertEquals(sugestoesEsperadas, sugestoesObtidas);
-//    }
-//    @Test
-//    public void test01obterSugestoesJogadaComerReiValido() {
-//        simulador.iniciaJogo(ficheiroRei);
-//        List<String> sugestoesEsperadas = Arrays.asList("3, 3", "3, 4", "3, 5", "4, 3", "4, 5", "5, 3", "5, 4", "5, 5");
-//        Collections.sort(sugestoesEsperadas);
-//        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
-//        Collections.sort(sugestoesObtidas);
-//        assertEquals(sugestoesEsperadas, sugestoesObtidas);
-//    }
-//    @Test
-//    public void test01obterSugestoesJogadaComerReiInvalido() {
-//        simulador.iniciaJogo(ficheiroRei);
-//        simulador.idEquipaAtual = 20;
-//        List<String> sugestoesEsperadas = Arrays.asList();
-//        Collections.sort(sugestoesEsperadas);
-//        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(6,4);
-//        Collections.sort(sugestoesObtidas);
-//        assertEquals(sugestoesEsperadas, sugestoesObtidas);
-//    }
-
+    @Test
+    public void test01obterSugestoesJogadaRainha() {
+        simulador.iniciaJogo(ficheiroRainha);
+        List<String> sugestoesEsperadas = Arrays.asList("2, 2", "3, 3");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test02obterSugestoesJogadaRainha() {
+        simulador.iniciaJogo(ficheiroRainha);
+        List<String> sugestoesEsperadas = Arrays.asList("3, 0", "4, 0", "5, 0", "1, 0", "0, 0", "3, 1", "4, 2");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(2,0);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
     //PONEI
     @Test
     public void test13processaJogadaInvalidaPonei90Branca() {
@@ -470,20 +459,13 @@ public class TestSimulador {
     public void test01obterSugestoesJogadaComerPoneiPreto() {
         simulador.iniciaJogo(ficheiroPonei);
         simulador.idEquipaAtual = 20;
-        List<String> sugestoesEsperadas = Arrays.asList("0, 6", "4, 2");
+        List<String> sugestoesEsperadas = Arrays.asList("0, 6", "4, 2", "0, 2");
         Collections.sort(sugestoesEsperadas);
         List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(2,4);
         Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
-//    @Test
-//    public void test13processaJogadaInvalidaPonei90BrancaComRei() {
-//        simulador.iniciaJogo(ficheiroPonei);
-//        boolean jogadaEsperada = false;
-//        simulador.idEquipaAtual = 20;
-//        boolean jogadaObtida  = simulador.processaJogada(2,4,0,2);
-//        assertEquals(jogadaEsperada,jogadaObtida);
-//    }
+
     //PADRE
     @Test
     public void test16processaJogadaInvalidaPadrePretoMaiorQue3Casas() {
@@ -1087,6 +1069,16 @@ public class TestSimulador {
         List<String> sugestoesEsperadas = Arrays.asList("2, 1", "6, 1", "6, 5", "2, 5");
         Collections.sort(sugestoesEsperadas);
         List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(4,3);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test01obterSugestaoTurnoPar() {
+        simulador.iniciaJogo(ficheiroRecruta);
+        simulador.idEquipaAtual = 10;
+        List<String> sugestoesEsperadas = Arrays.asList("3, 3", "7, 3", "5, 1", "5, 5");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(5,3);
         Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }

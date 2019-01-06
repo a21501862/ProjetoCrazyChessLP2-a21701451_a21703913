@@ -23,7 +23,7 @@ public class Simulador {
     Estatistica estatisticas;
     InfoJogo jogo;
 
-    Simulador(){
+    public Simulador(){
         this.idEquipaAtual = 10;
         this.terminou = false;
         this.estatisticas = new Estatistica();

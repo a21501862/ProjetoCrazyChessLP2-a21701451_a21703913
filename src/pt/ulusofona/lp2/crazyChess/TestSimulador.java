@@ -536,8 +536,17 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(5,1,7,3);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
-
-
+    @Test
+    public void test01obterSugestoesJogadaPadre() {
+        simulador.iniciaJogo(ficheiroPadre);
+        simulador.idEquipaAtual = 20;
+        List<String> sugestoesEsperadas = Arrays.asList("6, 6", "5, 5", "4, 4");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(7,7);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    
     //TORRE HORIZONTAL
     @Test
     public void test11processaJogadaValidaTorreHorPreta() {
@@ -1034,7 +1043,7 @@ public class TestSimulador {
         simulador.iniciaJogo(ficheiroJoker);
         for (CrazyPiece verificaJoker : simulador.pecasJogo){
             if (verificaJoker.getIdTipo() == 7){
-                ((Joker) verificaJoker).mudaTipoJoker();
+                ((Joker) verificaJoker).tipoJoker = "Lebre";
             }
         }
         boolean jogadaEsperada = false;

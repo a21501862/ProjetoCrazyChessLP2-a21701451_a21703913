@@ -11,10 +11,10 @@ import static junit.framework.TestCase.assertEquals;
 
 public class TestSimulador {
     Simulador simulador = new Simulador();
-    File ficheiroJogo = new File("test-files/jogoTerm.txt");
     File ficheiroRei = new File("test-files/rei.txt");
     File ficheiroRainha = new File("test-files/rainha.txt");
     File ficheiroPonei = new File("test-files/poneiMagico.txt");
+    File ficheiroPadre = new File("test-files/padreDaVila.txt");
     File ficheiroTorreHor = new File("test-files/torreHor.txt");
     File ficheiroTorreVert = new File("test-files/torreVert.txt");
     File ficheiroLebre = new File("test-files/lebre.txt");
@@ -56,7 +56,7 @@ public class TestSimulador {
     
     //REI
     @Test
-    public void test03processaJogadaValidaRainhaCima() {
+    public void test03processaJogadaValidaReiCima() {
         simulador.iniciaJogo(ficheiroRainha);
         boolean jogadaEsperada = true;
         boolean jogadaObtida  = simulador.processaJogada(1,1,1,0);
@@ -195,7 +195,7 @@ public class TestSimulador {
     }
     //RAINHA
     @Test
-    public void test03processaJogadaValidaReiCima() {
+    public void test03processaJogadaValidaRainhaCima() {
         simulador.iniciaJogo(ficheiroRainha);
         boolean jogadaEsperada = true;
         boolean jogadaObtida  = simulador.processaJogada(1,1,1,0);
@@ -455,6 +455,25 @@ public class TestSimulador {
         boolean jogadaObtida  = simulador.processaJogada(6,4,4,6);
         assertEquals(jogadaEsperada,jogadaObtida);
     }
+    @Test
+    public void test01obterSugestoesJogadaPoneiValido() {
+        simulador.iniciaJogo(ficheiroPonei);
+        List<String> sugestoesEsperadas = Arrays.asList("2, 0");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(0,2);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
+    @Test
+    public void test01obterSugestoesJogadaComerPoneiPreto() {
+        simulador.iniciaJogo(ficheiroPonei);
+        simulador.idEquipaAtual = 20;
+        List<String> sugestoesEsperadas = Arrays.asList("0, 6", "4, 2");
+        Collections.sort(sugestoesEsperadas);
+        List<String> sugestoesObtidas  = simulador.obterSugestoesJogada(2,4);
+        Collections.sort(sugestoesObtidas);
+        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+    }
 //    @Test
 //    public void test13processaJogadaInvalidaPonei90BrancaComRei() {
 //        simulador.iniciaJogo(ficheiroPonei);
@@ -464,6 +483,75 @@ public class TestSimulador {
 //        assertEquals(jogadaEsperada,jogadaObtida);
 //    }
     //PADRE
+    @Test
+    public void test16processaJogadaInvalidaPadrePretoMaiorQue3Casas() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,1,7,5);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test17processaJogadaInvalidaReiBrancoMaiorQue3Casas() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(0,1,4,5);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test16processaJogadaInvalidaPadrePretoMalDiagonal() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(3,1,3,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test17processaJogadaInvalidaPadreBrancoMalDiagonal() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(2,4,2,2);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test16processaJogadaValidaPadrePretoComer() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = true;
+        boolean jogadaObtida  = simulador.processaJogada(0,6,2,4);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test17processaJogadaValidaPadreBrancoComer() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = true;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(2,4,0,6);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test16processaJogadaInvalidaPadrePretoComerMesmaCor() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        boolean jogadaObtida  = simulador.processaJogada(0,2,2,0);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test17processaJogadaInvalidaPadreBrancoComerMesmaCor() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(2,4,5,1);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+    @Test
+    public void test17processaJogadaInvalidaPadreBrancoPertoRainhaPreta() {
+        simulador.iniciaJogo(ficheiroPadre);
+        boolean jogadaEsperada = false;
+        simulador.idEquipaAtual = 20;
+        boolean jogadaObtida  = simulador.processaJogada(5,1,7,3);
+        assertEquals(jogadaEsperada,jogadaObtida);
+    }
+
 
     //TORRE HORIZONTAL
     @Test
@@ -624,7 +712,7 @@ public class TestSimulador {
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
 
-    //TORREVERTICAL
+    //TORRE VERTICAL
     @Test
     public void test11processaJogadaValidaTorreVertPreta() {
         simulador.iniciaJogo(ficheiroTorreVert);

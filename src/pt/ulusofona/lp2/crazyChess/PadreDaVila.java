@@ -414,6 +414,4 @@ public class PadreDaVila extends CrazyPiece {
         jogo.setUltimaPecaCapturada(pecaParaRemover);
         return true;
     }
-
-
 }

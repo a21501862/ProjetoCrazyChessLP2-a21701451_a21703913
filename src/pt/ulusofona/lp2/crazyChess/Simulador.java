@@ -473,7 +473,8 @@ public class Simulador {
             System.out.println("Ocorreu um erro.");
             return false;
         }
-        return true;    }
+        return true;
+    }
 
     public Map<String, List<String>> getEstatisticas(){
         return null;

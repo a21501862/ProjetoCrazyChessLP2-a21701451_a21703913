@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Simulador {
     int tamanhoTabuleiro;
@@ -46,7 +44,7 @@ public class Simulador {
         }
     }
 
-    public boolean iniciaJogo(File ficheiroInical){
+    public void iniciaJogo(File ficheiroInical) throws IOException {
         estatisticas.limpar();
         tamanhoTabuleiro = 0;
         numeroPecas = 0;
@@ -64,20 +62,29 @@ public class Simulador {
                 String dados[] = linha.split(":");
                 numLinha ++;
                 if (numLinha == 1){
+                    if (dados.length != 1){
+                        throw new InvalidSimulatorInputException(numLinha, dados.length, 1);
+                    }
                     int tamanho = Integer.parseInt(dados[0]);
                     if (tamanho < 4 || tamanho >12){
-                        return false;
+                        throw new IOException();
                     }else{
                         tamanhoTabuleiro = tamanho;
                     }
                 }else if (numLinha == 2){
+                    if (dados.length != 1){
+                        throw new InvalidSimulatorInputException(numLinha, dados.length, 1);
+                    }
                     int numpecas = Integer.parseInt(dados[0]);
                     if (numpecas >= tamanhoTabuleiro*tamanhoTabuleiro){
-                        return false;
+                        throw new IOException();
                     }else{
                         numeroPecas = numpecas;
                     }
                 }else if (numLinha >= 3 && numLinha <= numeroPecas + 2){
+                    if (dados.length != 4){
+                        throw new InvalidSimulatorInputException(numLinha, dados.length, 4);
+                    }
                     int idPeca = Integer.parseInt(dados[0]);
                     int tipoPeca = Integer.parseInt(dados[1]);
                     int idEquipa = Integer.parseInt(dados[2]);
@@ -129,6 +136,9 @@ public class Simulador {
                         pecas.add(peca);
                     }
                 }else if (numLinha >= numeroPecas + 3 && numLinha<= numeroPecas + 2 + tamanhoTabuleiro){
+                    if (dados.length != tamanhoTabuleiro){
+                        throw new InvalidSimulatorInputException(numLinha, dados.length, tamanhoTabuleiro);
+                    }
                     for (int colunaTabuleiro = 0; colunaTabuleiro < tamanhoTabuleiro; colunaTabuleiro++){
                         int id = Integer.parseInt(dados[colunaTabuleiro]);
                         for (CrazyPiece peca : pecas){
@@ -140,6 +150,9 @@ public class Simulador {
                     }
                     linhaTabuleiro ++;
                 }else if(numLinha == numeroPecas + 3 + tamanhoTabuleiro){
+                    if (dados.length != 8){
+                        throw new InvalidSimulatorInputException(numLinha, dados.length, 8);
+                    }
                     idEquipaAtual = Integer.parseInt(dados[0]);
                     estatisticas.setJogadasValidasPretas(Integer.parseInt(dados[1]));
                     estatisticas.setCapturasPretas(Integer.parseInt(dados[2]));
@@ -147,6 +160,7 @@ public class Simulador {
                     estatisticas.setJogadasValidasBrancas(Integer.parseInt(dados[4]));
                     estatisticas.setCapturasBrancas(Integer.parseInt(dados[5]));
                     estatisticas.setJogadasInvalidasBrancas(Integer.parseInt(dados[6]));
+                    jogo.setTurnosSemCapturas(Integer.parseInt(dados[7]));
                     if (Integer.parseInt(dados[2]) > 0 || Integer.parseInt(dados[5]) > 0){
                         jogo.primeiraCapturaFeita();
                     }
@@ -157,11 +171,9 @@ public class Simulador {
                 numeroPecas = pecasJogo.size();
             }
             setNumeroPecas();
-            return true;
         }
         catch(FileNotFoundException exception) {
-            System.out.println("Erro: o ficheiro não foi encontrado.");
-            return false;
+            throw new IOException();
         }
     }
 
@@ -453,7 +465,7 @@ public class Simulador {
             if(numeroLinha== numeroPecas + 3 + tamanhoTabuleiro){
                 writer.write(idEquipaAtual + ":" + estatisticas.getJogadasValidasPretas() + ":" + estatisticas.getCapturasPretas()
                         + ":" + estatisticas.getJogadasInvalidasPretas() + ":" + estatisticas.getJogadasValidasBrancas() + ":" + estatisticas.getCapturasBrancas() + ":" +
-                        estatisticas.getJogadasInvalidasBrancas());
+                        estatisticas.getJogadasInvalidasBrancas() + ":" + jogo.getTurnosSemCapturas());
             }
             writer.close();
         }
@@ -461,6 +473,9 @@ public class Simulador {
             System.out.println("Ocorreu um erro.");
             return false;
         }
-        return true;
+        return true;    }
+
+    public Map<String, List<String>> getEstatisticas(){
+        return null;
     }
 }

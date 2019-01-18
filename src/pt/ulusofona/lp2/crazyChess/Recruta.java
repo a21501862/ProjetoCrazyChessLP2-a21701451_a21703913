@@ -20,6 +20,10 @@ public class Recruta extends CrazyPiece {
         return tipo;
     }
 
+    public int getPontos() {
+        return 1924;
+    }
+
     List<String> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
         List<String> sugestaoRecruta = new ArrayList<>();
         int count = 0;

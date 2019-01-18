@@ -20,6 +20,10 @@ public class Lebre extends CrazyPiece {
         return tipo;
     }
 
+    public int getPontos() {
+        return 2;
+    }
+
     List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List <String> jogadaLebre = new ArrayList<>();
         int count = 0;
@@ -108,6 +112,8 @@ public class Lebre extends CrazyPiece {
                 pecaParaRemover = peca;
                 peca.capturar();
                 jogo.primeiraCapturaFeita();
+                incrementaNrCaptura();
+                incrementaNrPontos(peca.getPontos());
                 if (jogo.getTurnoPrimeiraCaptura() == -1){
                     jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                 }

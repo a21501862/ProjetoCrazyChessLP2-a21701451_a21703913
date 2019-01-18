@@ -19,6 +19,10 @@ public class Joker extends CrazyPiece {
         return valorRelativo;
     }
 
+    public int getPontos() {
+        return 4;
+    }
+
     public String getTipo() {
         tipo = "Joker";
         return tipo;
@@ -1560,6 +1564,8 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    incrementaNrCaptura();
+                    incrementaNrPontos(peca.getPontos());
                     if (jogo.getTurnoPrimeiraCaptura() == -1){
                         jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                     }
@@ -2031,6 +2037,8 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    incrementaNrCaptura();
+                    incrementaNrPontos(peca.getPontos());
                     if (jogo.getTurnoPrimeiraCaptura() == -1){
                         jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                     }
@@ -2140,6 +2148,8 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    incrementaNrCaptura();
+                    incrementaNrPontos(peca.getPontos());
                     if (jogo.getTurnoPrimeiraCaptura() == -1){
                         jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                     }
@@ -2193,6 +2203,8 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    incrementaNrCaptura();
+                    incrementaNrPontos(peca.getPontos());
                     if (jogo.getTurnoPrimeiraCaptura() == -1){
                         jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                     }
@@ -2246,6 +2258,8 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    incrementaNrCaptura();
+                    incrementaNrPontos(peca.getPontos());
                     if (jogo.getTurnoPrimeiraCaptura() == -1){
                         jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                     }
@@ -2301,6 +2315,8 @@ public class Joker extends CrazyPiece {
                     pecaParaRemover = peca;
                     peca.capturar();
                     jogo.primeiraCapturaFeita();
+                    incrementaNrCaptura();
+                    incrementaNrPontos(peca.getPontos());
                     if (jogo.getTurnoPrimeiraCaptura() == -1){
                         jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                     }

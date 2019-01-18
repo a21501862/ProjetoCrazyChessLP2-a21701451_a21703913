@@ -20,6 +20,10 @@ public class PoneiMagico extends CrazyPiece {
         return tipo;
     }
 
+    public int getPontos() {
+        return 5;
+    }
+
     List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List <String> jogadaPonei = new ArrayList<>();
         boolean valida = true;
@@ -825,6 +829,8 @@ public class PoneiMagico extends CrazyPiece {
                 pecaParaRemover = peca;
                 peca.capturar();
                 jogo.primeiraCapturaFeita();
+                incrementaNrCaptura();
+                incrementaNrPontos(peca.getPontos());
                 if (jogo.getTurnoPrimeiraCaptura() == -1){
                     jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                 }

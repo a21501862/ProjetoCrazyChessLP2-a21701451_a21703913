@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class Simulador {
     int tamanhoTabuleiro;
@@ -477,6 +480,15 @@ public class Simulador {
     }
 
     public Map<String, List<String>> getEstatisticas(){
+        Map<String, List<String>> estatisticas = new HashMap<>();
+        List<String> listaTop5Capturas =
+                pecas.stream()
+                    .sorted((peca1 , peca2) -> peca2.getNrCapturas() - peca1.getNrCapturas())
+                    .limit(5)
+                    .map(peca -> peca.toString())
+                    .collect(toList());
+
+
         return null;
     }
 }

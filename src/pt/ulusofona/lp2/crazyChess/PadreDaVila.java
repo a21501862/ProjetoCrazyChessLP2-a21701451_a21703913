@@ -20,6 +20,10 @@ public class PadreDaVila extends CrazyPiece {
         return tipo;
     }
 
+    public int getPontos() {
+        return 3;
+    }
+
     List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List<String> jogadaPadre = new ArrayList<>();
         int count = 0;
@@ -466,6 +470,8 @@ public class PadreDaVila extends CrazyPiece {
                 pecaParaRemover = peca;
                 peca.capturar();
                 jogo.primeiraCapturaFeita();
+                incrementaNrCaptura();
+                incrementaNrPontos(peca.getPontos());
                 if (jogo.getTurnoPrimeiraCaptura() == -1){
                     jogo.setTurnoPrimeiraCaptura(jogo.getTurno());
                 }

@@ -12,6 +12,8 @@ public abstract class CrazyPiece {
     int y;
     String alcunha;
     boolean capturada;
+    int nrPontos;
+    int nrCapturas;
 
     CrazyPiece (int idPeca, int idTipo, int idEquipa, String alcunha){
         this.idPeca = idPeca;
@@ -115,6 +117,22 @@ public abstract class CrazyPiece {
         return idTipo;
     }
 
+    int getNrPontos(){
+        return nrPontos;
+    }
+
+    int getNrCapturas(){
+        return nrCapturas;
+    }
+
+    void incrementaNrCaptura(){
+        nrCapturas++;
+    }
+
+    void incrementaNrPontos(int valor){
+        nrPontos += valor;
+    }
+
     String getAlcunha() {
         return alcunha;
     }
@@ -122,4 +140,6 @@ public abstract class CrazyPiece {
     abstract boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo);
 
     abstract List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro);
+
+    abstract int getPontos();
 }

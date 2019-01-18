@@ -88,6 +88,7 @@ public class Lebre extends CrazyPiece {
              } else {
                  estatisticas.adicionaJogadasInvalidasBrancas();
              }
+             incrementaJogadasInvalidas();
              return false;
          }
         if(abs(xO-xD) != 1 || abs(yO-yD) != 1){
@@ -96,6 +97,7 @@ public class Lebre extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         if(abs(xO - xD) != abs(yO - yD)) {
@@ -104,6 +106,7 @@ public class Lebre extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         CrazyPiece pecaParaRemover = null;
@@ -133,11 +136,13 @@ public class Lebre extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
         }
         pecasJogo.remove(pecaParaRemover);
         jogo.setUltimaPecaCapturada(pecaParaRemover);
+        incrementaJogadasValidas();
         return true;
     }
 }

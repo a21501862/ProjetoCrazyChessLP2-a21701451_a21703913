@@ -120,6 +120,7 @@ public class TorreVert extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         while (count < pecasJogo.size()){
@@ -130,6 +131,7 @@ public class TorreVert extends CrazyPiece {
                     } else {
                         estatisticas.adicionaJogadasInvalidasBrancas();
                     }
+                    incrementaJogadasInvalidas();
                     return false;
                 }
                 count++;
@@ -162,11 +164,13 @@ public class TorreVert extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
         }
         pecasJogo.remove(pecaParaRemover);
         jogo.setUltimaPecaCapturada(pecaParaRemover);
+        incrementaJogadasValidas();
         return true;
     }
 

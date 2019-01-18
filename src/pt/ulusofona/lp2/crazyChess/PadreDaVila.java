@@ -393,6 +393,7 @@ public class PadreDaVila extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         if(abs(xO - xD) != abs(yO - yD)) {
@@ -401,6 +402,7 @@ public class PadreDaVila extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         while (count < pecasJogo.size()){
@@ -413,6 +415,7 @@ public class PadreDaVila extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -425,6 +428,7 @@ public class PadreDaVila extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -437,6 +441,7 @@ public class PadreDaVila extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -449,6 +454,7 @@ public class PadreDaVila extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -459,6 +465,7 @@ public class PadreDaVila extends CrazyPiece {
                     } else {
                         estatisticas.adicionaJogadasInvalidasBrancas();
                     }
+                    incrementaJogadasInvalidas();
                     return false;
                 }
                 count++;
@@ -491,11 +498,13 @@ public class PadreDaVila extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
         }
         pecasJogo.remove(pecaParaRemover);
         jogo.setUltimaPecaCapturada(pecaParaRemover);
+        incrementaJogadasValidas();
         return true;
     }
 }

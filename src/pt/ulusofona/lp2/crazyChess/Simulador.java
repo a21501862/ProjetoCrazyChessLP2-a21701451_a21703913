@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
+import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 
 public class Simulador {
@@ -463,12 +464,43 @@ public class Simulador {
         Map<String, List<String>> estatisticas = new HashMap<>();
         List<String> listaTop5Capturas =
                 pecas.stream()
-                    .sorted((peca1 , peca2) -> peca2.getNrCapturas() - peca1.getNrCapturas())
-                    .limit(5)
-                    .map(peca -> peca.toString())
-                    .collect(toList());
+                        .sorted((peca1 , peca2) -> peca2.getNrCapturas() - peca1.getNrCapturas())
+                        .limit(5)
+                        .map(peca -> peca.toString5())
+                        .collect(toList());
+        //falta Caso haja empate, o critério de desempate deve ser a alcunha da peça (ordem alfabética normal).
+        estatisticas.put("top5Capturas", listaTop5Capturas);
 
+        List<String> listaTop5Pontos =
+                pecas.stream()
+                        .sorted((peca1 , peca2) -> peca2.getNrPontos() - peca1.getNrPontos())
+                        .limit(5)
+                        .map(peca -> peca.toString5())
+                        .collect(toList());
+        //falta Caso haja empate, o critério de desempate deve ser a alcunha da peça (ordem alfabética normal).
+        estatisticas.put("top5Pontos", listaTop5Pontos);
 
-        return null;
+        List<String> listaPecasMais5Capturas =
+                pecas.stream()
+                        .filter(peca -> peca.getNrCapturas() > 5)
+                        .map(peca -> peca.toString5())
+                        .collect(toList());
+        estatisticas.put("pecasMais5Capturas", listaPecasMais5Capturas);
+
+        List<String> listaPecasMaisBaralhadas =
+                pecas.stream()
+                        .sorted((peca1 , peca2) -> (peca2.getJogadasInvalidas()/(peca2.getJogadasValidas() + peca2.getJogadasInvalidas())) - (peca1.getJogadasInvalidas()/(peca1.getJogadasValidas() + peca1.getJogadasInvalidas())))
+                        .limit(3)
+                        .map(peca -> peca.toStringPecasMaisBaralhadas())
+                        .collect(toList());
+        estatisticas.put("3pecasMaisBaralhadas", listaPecasMaisBaralhadas);
+
+        List<String> listatiposPecaCapturados =
+                pecas.stream()
+                        .filter(peca -> peca.getNrCapturas() > 0)
+                        .map(peca -> peca.toStringTiposPecaCapturados())
+                        .collect(toList());
+        estatisticas.put("tiposPecaCapturados", listatiposPecaCapturados);
+        return estatisticas;
     }
 }

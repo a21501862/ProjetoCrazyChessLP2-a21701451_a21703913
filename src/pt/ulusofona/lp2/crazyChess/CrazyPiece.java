@@ -2,7 +2,7 @@ package pt.ulusofona.lp2.crazyChess;
 
 import java.util.List;
 
-public abstract class CrazyPiece {
+public abstract class CrazyPiece{
     int idPeca;
     int idTipo;
     String tipo;
@@ -14,6 +14,8 @@ public abstract class CrazyPiece {
     boolean capturada;
     int nrPontos;
     int nrCapturas;
+    int jogadasInvalidas;
+    int jogadasValidas;
 
     CrazyPiece (int idPeca, int idTipo, int idEquipa, String alcunha){
         this.idPeca = idPeca;
@@ -137,9 +139,36 @@ public abstract class CrazyPiece {
         return alcunha;
     }
 
+    public int getJogadasInvalidas() {
+        return jogadasInvalidas;
+    }
+
+    public int getJogadasValidas() {
+        return jogadasValidas;
+    }
+
+    public void incrementaJogadasInvalidas() {
+        jogadasInvalidas++;
+    }
+
+    public void incrementaJogadasValidas() {
+        jogadasValidas++;
+    }
+
     abstract boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo);
 
     abstract List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro);
 
     abstract int getPontos();
+
+    public String toString5(){
+        return idEquipa + " : " + alcunha + " : " + nrPontos + " : " + nrCapturas;
+    }
+    public String toStringPecasMaisBaralhadas(){
+        return idEquipa + " : " + alcunha + " : " + jogadasInvalidas + " : " + jogadasValidas;
+    }
+
+    public String toStringTiposPecaCapturados(){
+        return idTipo + " : " + nrCapturas;
+    }
 }

@@ -390,6 +390,7 @@ public class PoneiMagico extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         if(abs(xO - xD) != abs(yO - yD)) {
@@ -398,6 +399,7 @@ public class PoneiMagico extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         while(count<pecasJogo.size()){
@@ -412,6 +414,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -423,6 +426,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -437,6 +441,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -448,6 +453,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -462,6 +468,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -473,6 +480,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -487,6 +495,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -498,6 +507,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -517,6 +527,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -528,6 +539,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -542,6 +554,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -553,6 +566,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -567,6 +581,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -578,6 +593,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -592,6 +608,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -603,6 +620,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -622,6 +640,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -633,6 +652,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -647,6 +667,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -658,6 +679,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -672,6 +694,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -683,6 +706,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -697,6 +721,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -708,6 +733,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -727,6 +753,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -738,6 +765,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -752,6 +780,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -763,6 +792,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -777,6 +807,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -788,6 +819,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -802,6 +834,7 @@ public class PoneiMagico extends CrazyPiece {
                                 } else {
                                     estatisticas.adicionaJogadasInvalidasBrancas();
                                 }
+                                incrementaJogadasInvalidas();
                                 return false;
                             }
                             count1++;
@@ -813,6 +846,7 @@ public class PoneiMagico extends CrazyPiece {
                                         } else {
                                             estatisticas.adicionaJogadasInvalidasBrancas();
                                         }
+                                        incrementaJogadasInvalidas();
                                         return false;
                                     }
                                 }
@@ -850,11 +884,13 @@ public class PoneiMagico extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
         }
         pecasJogo.remove(pecaParaRemover);
         jogo.setUltimaPecaCapturada(pecaParaRemover);
+        incrementaJogadasValidas();
         return true;
     }
 }

@@ -498,6 +498,7 @@ public class Rainha extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         if (abs(xO - xD) != abs(yO - yD) && abs(xO - xD) != 0 && abs(yO - yD) != 0){
@@ -506,6 +507,7 @@ public class Rainha extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         while (count < pecasJogo.size()){
@@ -518,6 +520,7 @@ public class Rainha extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -530,6 +533,7 @@ public class Rainha extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -542,6 +546,7 @@ public class Rainha extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -554,6 +559,7 @@ public class Rainha extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -565,6 +571,7 @@ public class Rainha extends CrazyPiece {
                         } else {
                             estatisticas.adicionaJogadasInvalidasBrancas();
                         }
+                        incrementaJogadasInvalidas();
                         return false;
                     }
                 }
@@ -575,6 +582,7 @@ public class Rainha extends CrazyPiece {
                         } else {
                             estatisticas.adicionaJogadasInvalidasBrancas();
                         }
+                        incrementaJogadasInvalidas();
                         return false;
                     }
                 }
@@ -588,6 +596,7 @@ public class Rainha extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
         }
@@ -618,11 +627,13 @@ public class Rainha extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
         }
         pecasJogo.remove(pecaParaRemover);
         jogo.setUltimaPecaCapturada(pecaParaRemover);
+        incrementaJogadasValidas();
         return true;
     }
 }

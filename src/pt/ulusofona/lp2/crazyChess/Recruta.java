@@ -122,6 +122,7 @@ public class Recruta extends CrazyPiece {
             } else {
                 estatisticas.adicionaJogadasInvalidasBrancas();
             }
+            incrementaJogadasInvalidas();
             return false;
         }
         if (jogo.getTurno()%2==0){
@@ -132,6 +133,7 @@ public class Recruta extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
             while (count < pecasJogo.size()) {
@@ -143,6 +145,7 @@ public class Recruta extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }if (xO == xD) {
@@ -152,6 +155,7 @@ public class Recruta extends CrazyPiece {
                             } else {
                                 estatisticas.adicionaJogadasInvalidasBrancas();
                             }
+                            incrementaJogadasInvalidas();
                             return false;
                         }
                     }
@@ -222,6 +226,7 @@ public class Recruta extends CrazyPiece {
                 } else {
                     estatisticas.adicionaJogadasInvalidasBrancas();
                 }
+                incrementaJogadasInvalidas();
                 return false;
             }
             while (count < pecasJogo.size()) {
@@ -232,6 +237,7 @@ public class Recruta extends CrazyPiece {
                         } else {
                             estatisticas.adicionaJogadasInvalidasBrancas();
                         }
+                        incrementaJogadasInvalidas();
                         return false;
                     }
                 }
@@ -251,6 +257,7 @@ public class Recruta extends CrazyPiece {
                 }
             }
         }
+        incrementaJogadasValidas();
         return true;
     }
 }

@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -316,27 +315,8 @@ public class Simulador {
         return idEquipaAtual;
     }
 
-    public List<String> obterSugestoesJogada(int xO, int yO) {
-        List <String> sugestoes = new ArrayList<>();
-        int count = 0;
-        for (CrazyPiece peca: pecasJogo){
-            if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){
-                break;
-            }
-            if (peca.idTipo == 8 && jogo.getTurno()%2!=0){
-                sugestoes = ((Recruta) peca).sugerirJogadasTurnoImpar(xO,yO,pecasJogo,tamanhoTabuleiro);
-                break;
-            }
-            if (peca.getX() == xO && peca.getY() == yO && peca.getIdEquipa() == getIDEquipaAJogar()){
-                sugestoes = peca.sugerirJogadas(xO,yO,pecasJogo,tamanhoTabuleiro);
-                break;
-            }
-            count++;
-            if (count == pecasJogo.size()){
-                sugestoes.add("Pedido inválido");
-            }
-        }
-        return sugestoes;
+    List<Comparable> obterSugestoesJogada(int xO, int yO) {
+        return null;
     }
 
     public void anularJogadaAnterior(){ //decrementarTurnosSemCapturas

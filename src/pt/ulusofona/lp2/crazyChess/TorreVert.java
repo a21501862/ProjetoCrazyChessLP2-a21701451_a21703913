@@ -61,6 +61,16 @@ public class TorreVert extends CrazyPiece {
                                 valorY++;
                             }
                             break;
+                        }else if(pecaFronteira.getY()== tamanhoTabuleiro - 1 && pecaFronteira.getX() == xO && idRef != idEquipa) {
+                            while (valorY + 1 <= tamanhoTabuleiro-1) {
+                                if (valorY + 1 == tamanhoTabuleiro-1){
+                                    jogadaTorreVer.add(new Sugestao( xO, valorY + 1, pecaFronteira.getPontos()));
+                                }else{
+                                    jogadaTorreVer.add(new Sugestao(xO, valorY + 1, 0));
+                                }
+                                valorY++;
+                            }
+                            break;
                         }
                         verificarPecaFronteira ++;
                         if (verificarPecaFronteira == pecasJogo.size()){
@@ -106,6 +116,16 @@ public class TorreVert extends CrazyPiece {
                         if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == xO && idRef == idEquipa){
                             while (valorY - 1 >0){
                                 jogadaTorreVer.add(new Sugestao(xO,(valorY-1),0));
+                                valorY--;
+                            }
+                            break;
+                        }else if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == xO && idRef != idEquipa) {
+                            while (valorY - 1 >= 0) {
+                                if (valorY - 1 == 0){
+                                    jogadaTorreVer.add(new Sugestao( xO, valorY - 1, pecaFronteira.getPontos()));
+                                }else{
+                                    jogadaTorreVer.add(new Sugestao(xO, valorY - 1, 0));
+                                }
                                 valorY--;
                             }
                             break;

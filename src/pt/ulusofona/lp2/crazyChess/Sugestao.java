@@ -23,4 +23,8 @@ public class Sugestao implements Comparable<Sugestao> {
             return 1;
         }
     }
+
+    public String toString() {
+        return x + ", " + y + ", " + nrPontos;
+    }
 }

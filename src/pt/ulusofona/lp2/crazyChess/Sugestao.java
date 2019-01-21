@@ -18,13 +18,17 @@ public class Sugestao implements Comparable<Sugestao> {
         }
 
         if (this.nrPontos < sugestao.nrPontos){
-            return -1;
-        }else{
             return 1;
+        }else{
+            return -1;
         }
     }
 
     public String toString() {
-        return x + ", " + y + ", " + nrPontos;
+        if(nrPontos == 1000){
+            return x + ", " + y + ", (infinito)";
+        }else{
+            return x + ", " + y + ", " + nrPontos;
+        }
     }
 }

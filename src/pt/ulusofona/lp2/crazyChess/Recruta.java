@@ -24,8 +24,8 @@ public class Recruta extends CrazyPiece {
         return 1924;
     }
 
-    List<Sugestao> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
-        List<Sugestao> sugestaoRecruta = new ArrayList<>();
+    List<Comparable> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+        List<Comparable> sugestaoRecruta = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
             if (peca.getY() == yO - 2 && peca.getX() == xO + 2){
@@ -69,8 +69,8 @@ public class Recruta extends CrazyPiece {
         return sugestaoRecruta;
     }
 
-    List<Sugestao> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
-        List<Sugestao> sugestaoRecruta = new ArrayList<>();
+    List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+        List<Comparable> sugestaoRecruta = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//direita
             if (peca.getX() == xO + 2 && peca.getY() == yO){

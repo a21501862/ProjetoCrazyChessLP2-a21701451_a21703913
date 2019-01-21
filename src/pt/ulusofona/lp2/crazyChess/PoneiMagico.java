@@ -24,8 +24,8 @@ public class PoneiMagico extends CrazyPiece {
         return 5;
     }
 
-    List<Sugestao> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List <Sugestao> jogadaPonei = new ArrayList<>();
+    List<Comparable> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <Comparable> jogadaPonei = new ArrayList<>();
 //        boolean valida = true;
 //        int count = 0;
 //        for (CrazyPiece peca: pecasJogo){//diagonal cima direita

@@ -23,8 +23,8 @@ public class TorreHor extends CrazyPiece {
         return 3;
     }
 
-    List<Sugestao> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List <Sugestao> jogadaTorreHor = new ArrayList<>();
+    List<Comparable> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <Comparable> jogadaTorreHor = new ArrayList<>();
         int count = 0;
         int valorX = xO;
         int xRef = tamanhoTabuleiro - 1;

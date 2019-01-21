@@ -24,8 +24,8 @@ public class Lebre extends CrazyPiece {
         return 2;
     }
 
-    List<Sugestao> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List <Sugestao> jogadaLebre = new ArrayList<>();
+    List<Comparable> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <Comparable> jogadaLebre = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
             if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO + 1){

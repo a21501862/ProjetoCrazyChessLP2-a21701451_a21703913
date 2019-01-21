@@ -55,8 +55,8 @@ public class Joker extends CrazyPiece {
         }
     }
 
-    List<Sugestao> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
-        List<Sugestao> jogadaJoker = new ArrayList<>();
+    List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
+        List<Comparable> jogadaJoker = new ArrayList<>();
 //        if (tipoJoker.equals("Rainha")){
 //            int count = 0;
 //            int valorX = xO;

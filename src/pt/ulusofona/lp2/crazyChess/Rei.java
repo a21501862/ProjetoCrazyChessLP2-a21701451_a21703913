@@ -23,8 +23,8 @@ public class Rei extends CrazyPiece {
         return 1000;
     }
 
-    List<Sugestao> sugerirJogadas(int xO,int yO,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
-        List <Sugestao> jogadaRei = new ArrayList<>();
+    List<Comparable> sugerirJogadas(int xO,int yO,List<CrazyPiece> pecasJogo, int tamanhoTabuleiro) {
+        List <Comparable> jogadaRei = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//direita
            if (peca.getIdEquipa() != idEquipa && peca.getX() == xO + 1 && peca.getY() == yO){

@@ -23,27 +23,33 @@ public class TorreVert extends CrazyPiece {
         return 3;
     }
 
-    List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List <String> jogadaTorreVer = new ArrayList<>();
+    List<Sugestao> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <Sugestao> jogadaTorreVer = new ArrayList<>();
         int count = 0;
         int valorY = yO;
         int yRef = tamanhoTabuleiro - 1;
         int idRef = idEquipa;
+        int pontosRef = 0;
         for (CrazyPiece peca: pecasJogo){//baixo
             if (peca.getY() > valorY && peca.getY() <= yRef && peca.getX() == xO){
                 yRef = peca.getY();
                 idRef = peca.getIdEquipa();
+                pontosRef = peca.getPontos();
             }
             count ++;
             if (count == pecasJogo.size()){
                 if(yRef != tamanhoTabuleiro-1 && idRef != idEquipa){
                     while (valorY + 1 <= yRef){
-                        jogadaTorreVer.add(xO + ", " + (valorY+1));
+                        if (valorY+1 == yRef){
+                            jogadaTorreVer.add(new Sugestao(xO, (valorY + 1), pontosRef));
+                        }else{
+                            jogadaTorreVer.add(new Sugestao(xO, (valorY + 1), 0));
+                        }
                         valorY++;
                     }
                 }else if (yRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
                     while (valorY+1 < yRef) {
-                        jogadaTorreVer.add(xO + ", " + (valorY+1));
+                        jogadaTorreVer.add(new Sugestao(xO ,(valorY+1),0));
                         valorY++;
                     }
                 }else{
@@ -51,7 +57,7 @@ public class TorreVert extends CrazyPiece {
                     for (CrazyPiece pecaFronteira : pecasJogo){
                         if(pecaFronteira.getY()== tamanhoTabuleiro-1 && pecaFronteira.getX() == xO && idRef == idEquipa){
                             while (valorY + 1 < tamanhoTabuleiro -1){
-                                jogadaTorreVer.add(xO + ", " + (valorY+1));
+                                jogadaTorreVer.add(new Sugestao(xO,(valorY+1),0));
                                 valorY++;
                             }
                             break;
@@ -59,7 +65,7 @@ public class TorreVert extends CrazyPiece {
                         verificarPecaFronteira ++;
                         if (verificarPecaFronteira == pecasJogo.size()){
                             while (valorY + 1 <= tamanhoTabuleiro -1){
-                                jogadaTorreVer.add(xO + ", " + (valorY+1));
+                                jogadaTorreVer.add(new Sugestao(xO,(valorY+1),0));
                                 valorY++;
                             }
                         }
@@ -71,21 +77,27 @@ public class TorreVert extends CrazyPiece {
         count = 0;
         yRef = 0;
         idRef = idEquipa;
+        pontosRef = 0;
         for (CrazyPiece peca: pecasJogo){//cima
             if (peca.getY() < valorY && peca.getY() >= yRef && peca.getX() == xO){
                 yRef = peca.getY();
                 idRef = peca.getIdEquipa();
+                pontosRef = peca.getPontos();
             }
             count ++;
             if (count == pecasJogo.size()){
                 if(yRef != 0 && idRef != idEquipa){
                     while (valorY - 1 >= yRef){
-                        jogadaTorreVer.add(xO + ", " + (valorY-1));
+                        jogadaTorreVer.add(new Sugestao(xO,(valorY-1), peca.getPontos()));
                         valorY--;
                     }
                 }else if (yRef != 0 && idRef == idEquipa) {
                     while (valorY-1 > yRef) {
-                        jogadaTorreVer.add(xO + ", " + (valorY-1));
+                        if (valorY-1 == yRef){
+                            jogadaTorreVer.add(new Sugestao(xO, (valorY - 1), pontosRef));
+                        }else{
+                            jogadaTorreVer.add(new Sugestao(xO, (valorY - 1), 0));
+                        }
                         valorY--;
                     }
                 }else{
@@ -93,7 +105,7 @@ public class TorreVert extends CrazyPiece {
                     for (CrazyPiece pecaFronteira : pecasJogo){
                         if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == xO && idRef == idEquipa){
                             while (valorY - 1 >0){
-                                jogadaTorreVer.add(xO + ", " + (valorY-1));
+                                jogadaTorreVer.add(new Sugestao(xO,(valorY-1),0));
                                 valorY--;
                             }
                             break;
@@ -101,7 +113,7 @@ public class TorreVert extends CrazyPiece {
                         verificarPecaFronteira ++;
                         if (verificarPecaFronteira == pecasJogo.size()){
                             while (valorY - 1 >= 0){
-                                jogadaTorreVer.add(xO + ", " + (valorY-1));
+                                jogadaTorreVer.add(new Sugestao(xO,(valorY-1), 0));
                                 valorY--;
                             }
                         }

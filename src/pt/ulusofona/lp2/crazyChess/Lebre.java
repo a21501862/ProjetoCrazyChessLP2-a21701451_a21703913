@@ -24,58 +24,58 @@ public class Lebre extends CrazyPiece {
         return 2;
     }
 
-    List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List <String> jogadaLebre = new ArrayList<>();
+    List<Sugestao> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <Sugestao> jogadaLebre = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
             if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO + 1){
-                jogadaLebre.add(xO+1 + ", " + (yO-1));
+                jogadaLebre.add(new Sugestao(xO+1,(yO-1), peca.getPontos()));
                 break;
             }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO+1){
                 break;
             }
             count++;
             if (count == pecasJogo.size() && yO - 1 >= 0 && xO + 1 < tamanhoTabuleiro){
-                jogadaLebre.add(xO+1 + ", " + (yO-1));
+                jogadaLebre.add(new Sugestao(xO+1,(yO-1), 0));
             }
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//cima esquerda
             if (peca.getIdEquipa() != idEquipa && peca.getY() == yO - 1 && peca.getX() == xO - 1){
-                jogadaLebre.add(xO-1 + ", " + (yO-1));
+                jogadaLebre.add(new Sugestao(xO-1, (yO-1), peca.getPontos()));
                 break;
             }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO - 1 && peca.getX() == xO-1){
                 break;
             }
             count++;
             if (count == pecasJogo.size() && yO - 1 >= 0 && xO - 1 >= 0){
-                jogadaLebre.add(xO-1 + ", " + (yO-1));
+                jogadaLebre.add(new Sugestao(xO-1, (yO-1),0));
             }
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo esquerda
             if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO - 1){
-                jogadaLebre.add(xO-1 + ", " + (yO+1));
+                jogadaLebre.add(new Sugestao(xO-1, (yO+1), peca.getPontos()));
                 break;
             }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO-1){
                 break;
             }
             count++;
             if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro && xO - 1 >= 0){
-                jogadaLebre.add(xO-1 + ", " + (yO+1));
+                jogadaLebre.add(new Sugestao(xO-1,(yO+1), 0));
             }
         }
         count = 0;
         for (CrazyPiece peca: pecasJogo){//baixo direita
             if (peca.getIdEquipa() != idEquipa && peca.getY() == yO + 1 && peca.getX() == xO + 1){
-                jogadaLebre.add(xO+1 + ", " + (yO+1));
+                jogadaLebre.add(new Sugestao(xO+1,(yO+1), peca.getPontos()));
                 break;
             }else if(peca.getIdEquipa() == idEquipa && peca.getY() == yO + 1 && peca.getX() == xO+1){
                 break;
             }
             count++;
             if (count == pecasJogo.size() && yO + 1 < tamanhoTabuleiro && xO + 1 < tamanhoTabuleiro){
-                jogadaLebre.add(xO+1 + ", " + (yO+1));
+                jogadaLebre.add(new Sugestao(xO+1,(yO+1), 0));
             }
         }
         return jogadaLebre;

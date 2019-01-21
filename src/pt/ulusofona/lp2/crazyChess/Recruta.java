@@ -24,8 +24,8 @@ public class Recruta extends CrazyPiece {
         return 1924;
     }
 
-    List<String> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
-        List<String> sugestaoRecruta = new ArrayList<>();
+    List<Sugestao> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+        List<Sugestao> sugestaoRecruta = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
             if (peca.getY() == yO - 2 && peca.getX() == xO + 2){
@@ -33,7 +33,7 @@ public class Recruta extends CrazyPiece {
             }
             count++;
             if (count == pecasJogo.size() && yO - 2 >= 0 && xO +2 < tamanhoTabuleiro){
-                sugestaoRecruta.add(xO+2 + ", " + (yO-2));
+                sugestaoRecruta.add(new Sugestao(xO+2,(yO-2), 0));
             }
         }
         count = 0;
@@ -43,7 +43,7 @@ public class Recruta extends CrazyPiece {
             }
             count++;
             if (count == pecasJogo.size() && yO - 2 >= 0 && xO - 2 >= 0){
-                sugestaoRecruta.add(xO-2 + ", " + (yO-2));
+                sugestaoRecruta.add(new Sugestao(xO-2, (yO-2),0));
             }
         }
         count = 0;
@@ -53,7 +53,7 @@ public class Recruta extends CrazyPiece {
             }
             count++;
             if (count == pecasJogo.size() && yO + 2 < tamanhoTabuleiro && xO - 2 >= 0){
-                sugestaoRecruta.add(xO-2 + ", " + (yO+2));
+                sugestaoRecruta.add(new Sugestao(xO-2, (yO+2), 0));
             }
         }
         count = 0;
@@ -63,14 +63,14 @@ public class Recruta extends CrazyPiece {
             }
             count++;
             if (count == pecasJogo.size() && yO + 2 < tamanhoTabuleiro && xO + 2 < tamanhoTabuleiro){
-                sugestaoRecruta.add(xO+2 + ", " + (yO+2));
+                sugestaoRecruta.add(new Sugestao(xO+2, (yO+2), 0));
             }
         }
         return sugestaoRecruta;
     }
 
-    List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
-        List<String> sugestaoRecruta = new ArrayList<>();
+    List<Sugestao> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+        List<Sugestao> sugestaoRecruta = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//direita
             if (peca.getX() == xO + 2 && peca.getY() == yO){
@@ -78,7 +78,7 @@ public class Recruta extends CrazyPiece {
             }
             count ++;
             if (count == pecasJogo.size() && xO + 2 < tamanhoTabuleiro){
-                sugestaoRecruta.add(xO+2 + ", " + yO);
+                sugestaoRecruta.add(new Sugestao(xO+2, yO, 0));
             }
         }
         count = 0;
@@ -88,7 +88,7 @@ public class Recruta extends CrazyPiece {
             }
             count ++;
             if (count == pecasJogo.size() && xO - 2 >= 0){
-                sugestaoRecruta.add(xO-2 + ", " + yO);
+                sugestaoRecruta.add(new Sugestao(xO-2, yO, 0));
             }
         }
         count = 0;
@@ -98,7 +98,7 @@ public class Recruta extends CrazyPiece {
             }
             count ++;
             if (count == pecasJogo.size() && yO - 2 >= 0){
-                sugestaoRecruta.add(xO + ", " + (yO-2));
+                sugestaoRecruta.add(new Sugestao(xO, (yO-2), 0));
             }
         }
         count = 0;
@@ -108,7 +108,7 @@ public class Recruta extends CrazyPiece {
             }
             count ++;
             if (count == pecasJogo.size() && yO + 2 < tamanhoTabuleiro){
-                sugestaoRecruta.add(xO + ", " + (yO+2));
+                sugestaoRecruta.add(new Sugestao(xO,(yO+2),0));
             }
         }
         return sugestaoRecruta;

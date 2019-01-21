@@ -162,13 +162,13 @@ public abstract class CrazyPiece{
     abstract int getPontos();
 
     public String toString5(){
-        return idEquipa + " : " + alcunha + " : " + nrPontos + " : " + nrCapturas;
+        return idEquipa + ":" + alcunha + ":" + nrPontos + ":" + nrCapturas;
     }
     public String toStringPecasMaisBaralhadas(){
-        return idEquipa + " : " + alcunha + " : " + jogadasInvalidas + " : " + jogadasValidas;
+        return idEquipa + ":" + alcunha + ":" + jogadasInvalidas + ":" + jogadasValidas;
     }
 
     public String toStringTiposPecaCapturados(){
-        return idTipo + " : " + nrCapturas;
+        return idTipo + ":" + nrCapturas;
     }
 }

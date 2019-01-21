@@ -462,26 +462,27 @@ public class Simulador {
         List<String> listaTop5Capturas =
                 pecas.stream()
                         .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
-                        .sorted((peca1 , peca2) -> peca2.getNrCapturas() - peca1.getNrCapturas())
+                        .sorted(Comparator.comparing(CrazyPiece::getNrCapturas)
+                                .reversed()
+                                .thenComparing(CrazyPiece::getAlcunha))
                         .limit(5)
                         .map(peca -> peca.toString5())
                         .collect(toList());
-        //falta Caso haja empate, o critério de desempate deve ser a alcunha da peça (ordem alfabética normal).
         estatisticas.put("top5Capturas", listaTop5Capturas);
 
         List<String> listaTop5Pontos =
                 pecas.stream()
                         .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
-                        .sorted((peca1 , peca2) -> peca2.getNrPontos() - peca1.getNrPontos())
+                        .sorted(Comparator.comparing(CrazyPiece::getNrPontos)
+                                .reversed()
+                                .thenComparing(CrazyPiece::getAlcunha))
                         .limit(5)
                         .map(peca -> peca.toString5())
                         .collect(toList());
-        //falta Caso haja empate, o critério de desempate deve ser a alcunha da peça (ordem alfabética normal).
         estatisticas.put("top5Pontos", listaTop5Pontos);
 
         List<String> listaPecasMais5Capturas =
                 pecas.stream()
-                        .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
                         .filter(peca -> peca.getNrCapturas() > 5)
                         .map(peca -> peca.toString5())
                         .collect(toList());

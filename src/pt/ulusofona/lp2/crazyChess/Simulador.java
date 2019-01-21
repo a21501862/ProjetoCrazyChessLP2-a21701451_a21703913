@@ -312,7 +312,7 @@ public class Simulador {
         return idEquipaAtual;
     }
 
-    List<Comparable> obterSugestoesJogada(int xO, int yO) {
+    public List<Comparable> obterSugestoesJogada(int xO, int yO) {
         List <Comparable> sugestoes = new ArrayList<>();
         for (CrazyPiece peca: pecasJogo){
             if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){

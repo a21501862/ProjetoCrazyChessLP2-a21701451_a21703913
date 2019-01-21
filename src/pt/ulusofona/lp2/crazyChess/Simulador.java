@@ -6,8 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-import static java.util.stream.Collectors.summingInt;
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Simulador {
     int tamanhoTabuleiro;
@@ -313,8 +312,27 @@ public class Simulador {
         return idEquipaAtual;
     }
 
-    List<Comparable> obterSugestoesJogada(int xO, int yO) {
-        return null;
+    List<Sugestao> obterSugestoesJogada(int xO, int yO) {
+        List <Sugestao> sugestoes = new ArrayList<>();
+        int count = 0;
+        for (CrazyPiece peca: pecasJogo){
+            if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){
+                break;
+            }
+            if (peca.idTipo == 8 && jogo.getTurno()%2!=0){
+                sugestoes = ((Recruta) peca).sugerirJogadasTurnoImpar(xO,yO,pecasJogo,tamanhoTabuleiro);
+                break;
+            }
+            if (peca.getX() == xO && peca.getY() == yO && peca.getIdEquipa() == getIDEquipaAJogar()){
+                sugestoes = peca.sugerirJogadas(xO,yO,pecasJogo,tamanhoTabuleiro);
+                break;
+            }
+            count++;
+            if (count == pecasJogo.size()){
+                sugestoes.add("Pedido inválido");
+            }
+        }
+        return sugestoes;
     }
 
     public void anularJogadaAnterior(){ //decrementarTurnosSemCapturas
@@ -497,11 +515,16 @@ public class Simulador {
                         .collect(toList());
         estatisticas.put("3PecasMaisBaralhadas", listaPecasMaisBaralhadas);
 
-        List<String> listatiposPecaCapturados =
+        int nrCapturasRei =
                 pecas.stream()
-                        .filter(peca -> peca.getNrCapturas() > 0)
-                        .map(peca -> peca.toStringTiposPecaCapturados())
-                        .collect(toList());
+                        .filter(peca -> peca.getIdTipo() == 0)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        String capturasReis = "0:" + nrCapturasRei;
+
+        List<String> listatiposPecaCapturados = new ArrayList<>();
+        listatiposPecaCapturados.add(capturasReis);
+
         estatisticas.put("tiposPecaCapturados", listatiposPecaCapturados);
         return estatisticas;
     }

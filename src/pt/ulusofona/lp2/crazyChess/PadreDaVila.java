@@ -24,364 +24,364 @@ public class PadreDaVila extends CrazyPiece {
         return 3;
     }
 
-    List<String> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List<String> jogadaPadre = new ArrayList<>();
-        int count = 0;
-        int valorX = xO;
-        int valorY = yO;
-        int xRef = 0;
-        int yRef = 0;
-        int idRef = idEquipa;
-        int tipoRef = -1;
-        String tipoJoker = "";
-        for (CrazyPiece peca : pecasJogo) {//diagonal cima esquerda
-            for (int posX = xO - 1, posY = yO - 1; posX >= xRef && posY >= yRef; posX--, posY--) {
-                if (peca.getX() == posX && peca.getY() == posY && posX < valorX && posY < valorY) {
-                    xRef = posX;
-                    yRef = posY;
-                    idRef = peca.getIdEquipa();
-                    tipoRef = peca.getIdTipo();
-                    if (tipoRef == 7) {
-                        tipoJoker = ((Joker) peca).getTipoJoker();
-                    }
-                }
-            }
-            count++;
-            if (count == pecasJogo.size()) {
-                count = 0;
-                if (xRef != 0 && yRef != 0 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
-                    while (valorY - 1 >= yRef && valorX - 1 >= xRef && count < 3) {
-                        jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                        valorX--;
-                        valorY--;
-                        count++;
-                    }
-                } else if (yRef != 0 && xRef != 0 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
-                    while (valorY - 1 >= yRef && valorX - 1 >= xRef && count < 3) {
-                        if (!(valorY - 1 == yRef + 1 && valorX - 1 == xRef + 1)) {
-                            jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                        }
-                        valorX--;
-                        valorY--;
-                        count++;
-                    }
-                } else if (yRef != 0 && xRef != 0 && idRef == idEquipa) {
-                    while (valorY - 1 > yRef && valorX - 1 > xRef && count < 3) {
-                        jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                        valorX--;
-                        valorY--;
-                        count++;
-                    }
-                } else {
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo) {
-                        if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY - 1 >= 0 && valorX - 1 >= 0 && count < 3) {
-                                jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                                valorX--;
-                                valorY--;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY - 1 >= 0 && valorX - 1 >= 0 && count < 3) {
-                                if (!(valorY - 1 == 1 && valorX - 1 == 1)) {
-                                    jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                                }
-                                valorX--;
-                                valorY--;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef == idEquipa) {
-                            while (valorY - 1 > 0 && valorX - 1 > 0 && count < 3) {
-                                jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                                valorX--;
-                                valorY--;
-                                count++;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira++;
-                        if (verificarPecaFronteira == pecasJogo.size()) {
-                            while (valorY - 1 >= 0 && valorX - 1 >= 0 && count < 3) {
-                                jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
-                                valorX--;
-                                valorY--;
-                                count++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        count = 0;
-        valorX = xO;
-        valorY = yO;
-        xRef = tamanhoTabuleiro-1;
-        yRef = 0;
-        idRef = idEquipa;
-        tipoRef = -1;
-        tipoJoker = "";
-        for (CrazyPiece peca : pecasJogo) {//diagonal cima direita
-            for (int posX = xO + 1, posY = yO - 1; posX <= xRef && posY >= yRef; posX++, posY--) {
-                if (peca.getX() == posX && peca.getY() == posY && posX > valorX && posY < valorY) {
-                    xRef = posX;
-                    yRef = posY;
-                    idRef = peca.getIdEquipa();
-                    tipoRef = peca.getIdTipo();
-                    if (tipoRef == 7) {
-                        tipoJoker = ((Joker) peca).getTipoJoker();
-                    }
-                }
-            }
-            count++;
-            if (count == pecasJogo.size()) {
-                count = 0;
-                if (xRef != tamanhoTabuleiro-1 && yRef != 0 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
-                    while (valorY - 1 >= yRef && valorX + 1 <= xRef && count < 3) {
-                        jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                        valorX++;
-                        valorY--;
-                        count++;
-                    }
-                } else if (yRef != 0 && xRef != tamanhoTabuleiro-1 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
-                    while (valorY - 1 >= yRef && valorX + 1 <= xRef && count < 3) {
-                        if (!(valorY - 1 == yRef + 1 && valorX + 1 == xRef - 1)) {
-                            jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                        }
-                        valorX++;
-                        valorY--;
-                        count++;
-                    }
-                } else if (yRef != 0 && xRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
-                    while (valorY - 1 > yRef && valorX +1 < xRef && count < 3) {
-                        jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                        valorX++;
-                        valorY--;
-                        count++;
-                    }
-                } else {
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo) {
-                        if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY - 1 >= 0 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
-                                jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                                valorX++;
-                                valorY--;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY - 1 >= 0 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
-                                if (!(valorY - 1 == 1 && valorX + 1 == tamanhoTabuleiro-2)) {
-                                    jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                                }
-                                valorX++;
-                                valorY--;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef == idEquipa) {
-                            while (valorY - 1 > 0 && valorX + 1 < tamanhoTabuleiro-1 && count < 3) {
-                                jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                                valorX++;
-                                valorY--;
-                                count++;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira++;
-                        if (verificarPecaFronteira == pecasJogo.size()) {
-                            while (valorY - 1 >= 0 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
-                                jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
-                                valorX++;
-                                valorY--;
-                                count++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        count = 0;
-        valorX = xO;
-        valorY = yO;
-        xRef = tamanhoTabuleiro-1;
-        yRef = tamanhoTabuleiro-1;
-        idRef = idEquipa;
-        tipoRef = -1;
-        tipoJoker = "";
-        for (CrazyPiece peca : pecasJogo) {//diagonal baixo direita
-            for (int posX = xO + 1, posY = yO + 1; posX <= xRef && posY <= yRef; posX++, posY++) {
-                if (peca.getX() == posX && peca.getY() == posY && posX > valorX && posY > valorY) {
-                    xRef = posX;
-                    yRef = posY;
-                    idRef = peca.getIdEquipa();
-                    tipoRef = peca.getIdTipo();
-                    if (tipoRef == 7) {
-                        tipoJoker = ((Joker) peca).getTipoJoker();
-                    }
-                }
-            }
-            count++;
-            if (count == pecasJogo.size()) {
-                count = 0;
-                if (xRef != tamanhoTabuleiro-1 && yRef != tamanhoTabuleiro-1 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
-                    while (valorY + 1 <= yRef && valorX + 1 <= xRef && count < 3) {
-                        jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                        valorX++;
-                        valorY++;
-                        count++;
-                    }
-                } else if (yRef != tamanhoTabuleiro-1 && xRef != tamanhoTabuleiro-1 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
-                    while (valorY + 1 <= yRef && valorX + 1 <= xRef && count < 3) {
-                        if (!(valorY + 1 == yRef - 1 && valorX + 1 == xRef - 1)) {
-                            jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                        }
-                        valorX++;
-                        valorY++;
-                        count++;
-                    }
-                } else if (yRef != tamanhoTabuleiro-1 && xRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
-                    while (valorY + 1 < yRef && valorX +1 < xRef && count < 3) {
-                        jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                        valorX++;
-                        valorY++;
-                        count++;
-                    }
-                } else {
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo) {
-                        if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
-                                jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                                valorX++;
-                                valorY++;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
-                                if (!(valorY - 1 == tamanhoTabuleiro-2 && valorX + 1 == tamanhoTabuleiro-2)) {
-                                    jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                                }
-                                valorX++;
-                                valorY++;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef == idEquipa) {
-                            while (valorY + 1 < tamanhoTabuleiro-1 && valorX + 1 < tamanhoTabuleiro-1 && count < 3) {
-                                jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                                valorX++;
-                                valorY++;
-                                count++;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira++;
-                        if (verificarPecaFronteira == pecasJogo.size()) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
-                                jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
-                                valorX++;
-                                valorY++;
-                                count++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        count = 0;
-        valorX = xO;
-        valorY = yO;
-        xRef = 0;
-        yRef = tamanhoTabuleiro-1;
-        idRef = idEquipa;
-        tipoRef = -1;
-        tipoJoker = "";
-        for (CrazyPiece peca : pecasJogo) {//diagonal baixo esquerda
-            for (int posX = xO - 1, posY = yO + 1; posX >= xRef && posY <= yRef; posX--, posY++) {
-                if (peca.getX() == posX && peca.getY() == posY && posX < valorX && posY > valorY) {
-                    xRef = posX;
-                    yRef = posY;
-                    idRef = peca.getIdEquipa();
-                    tipoRef = peca.getIdTipo();
-                    if (tipoRef == 7) {
-                        tipoJoker = ((Joker) peca).getTipoJoker();
-                    }
-                }
-            }
-            count++;
-            if (count == pecasJogo.size()) {
-                count = 0;
-                if (xRef != 0 && yRef != tamanhoTabuleiro-1 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
-                    while (valorY + 1 <= yRef && valorX - 1 >= xRef && count < 3) {
-                        jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                        valorX--;
-                        valorY++;
-                        count++;
-                    }
-                } else if (yRef != tamanhoTabuleiro-1 && xRef != 0 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
-                    while (valorY + 1 <= yRef && valorX - 1 >= xRef && count < 3) {
-                        if (!(valorY + 1 == yRef - 1 && valorX - 1 == xRef + 1)) {
-                            jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                        }
-                        valorX--;
-                        valorY++;
-                        count++;
-                    }
-                } else if (yRef != tamanhoTabuleiro-1 && xRef != 0 && idRef == idEquipa) {
-                    while (valorY + 1 < yRef && valorX -1 > xRef && count < 3) {
-                        jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                        valorX--;
-                        valorY++;
-                        count++;
-                    }
-                } else {
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo) {
-                        if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX - 1 >= 0 && count < 3) {
-                                jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                                valorX--;
-                                valorY++;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == 0 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX - 1 >= 0 && count < 3) {
-                                if (!(valorY + 1 == tamanhoTabuleiro-2 && valorX - 1 == 1)) {
-                                    jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                                }
-                                valorX--;
-                                valorY++;
-                                count++;
-                            }
-                            break;
-                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef == idEquipa) {
-                            while (valorY + 1 < tamanhoTabuleiro-1 && valorX - 1 > 0 && count < 3) {
-                                jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                                valorX--;
-                                valorY++;
-                                count++;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira++;
-                        if (verificarPecaFronteira == pecasJogo.size()) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX - 1 >= 0 && count < 3) {
-                                jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
-                                valorX--;
-                                valorY++;
-                                count++;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    List<Sugestao> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List<Sugestao> jogadaPadre = new ArrayList<>();
+//        int count = 0;
+//        int valorX = xO;
+//        int valorY = yO;
+//        int xRef = 0;
+//        int yRef = 0;
+//        int idRef = idEquipa;
+//        int tipoRef = -1;
+//        String tipoJoker = "";
+//        for (CrazyPiece peca : pecasJogo) {//diagonal cima esquerda
+//            for (int posX = xO - 1, posY = yO - 1; posX >= xRef && posY >= yRef; posX--, posY--) {
+//                if (peca.getX() == posX && peca.getY() == posY && posX < valorX && posY < valorY) {
+//                    xRef = posX;
+//                    yRef = posY;
+//                    idRef = peca.getIdEquipa();
+//                    tipoRef = peca.getIdTipo();
+//                    if (tipoRef == 7) {
+//                        tipoJoker = ((Joker) peca).getTipoJoker();
+//                    }
+//                }
+//            }
+//            count++;
+//            if (count == pecasJogo.size()) {
+//                count = 0;
+//                if (xRef != 0 && yRef != 0 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
+//                    while (valorY - 1 >= yRef && valorX - 1 >= xRef && count < 3) {
+//                        jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                        valorX--;
+//                        valorY--;
+//                        count++;
+//                    }
+//                } else if (yRef != 0 && xRef != 0 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
+//                    while (valorY - 1 >= yRef && valorX - 1 >= xRef && count < 3) {
+//                        if (!(valorY - 1 == yRef + 1 && valorX - 1 == xRef + 1)) {
+//                            jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                        }
+//                        valorX--;
+//                        valorY--;
+//                        count++;
+//                    }
+//                } else if (yRef != 0 && xRef != 0 && idRef == idEquipa) {
+//                    while (valorY - 1 > yRef && valorX - 1 > xRef && count < 3) {
+//                        jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                        valorX--;
+//                        valorY--;
+//                        count++;
+//                    }
+//                } else {
+//                    int verificarPecaFronteira = 0;
+//                    for (CrazyPiece pecaFronteira : pecasJogo) {
+//                        if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY - 1 >= 0 && valorX - 1 >= 0 && count < 3) {
+//                                jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                                valorX--;
+//                                valorY--;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY - 1 >= 0 && valorX - 1 >= 0 && count < 3) {
+//                                if (!(valorY - 1 == 1 && valorX - 1 == 1)) {
+//                                    jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                                }
+//                                valorX--;
+//                                valorY--;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef == idEquipa) {
+//                            while (valorY - 1 > 0 && valorX - 1 > 0 && count < 3) {
+//                                jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                                valorX--;
+//                                valorY--;
+//                                count++;
+//                            }
+//                            break;
+//                        }
+//                        verificarPecaFronteira++;
+//                        if (verificarPecaFronteira == pecasJogo.size()) {
+//                            while (valorY - 1 >= 0 && valorX - 1 >= 0 && count < 3) {
+//                                jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
+//                                valorX--;
+//                                valorY--;
+//                                count++;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        count = 0;
+//        valorX = xO;
+//        valorY = yO;
+//        xRef = tamanhoTabuleiro-1;
+//        yRef = 0;
+//        idRef = idEquipa;
+//        tipoRef = -1;
+//        tipoJoker = "";
+//        for (CrazyPiece peca : pecasJogo) {//diagonal cima direita
+//            for (int posX = xO + 1, posY = yO - 1; posX <= xRef && posY >= yRef; posX++, posY--) {
+//                if (peca.getX() == posX && peca.getY() == posY && posX > valorX && posY < valorY) {
+//                    xRef = posX;
+//                    yRef = posY;
+//                    idRef = peca.getIdEquipa();
+//                    tipoRef = peca.getIdTipo();
+//                    if (tipoRef == 7) {
+//                        tipoJoker = ((Joker) peca).getTipoJoker();
+//                    }
+//                }
+//            }
+//            count++;
+//            if (count == pecasJogo.size()) {
+//                count = 0;
+//                if (xRef != tamanhoTabuleiro-1 && yRef != 0 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
+//                    while (valorY - 1 >= yRef && valorX + 1 <= xRef && count < 3) {
+//                        jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                        valorX++;
+//                        valorY--;
+//                        count++;
+//                    }
+//                } else if (yRef != 0 && xRef != tamanhoTabuleiro-1 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
+//                    while (valorY - 1 >= yRef && valorX + 1 <= xRef && count < 3) {
+//                        if (!(valorY - 1 == yRef + 1 && valorX + 1 == xRef - 1)) {
+//                            jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                        }
+//                        valorX++;
+//                        valorY--;
+//                        count++;
+//                    }
+//                } else if (yRef != 0 && xRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
+//                    while (valorY - 1 > yRef && valorX +1 < xRef && count < 3) {
+//                        jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                        valorX++;
+//                        valorY--;
+//                        count++;
+//                    }
+//                } else {
+//                    int verificarPecaFronteira = 0;
+//                    for (CrazyPiece pecaFronteira : pecasJogo) {
+//                        if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY - 1 >= 0 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
+//                                jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                                valorX++;
+//                                valorY--;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY - 1 >= 0 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
+//                                if (!(valorY - 1 == 1 && valorX + 1 == tamanhoTabuleiro-2)) {
+//                                    jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                                }
+//                                valorX++;
+//                                valorY--;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef == idEquipa) {
+//                            while (valorY - 1 > 0 && valorX + 1 < tamanhoTabuleiro-1 && count < 3) {
+//                                jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                                valorX++;
+//                                valorY--;
+//                                count++;
+//                            }
+//                            break;
+//                        }
+//                        verificarPecaFronteira++;
+//                        if (verificarPecaFronteira == pecasJogo.size()) {
+//                            while (valorY - 1 >= 0 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
+//                                jogadaPadre.add(valorX + 1 + ", " + (valorY - 1));
+//                                valorX++;
+//                                valorY--;
+//                                count++;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        count = 0;
+//        valorX = xO;
+//        valorY = yO;
+//        xRef = tamanhoTabuleiro-1;
+//        yRef = tamanhoTabuleiro-1;
+//        idRef = idEquipa;
+//        tipoRef = -1;
+//        tipoJoker = "";
+//        for (CrazyPiece peca : pecasJogo) {//diagonal baixo direita
+//            for (int posX = xO + 1, posY = yO + 1; posX <= xRef && posY <= yRef; posX++, posY++) {
+//                if (peca.getX() == posX && peca.getY() == posY && posX > valorX && posY > valorY) {
+//                    xRef = posX;
+//                    yRef = posY;
+//                    idRef = peca.getIdEquipa();
+//                    tipoRef = peca.getIdTipo();
+//                    if (tipoRef == 7) {
+//                        tipoJoker = ((Joker) peca).getTipoJoker();
+//                    }
+//                }
+//            }
+//            count++;
+//            if (count == pecasJogo.size()) {
+//                count = 0;
+//                if (xRef != tamanhoTabuleiro-1 && yRef != tamanhoTabuleiro-1 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
+//                    while (valorY + 1 <= yRef && valorX + 1 <= xRef && count < 3) {
+//                        jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                        valorX++;
+//                        valorY++;
+//                        count++;
+//                    }
+//                } else if (yRef != tamanhoTabuleiro-1 && xRef != tamanhoTabuleiro-1 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
+//                    while (valorY + 1 <= yRef && valorX + 1 <= xRef && count < 3) {
+//                        if (!(valorY + 1 == yRef - 1 && valorX + 1 == xRef - 1)) {
+//                            jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                        }
+//                        valorX++;
+//                        valorY++;
+//                        count++;
+//                    }
+//                } else if (yRef != tamanhoTabuleiro-1 && xRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
+//                    while (valorY + 1 < yRef && valorX +1 < xRef && count < 3) {
+//                        jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                        valorX++;
+//                        valorY++;
+//                        count++;
+//                    }
+//                } else {
+//                    int verificarPecaFronteira = 0;
+//                    for (CrazyPiece pecaFronteira : pecasJogo) {
+//                        if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
+//                                jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                                valorX++;
+//                                valorY++;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
+//                                if (!(valorY - 1 == tamanhoTabuleiro-2 && valorX + 1 == tamanhoTabuleiro-2)) {
+//                                    jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                                }
+//                                valorX++;
+//                                valorY++;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef == idEquipa) {
+//                            while (valorY + 1 < tamanhoTabuleiro-1 && valorX + 1 < tamanhoTabuleiro-1 && count < 3) {
+//                                jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                                valorX++;
+//                                valorY++;
+//                                count++;
+//                            }
+//                            break;
+//                        }
+//                        verificarPecaFronteira++;
+//                        if (verificarPecaFronteira == pecasJogo.size()) {
+//                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX + 1 <= tamanhoTabuleiro-1 && count < 3) {
+//                                jogadaPadre.add(valorX + 1 + ", " + (valorY + 1));
+//                                valorX++;
+//                                valorY++;
+//                                count++;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        count = 0;
+//        valorX = xO;
+//        valorY = yO;
+//        xRef = 0;
+//        yRef = tamanhoTabuleiro-1;
+//        idRef = idEquipa;
+//        tipoRef = -1;
+//        tipoJoker = "";
+//        for (CrazyPiece peca : pecasJogo) {//diagonal baixo esquerda
+//            for (int posX = xO - 1, posY = yO + 1; posX >= xRef && posY <= yRef; posX--, posY++) {
+//                if (peca.getX() == posX && peca.getY() == posY && posX < valorX && posY > valorY) {
+//                    xRef = posX;
+//                    yRef = posY;
+//                    idRef = peca.getIdEquipa();
+//                    tipoRef = peca.getIdTipo();
+//                    if (tipoRef == 7) {
+//                        tipoJoker = ((Joker) peca).getTipoJoker();
+//                    }
+//                }
+//            }
+//            count++;
+//            if (count == pecasJogo.size()) {
+//                count = 0;
+//                if (xRef != 0 && yRef != tamanhoTabuleiro-1 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
+//                    while (valorY + 1 <= yRef && valorX - 1 >= xRef && count < 3) {
+//                        jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                        valorX--;
+//                        valorY++;
+//                        count++;
+//                    }
+//                } else if (yRef != tamanhoTabuleiro-1 && xRef != 0 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
+//                    while (valorY + 1 <= yRef && valorX - 1 >= xRef && count < 3) {
+//                        if (!(valorY + 1 == yRef - 1 && valorX - 1 == xRef + 1)) {
+//                            jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                        }
+//                        valorX--;
+//                        valorY++;
+//                        count++;
+//                    }
+//                } else if (yRef != tamanhoTabuleiro-1 && xRef != 0 && idRef == idEquipa) {
+//                    while (valorY + 1 < yRef && valorX -1 > xRef && count < 3) {
+//                        jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                        valorX--;
+//                        valorY++;
+//                        count++;
+//                    }
+//                } else {
+//                    int verificarPecaFronteira = 0;
+//                    for (CrazyPiece pecaFronteira : pecasJogo) {
+//                        if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == tamanhoTabuleiro-1 && idRef != idEquipa && (pecaFronteira.getIdTipo() != 1 && !((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX - 1 >= 0 && count < 3) {
+//                                jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                                valorX--;
+//                                valorY++;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == tamanhoTabuleiro-1 && pecaFronteira.getX() == 0 && idRef != idEquipa && (pecaFronteira.getIdTipo() == 1 && ((Joker) pecaFronteira).getTipoJoker().equals("Rainha"))) {
+//                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX - 1 >= 0 && count < 3) {
+//                                if (!(valorY + 1 == tamanhoTabuleiro-2 && valorX - 1 == 1)) {
+//                                    jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                                }
+//                                valorX--;
+//                                valorY++;
+//                                count++;
+//                            }
+//                            break;
+//                        } else if (pecaFronteira.getY() == 0 && pecaFronteira.getX() == 0 && idRef == idEquipa) {
+//                            while (valorY + 1 < tamanhoTabuleiro-1 && valorX - 1 > 0 && count < 3) {
+//                                jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                                valorX--;
+//                                valorY++;
+//                                count++;
+//                            }
+//                            break;
+//                        }
+//                        verificarPecaFronteira++;
+//                        if (verificarPecaFronteira == pecasJogo.size()) {
+//                            while (valorY + 1 <= tamanhoTabuleiro-1 && valorX - 1 >= 0 && count < 3) {
+//                                jogadaPadre.add(valorX - 1 + ", " + (valorY + 1));
+//                                valorX--;
+//                                valorY++;
+//                                count++;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
         return jogadaPadre;
     }
 

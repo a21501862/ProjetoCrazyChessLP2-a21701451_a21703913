@@ -24,361 +24,361 @@ public class PoneiMagico extends CrazyPiece {
         return 5;
     }
 
-    List<String> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
-        List <String> jogadaPonei = new ArrayList<>();
-        boolean valida = true;
-        int count = 0;
-        for (CrazyPiece peca: pecasJogo){//diagonal cima direita
-            if (xO+2 > tamanhoTabuleiro - 1 || yO-2 < 0){
-                break;
-            }
-            if(peca.getX()==xO+2 && peca.getY()==yO-2 && peca.getIdEquipa()==idEquipa){
-                break;
-            }
-            count++;
-            if(count == pecasJogo.size()){
-                count = 0;
-                for(CrazyPiece peca1 : pecasJogo){
-                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO-1 || peca1.getY() == yO-2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO+1 || peca2.getX() == xO+2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO+2 && peca3.getY() == yO-1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO+1 || peca1.getX() == xO+2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO-1 || peca2.getY() == yO-2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO+1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO+2 && peca1.getY() == yO-1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO-1 || peca2.getY() == yO-2) && peca2.getX() == xO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO+1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO-2 && peca1.getX() == xO+1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO + 1 || peca2.getX() == xO + 2) && peca2.getY() == yO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO + 2 && peca3.getY() == yO - 1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    count++;
-                    if (count == pecasJogo.size() && valida){
-                        jogadaPonei.add(xO + 2 + ", " + (yO - 2));
-                    }
-                }
-            }
-        }
-        count = 0;
-        for (CrazyPiece peca: pecasJogo){//diagonal cima esquerda
-            if (xO-2 < 0 || yO-2 < 0){
-                break;
-            }
-            if(peca.getX()==xO-2 && peca.getY()==yO-2 && peca.getIdEquipa()==idEquipa){
-                break;
-            }
-            count++;
-            if(count == pecasJogo.size()){
-                count = 0;
-                for(CrazyPiece peca1 : pecasJogo){
-                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO-1 || peca1.getY() == yO-2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO-1 || peca2.getX() == xO-2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO-2 && peca3.getY() == yO-1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO-1 || peca1.getX() == xO-2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO-1 || peca2.getY() == yO-2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO-1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO-2 && peca1.getY() == yO-1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO-1 || peca2.getY() == yO-2) && peca2.getX() == xO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO-1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO-2 && peca1.getX() == xO-1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2) && peca2.getY() == yO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO - 1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    count++;
-                    if (count == pecasJogo.size() && valida){
-                        jogadaPonei.add(xO - 2 + ", " + (yO - 2));
-                    }
-                }
-            }
-        }
-        count = 0;
-        for (CrazyPiece peca: pecasJogo){//diagonal baixo esquerda
-            if (yO+2 > tamanhoTabuleiro - 1 || xO-2 < 0){
-                break;
-            }
-            if(peca.getX()==xO-2 && peca.getY()==yO+2 && peca.getIdEquipa()==idEquipa){
-                break;
-            }
-            count++;
-            if(count == pecasJogo.size()){
-                count = 0;
-                for(CrazyPiece peca1 : pecasJogo){
-                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO + 1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO-1 || peca1.getX() == xO-2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO+1 || peca2.getY() == yO+2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO-1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO-2 && peca1.getY() == yO+1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO+1 || peca2.getY() == yO+2) && peca2.getX() == xO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO-1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO+2 && peca1.getX() == xO-1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2) && peca2.getY() == yO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO + 1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    count++;
-                    if (count == pecasJogo.size() && valida){
-                        jogadaPonei.add(xO - 2 + ", " + (yO + 2));
-                    }
-                }
-            }
-        }
-        count = 0;
-        for (CrazyPiece peca: pecasJogo){//diagonal baixo direita
-            if (xO+2 > tamanhoTabuleiro - 1 || yO+2 > tamanhoTabuleiro-1){
-                break;
-            }
-            if(peca.getX()==xO+2 && peca.getY()==yO+2 && peca.getIdEquipa()==idEquipa){
-                break;
-            }
-            count++;
-            if(count == pecasJogo.size()){
-                count = 0;
-                for(CrazyPiece peca1 : pecasJogo){
-                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO+1 || peca2.getX() == xO+2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO+2 && peca3.getY() == yO+1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO+1 || peca1.getX() == xO+2)){
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo){
-                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO+1 || peca2.getY() == yO+2)) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()){
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO+1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO+2 && peca1.getY() == yO+1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO+1 || peca2.getY() == yO+2) && peca2.getX() == xO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3: pecasJogo){
-                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO+1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO+2 && peca1.getX() == xO+1) {
-                        int count1 = 0;
-                        for (CrazyPiece peca2 : pecasJogo) {
-                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO + 1 || peca2.getX() == xO + 2) && peca2.getY() == yO) {
-                                valida = false;
-                                break;
-                            }
-                            count1++;
-                            if (count1 == pecasJogo.size()) {
-                                for (CrazyPiece peca3 : pecasJogo) {
-                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO + 2 && peca3.getY() == yO + 1) {
-                                        valida = false;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    count++;
-                    if (count == pecasJogo.size() && valida){
-                        jogadaPonei.add(xO + 2 + ", " + (yO + 2));
-                    }
-                }
-            }
-        }
+    List<Sugestao> sugerirJogadas(int xO, int yO, List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+        List <Sugestao> jogadaPonei = new ArrayList<>();
+//        boolean valida = true;
+//        int count = 0;
+//        for (CrazyPiece peca: pecasJogo){//diagonal cima direita
+//            if (xO+2 > tamanhoTabuleiro - 1 || yO-2 < 0){
+//                break;
+//            }
+//            if(peca.getX()==xO+2 && peca.getY()==yO-2 && peca.getIdEquipa()==idEquipa){
+//                break;
+//            }
+//            count++;
+//            if(count == pecasJogo.size()){
+//                count = 0;
+//                for(CrazyPiece peca1 : pecasJogo){
+//                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO-1 || peca1.getY() == yO-2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO+1 || peca2.getX() == xO+2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO+2 && peca3.getY() == yO-1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO+1 || peca1.getX() == xO+2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO-1 || peca2.getY() == yO-2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO+1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO+2 && peca1.getY() == yO-1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO-1 || peca2.getY() == yO-2) && peca2.getX() == xO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO+1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO-2 && peca1.getX() == xO+1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO + 1 || peca2.getX() == xO + 2) && peca2.getY() == yO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3 : pecasJogo) {
+//                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO + 2 && peca3.getY() == yO - 1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    count++;
+//                    if (count == pecasJogo.size() && valida){
+//                        jogadaPonei.add(xO + 2 + ", " + (yO - 2));
+//                    }
+//                }
+//            }
+//        }
+//        count = 0;
+//        for (CrazyPiece peca: pecasJogo){//diagonal cima esquerda
+//            if (xO-2 < 0 || yO-2 < 0){
+//                break;
+//            }
+//            if(peca.getX()==xO-2 && peca.getY()==yO-2 && peca.getIdEquipa()==idEquipa){
+//                break;
+//            }
+//            count++;
+//            if(count == pecasJogo.size()){
+//                count = 0;
+//                for(CrazyPiece peca1 : pecasJogo){
+//                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO-1 || peca1.getY() == yO-2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO-1 || peca2.getX() == xO-2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO-2 && peca3.getY() == yO-1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO-1 || peca1.getX() == xO-2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO-1 || peca2.getY() == yO-2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO-1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO-2 && peca1.getY() == yO-1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO-1 || peca2.getY() == yO-2) && peca2.getX() == xO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO-2 && peca3.getX() == xO-1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO-2 && peca1.getX() == xO-1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2) && peca2.getY() == yO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3 : pecasJogo) {
+//                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO - 1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    count++;
+//                    if (count == pecasJogo.size() && valida){
+//                        jogadaPonei.add(xO - 2 + ", " + (yO - 2));
+//                    }
+//                }
+//            }
+//        }
+//        count = 0;
+//        for (CrazyPiece peca: pecasJogo){//diagonal baixo esquerda
+//            if (yO+2 > tamanhoTabuleiro - 1 || xO-2 < 0){
+//                break;
+//            }
+//            if(peca.getX()==xO-2 && peca.getY()==yO+2 && peca.getIdEquipa()==idEquipa){
+//                break;
+//            }
+//            count++;
+//            if(count == pecasJogo.size()){
+//                count = 0;
+//                for(CrazyPiece peca1 : pecasJogo){
+//                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3 : pecasJogo) {
+//                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO + 1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO-1 || peca1.getX() == xO-2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO+1 || peca2.getY() == yO+2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO-1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO-2 && peca1.getY() == yO+1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO+1 || peca2.getY() == yO+2) && peca2.getX() == xO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO-1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO+2 && peca1.getX() == xO-1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO - 1 || peca2.getX() == xO - 2) && peca2.getY() == yO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3 : pecasJogo) {
+//                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO - 2 && peca3.getY() == yO + 1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    count++;
+//                    if (count == pecasJogo.size() && valida){
+//                        jogadaPonei.add(xO - 2 + ", " + (yO + 2));
+//                    }
+//                }
+//            }
+//        }
+//        count = 0;
+//        for (CrazyPiece peca: pecasJogo){//diagonal baixo direita
+//            if (xO+2 > tamanhoTabuleiro - 1 || yO+2 > tamanhoTabuleiro-1){
+//                break;
+//            }
+//            if(peca.getX()==xO+2 && peca.getY()==yO+2 && peca.getIdEquipa()==idEquipa){
+//                break;
+//            }
+//            count++;
+//            if(count == pecasJogo.size()){
+//                count = 0;
+//                for(CrazyPiece peca1 : pecasJogo){
+//                    if(peca1.getIdTipo() == 0 && peca1.getX() == xO && (peca1.getY() == yO+1 || peca1.getY() == yO+2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getY() == yO && (peca2.getX() == xO+1 || peca2.getX() == xO+2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getX() == xO+2 && peca3.getY() == yO+1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else  if(peca1.getIdTipo() == 0 && peca1.getY() == yO && (peca1.getX() == xO+1 || peca1.getX() == xO+2)){
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo){
+//                            if(peca2.getIdTipo() == 0 && peca2.getX() == xO && (peca2.getY() == yO+1 || peca2.getY() == yO+2)) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()){
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO+1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getX() == xO+2 && peca1.getY() == yO+1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getY() == yO+1 || peca2.getY() == yO+2) && peca2.getX() == xO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3: pecasJogo){
+//                                    if(peca3.getIdTipo() == 0 && peca3.getY() == yO+2 && peca3.getX() == xO+1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }else if(peca1.getIdTipo() == 0 && peca1.getY() == yO+2 && peca1.getX() == xO+1) {
+//                        int count1 = 0;
+//                        for (CrazyPiece peca2 : pecasJogo) {
+//                            if (peca2.getIdTipo() == 0 && (peca2.getX() == xO + 1 || peca2.getX() == xO + 2) && peca2.getY() == yO) {
+//                                valida = false;
+//                                break;
+//                            }
+//                            count1++;
+//                            if (count1 == pecasJogo.size()) {
+//                                for (CrazyPiece peca3 : pecasJogo) {
+//                                    if (peca3.getIdTipo() == 0 && peca3.getX() == xO + 2 && peca3.getY() == yO + 1) {
+//                                        valida = false;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                    count++;
+//                    if (count == pecasJogo.size() && valida){
+//                        jogadaPonei.add(xO + 2 + ", " + (yO + 2));
+//                    }
+//                }
+//            }
+//        }
         return jogadaPonei;
     }
 

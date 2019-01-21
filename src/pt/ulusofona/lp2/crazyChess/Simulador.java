@@ -314,7 +314,6 @@ public class Simulador {
 
     List<Sugestao> obterSugestoesJogada(int xO, int yO) {
         List <Sugestao> sugestoes = new ArrayList<>();
-        int count = 0;
         for (CrazyPiece peca: pecasJogo){
             if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){
                 break;
@@ -326,10 +325,6 @@ public class Simulador {
             if (peca.getX() == xO && peca.getY() == yO && peca.getIdEquipa() == getIDEquipaAJogar()){
                 sugestoes = peca.sugerirJogadas(xO,yO,pecasJogo,tamanhoTabuleiro);
                 break;
-            }
-            count++;
-            if (count == pecasJogo.size()){
-                sugestoes.add("Pedido inválido");
             }
         }
         return sugestoes;

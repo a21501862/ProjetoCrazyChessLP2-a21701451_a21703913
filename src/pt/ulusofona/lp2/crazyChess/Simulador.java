@@ -170,9 +170,6 @@ public class Simulador {
                 }
             }
             leitorFicheiro.close();
-            if (pecasJogo.size() < numeroPecas){
-                numeroPecas = pecasJogo.size();
-            }
             setNumeroPecas();
         }
         catch(FileNotFoundException exception) {
@@ -252,7 +249,7 @@ public class Simulador {
     }
 
     public boolean jogoTerminado(){
-        if (jogo.getReisPretos() == 0 || jogo.getReisBrancos()== 0 ||(jogo.getPecasBrancas() + jogo.getPecasPretas() == 2 && jogo.getReisBrancos() == 1 && jogo.getReisPretos() == 1) || jogo.getTurnosSemCapturas()== 11){
+        if (jogo.getReisPretos() == 0 || jogo.getReisBrancos()== 0 ||(jogo.getPecasBrancas() + jogo.getPecasPretas() == 2 && jogo.getReisBrancos() == 1 && jogo.getReisPretos() == 1) || jogo.getTurnosSemCapturas()== 10){
             terminou = true;
             return true;
         }else{
@@ -464,6 +461,7 @@ public class Simulador {
         Map<String, List<String>> estatisticas = new HashMap<>();
         List<String> listaTop5Capturas =
                 pecas.stream()
+                        .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
                         .sorted((peca1 , peca2) -> peca2.getNrCapturas() - peca1.getNrCapturas())
                         .limit(5)
                         .map(peca -> peca.toString5())
@@ -473,6 +471,7 @@ public class Simulador {
 
         List<String> listaTop5Pontos =
                 pecas.stream()
+                        .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
                         .sorted((peca1 , peca2) -> peca2.getNrPontos() - peca1.getNrPontos())
                         .limit(5)
                         .map(peca -> peca.toString5())
@@ -482,6 +481,7 @@ public class Simulador {
 
         List<String> listaPecasMais5Capturas =
                 pecas.stream()
+                        .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
                         .filter(peca -> peca.getNrCapturas() > 5)
                         .map(peca -> peca.toString5())
                         .collect(toList());
@@ -489,11 +489,12 @@ public class Simulador {
 
         List<String> listaPecasMaisBaralhadas =
                 pecas.stream()
+                        .filter(peca -> peca.getJogadasInvalidas() != 0 || peca.getJogadasValidas() != 0)
                         .sorted((peca1 , peca2) -> (peca2.getJogadasInvalidas()/(peca2.getJogadasValidas() + peca2.getJogadasInvalidas())) - (peca1.getJogadasInvalidas()/(peca1.getJogadasValidas() + peca1.getJogadasInvalidas())))
                         .limit(3)
                         .map(peca -> peca.toStringPecasMaisBaralhadas())
                         .collect(toList());
-        estatisticas.put("3pecasMaisBaralhadas", listaPecasMaisBaralhadas);
+        estatisticas.put("3PecasMaisBaralhadas", listaPecasMaisBaralhadas);
 
         List<String> listatiposPecaCapturados =
                 pecas.stream()

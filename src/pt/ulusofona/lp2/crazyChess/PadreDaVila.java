@@ -24,7 +24,7 @@ public class PadreDaVila extends CrazyPiece {
         return 3;
     }
 
-    List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+    public List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List<Comparable> jogadaPadre = new ArrayList<>();
 //        int count = 0;
 //        int valorX = xO;

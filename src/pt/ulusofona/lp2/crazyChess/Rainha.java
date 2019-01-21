@@ -25,7 +25,7 @@ public class Rainha extends CrazyPiece {
         return 8;
     }
 
-    List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
+    public List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro) {
         List <Comparable> jogadaRainha = new ArrayList<>();
         int count = 0;
         int valorX = xO;

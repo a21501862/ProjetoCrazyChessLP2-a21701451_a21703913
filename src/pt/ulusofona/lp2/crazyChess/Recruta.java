@@ -24,7 +24,7 @@ public class Recruta extends CrazyPiece {
         return 1924;
     }
 
-    List<Comparable> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+    public List<Comparable> sugerirJogadasTurnoImpar(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
         List<Comparable> sugestaoRecruta = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//cima direita
@@ -69,7 +69,7 @@ public class Recruta extends CrazyPiece {
         return sugestaoRecruta;
     }
 
-    List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
+    public List<Comparable> sugerirJogadas(int xO, int yO,List<CrazyPiece> pecasJogo,int tamanhoTabuleiro){
         List<Comparable> sugestaoRecruta = new ArrayList<>();
         int count = 0;
         for (CrazyPiece peca: pecasJogo){//direita

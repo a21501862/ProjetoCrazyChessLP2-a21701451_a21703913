@@ -314,6 +314,9 @@ public class Simulador {
 
     public List<Comparable> obterSugestoesJogada(int xO, int yO) {
         List <Comparable> sugestoes = new ArrayList<>();
+        if (xO < 0 || xO > tamanhoTabuleiro-1 || yO < 0 || yO > tamanhoTabuleiro-1){
+            return sugestoes;
+        }
         for (CrazyPiece peca: pecasJogo){
             if ((peca.getIdTipo() == 6 && jogo.getTurno()%2!= 0) || (peca.getIdTipo()==7 && ((Joker)peca).getTipoJoker().equals("Lebre") && jogo.getTurno()%2!= 0) ){
                 break;

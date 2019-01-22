@@ -61,7 +61,7 @@ public class TorreHor extends CrazyPiece {
                                 valorX++;
                             }
                             break;
-                        }else if(pecaFronteira.getX()== 0 && pecaFronteira.getY() == yO && idRef != idEquipa) {
+                        }else if(pecaFronteira.getX()== tamanhoTabuleiro - 1 && pecaFronteira.getY() == yO && idRef != idEquipa) {
                             while (valorX + 1 <= tamanhoTabuleiro - 1) {
                                 if (valorX + 1 == tamanhoTabuleiro - 1){
                                     jogadaTorreHor.add(new Sugestao(valorX + 1, yO, pecaFronteira.getPontos()));

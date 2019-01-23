@@ -82,21 +82,51 @@ public class Joker extends CrazyPiece {
     boolean movePeca(int xO, int yO, int xD, int yD, Estatistica estatisticas, List<CrazyPiece> pecasJogo, InfoJogo jogo) {
         if (tipoJoker.equals("Rainha")) {
             CrazyPiece rainhaJoker = new Rainha(idPeca,idTipo,idEquipa,alcunha);
+            if(rainhaJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
+                jogadasValidas++;
+            }else{
+                jogadasInvalidas++;
+            }
             return rainhaJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo);
         } else if (tipoJoker.equals("Ponei Mágico")) {
             CrazyPiece poneiJoker = new PoneiMagico(idPeca,idTipo,idEquipa,alcunha);
+            if(poneiJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
+                jogadasValidas++;
+            }else{
+                jogadasInvalidas++;
+            }
             return poneiJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo);
         } else if(tipoJoker.equals("Padre da Vila")){
             CrazyPiece padreJoker = new PadreDaVila(idPeca,idTipo,idEquipa,alcunha);
+            if(padreJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
+                jogadasValidas++;
+            }else{
+                jogadasInvalidas++;
+            }
             return padreJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo);
         } else if(tipoJoker.equals("TorreH")){
             CrazyPiece torreHJoker = new TorreHor(idPeca,idTipo,idEquipa,alcunha);
+            if(torreHJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
+                jogadasValidas++;
+            }else{
+                jogadasInvalidas++;
+            }
             return torreHJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo);
         }else if(tipoJoker.equals("TorreV")){
             CrazyPiece torreVJoker = new TorreVert(idPeca,idTipo,idEquipa,alcunha);
+            if(torreVJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
+                jogadasValidas++;
+            }else{
+                jogadasInvalidas++;
+            }
             return torreVJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo);
         }else if(tipoJoker.equals("Lebre")){
             CrazyPiece lebreJoker = new Lebre(idPeca,idTipo,idEquipa,alcunha);
+            if(lebreJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo)){
+                jogadasValidas++;
+            }else{
+                jogadasInvalidas++;
+            }
             return lebreJoker.movePeca(xO,yO,xD,yD,estatisticas,pecasJogo,jogo);
         }
         return true;

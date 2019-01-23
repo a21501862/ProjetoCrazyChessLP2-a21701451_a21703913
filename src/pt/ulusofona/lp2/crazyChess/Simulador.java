@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -518,10 +519,64 @@ public class Simulador {
                         .filter(peca -> peca.getIdTipo() == 0)
                         .mapToInt(CrazyPiece::getNrCapturas).sum();
 
-        String capturasReis = "0:" + nrCapturasRei;
+        Map<Integer, Integer> capturas = new HashMap<>();
+        capturas.put(0,nrCapturasRei);
 
-        List<String> listatiposPecaCapturados = new ArrayList<>();
-        listatiposPecaCapturados.add(capturasReis);
+        int nrCapturasRainha =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 1)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(1,nrCapturasRainha);
+
+        int nrCapturasPonei =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 2)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(2,nrCapturasPonei);
+
+        int nrCapturasPadre =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 3)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(3,nrCapturasPadre);
+
+        int nrCapturasTorreH =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 4)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(4,nrCapturasTorreH);
+
+        int nrCapturasTorreV =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 5)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(5,nrCapturasTorreV);
+
+        int nrCapturasLebre =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 6)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(6,nrCapturasLebre);
+
+        int nrCapturasJoker =
+                pecas.stream()
+                        .filter(peca -> peca.getIdTipo() == 7)
+                        .mapToInt(CrazyPiece::getNrCapturas).sum();
+
+        capturas.put(7,nrCapturasJoker);
+
+        List<String> listatiposPecaCapturados = capturas.entrySet().stream()
+                .filter(p -> p.getValue() != 0)
+                .sorted((p1,p2) -> p2.getValue() - p1.getValue())
+                .map(p -> p.getKey() + ":" + p.getValue())
+                .collect(Collectors.toList());
+
 
         estatisticas.put("tiposPecaCapturados", listatiposPecaCapturados);
         return estatisticas;

@@ -49,7 +49,7 @@ public class TestSimulador {
     public void sugestaoPedidoInvalido() throws IOException {
         simulador.iniciaJogo(ficheiroTorreHor);
         simulador.idEquipaAtual = 20;
-        List<Comparable> sugestoesEsperadas = Arrays.asList("Pedido inválido");
+        List<Comparable> sugestoesEsperadas = Arrays.asList();
         Collections.sort(sugestoesEsperadas);
         List<Comparable> sugestoesObtidas  = simulador.obterSugestoesJogada(0,0);
         Collections.sort(sugestoesObtidas);
@@ -190,10 +190,8 @@ public class TestSimulador {
     public void test01obterSugestoesJogadaReiBranco1() throws IOException{
         simulador.iniciaJogo(ficheiroRei);
         simulador.idEquipaAtual = 20;
-        List<Comparable> sugestoesEsperadas = Arrays.asList("4, 4");
-        Collections.sort(sugestoesEsperadas);
+        List<Comparable> sugestoesEsperadas = Arrays.asList("4, 4, (infinito)");
         List<Comparable> sugestoesObtidas  = simulador.obterSugestoesJogada(5,4);
-        Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
 
@@ -402,10 +400,8 @@ public class TestSimulador {
     @Test
     public void test01obterSugestoesJogadaRainha() throws IOException{
         simulador.iniciaJogo(ficheiroRainha);
-        List<Comparable> sugestoesEsperadas = Arrays.asList("2, 2", "3, 3");
-        Collections.sort(sugestoesEsperadas);
+        List<Comparable> sugestoesEsperadas = Arrays.asList("2, 2, 0", "3, 3, 0");
         List<Comparable> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
-        Collections.sort(sugestoesObtidas);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
     }
     @Test

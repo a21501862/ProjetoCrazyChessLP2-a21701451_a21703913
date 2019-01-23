@@ -94,7 +94,7 @@ public class TorreHor extends CrazyPiece {
                 }else{
                     while (valorX-1 >= 0) {
                         jogadaTorreHor.add(new Sugestao(valorX-1, yO, 0));
-                        valorX++;
+                        valorX--;
                     }
                 }
             }

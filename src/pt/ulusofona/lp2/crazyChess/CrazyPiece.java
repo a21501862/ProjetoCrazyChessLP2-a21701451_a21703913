@@ -168,8 +168,7 @@ public abstract class CrazyPiece{
         return idEquipa + ":" + alcunha + ":" + jogadasInvalidas + ":" + jogadasValidas;
     }
 
-    public String toStringTiposPecaCapturados(){
-        return idTipo + ":" + nrCapturas;
+    boolean foiCapturada(){
+        return capturada;
     }
-
 }

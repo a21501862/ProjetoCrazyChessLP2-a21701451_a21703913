@@ -190,9 +190,9 @@ public class TestSimulador {
     public void test01obterSugestoesJogadaReiBranco1() throws IOException{
         simulador.iniciaJogo(ficheiroRei);
         simulador.idEquipaAtual = 20;
-        List<Comparable> sugestoesEsperadas = Arrays.asList("4, 4, (infinito)");
         List<Comparable> sugestoesObtidas  = simulador.obterSugestoesJogada(5,4);
-        assertEquals(sugestoesEsperadas, sugestoesObtidas);
+        String sugestao = sugestoesObtidas.get(0).toString();
+        assertEquals("4, 4, (infinito)", sugestao);
     }
 
     //RAINHA
@@ -403,6 +403,15 @@ public class TestSimulador {
         List<Comparable> sugestoesEsperadas = Arrays.asList("2, 2, 0", "3, 3, 0");
         List<Comparable> sugestoesObtidas  = simulador.obterSugestoesJogada(4,4);
         assertEquals(sugestoesEsperadas, sugestoesObtidas);
+
+
+
+
+//        simulador.iniciaJogo(ficheiroRei);
+//        simulador.idEquipaAtual = 20;
+//        List<Comparable> sugestoesObtidas  = simulador.obterSugestoesJogada(5,4);
+//        String sugestao = sugestoesObtidas.get(0).toString();
+//        assertEquals("4, 4, (infinito)", sugestao);
     }
     @Test
     public void test02obterSugestoesJogadaRainha() throws IOException{

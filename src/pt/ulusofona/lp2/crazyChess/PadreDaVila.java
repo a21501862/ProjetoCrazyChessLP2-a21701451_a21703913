@@ -222,7 +222,7 @@ public class PadreDaVila extends CrazyPiece {
                         count++;
                     }
                 }else{
-                    
+
                 }
             }
         }

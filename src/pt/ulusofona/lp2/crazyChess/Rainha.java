@@ -190,7 +190,7 @@ public class Rainha extends CrazyPiece {
             count ++;
             if (count == pecasJogo.size()){
                 count=0;
-                if(encontrouPeca && idRef != idEquipa && tipoRef!=1 || tipoJoker.equals("Rainha")){
+                if(encontrouPeca && idRef != idEquipa && tipoRef!=1 && !(tipoJoker.equals("Rainha"))){
                     while (valorY + 1 <= yRef && count < 5){
                         if (valorY + 1 == yRef){
                             jogadaRainha.add(new Sugestao(xO,valorY+1,pontosRef));

@@ -30,15 +30,17 @@ public class TorreHor extends CrazyPiece {
         int xRef = tamanhoTabuleiro - 1;
         int idRef = idEquipa;
         int pontosRef = 0;
+        boolean encontrouPeca = false;
         for (CrazyPiece peca: pecasJogo){//direita
             if (peca.getX() > valorX && peca.getX() <= xRef && peca.getY() == yO){
                 xRef = peca.getX();
                 idRef = peca.getIdEquipa();
                 pontosRef = peca.getPontos();
+                encontrouPeca = true;
             }
             count ++;
             if (count == pecasJogo.size()){
-                if(xRef != tamanhoTabuleiro-1 && idRef != idEquipa){
+                if(encontrouPeca && idRef != idEquipa){
                     while (valorX + 1 <= xRef){
                         if (valorX+1 == xRef){
                             jogadaTorreHor.add(new Sugestao(valorX+1, yO, pontosRef));
@@ -47,38 +49,15 @@ public class TorreHor extends CrazyPiece {
                         }
                         valorX++;
                     }
-                }else if (xRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
+                }else if (encontrouPeca && idRef == idEquipa) {
                     while (valorX+1 < xRef) {
                         jogadaTorreHor.add(new Sugestao(valorX+1, yO, 0));
                         valorX++;
                     }
                 }else{
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo){
-                        if(pecaFronteira.getX()== tamanhoTabuleiro-1 && pecaFronteira.getY() == yO && idRef == idEquipa){
-                            while (valorX + 1 < tamanhoTabuleiro -1){
-                                jogadaTorreHor.add(new Sugestao(valorX + 1,yO,0));
-                                valorX++;
-                            }
-                            break;
-                        }else if(pecaFronteira.getX()== tamanhoTabuleiro - 1 && pecaFronteira.getY() == yO && idRef != idEquipa) {
-                            while (valorX + 1 <= tamanhoTabuleiro - 1) {
-                                if (valorX + 1 == tamanhoTabuleiro - 1){
-                                    jogadaTorreHor.add(new Sugestao(valorX + 1, yO, pecaFronteira.getPontos()));
-                                }else{
-                                    jogadaTorreHor.add(new Sugestao(valorX + 1, yO, 0));
-                                }
-                                valorX++;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira ++;
-                        if (verificarPecaFronteira == pecasJogo.size()){
-                            while (valorX + 1 <= tamanhoTabuleiro -1){
-                                jogadaTorreHor.add(new Sugestao(valorX + 1, yO, 0));
-                                valorX++;
-                            }
-                        }
+                    while (valorX+1 <= tamanhoTabuleiro - 1) {
+                        jogadaTorreHor.add(new Sugestao(valorX+1, yO, 0));
+                        valorX++;
                     }
                 }
             }
@@ -88,15 +67,17 @@ public class TorreHor extends CrazyPiece {
         xRef = 0;
         idRef = idEquipa;
         pontosRef = 0;
+        encontrouPeca = false;
         for (CrazyPiece peca: pecasJogo){//esquerda
             if (peca.getX() < valorX && peca.getX() >= xRef && peca.getY() == yO){
                 xRef = peca.getX();
                 idRef = peca.getIdEquipa();
                 pontosRef = peca.getPontos();
+                encontrouPeca = true;
             }
             count ++;
             if (count == pecasJogo.size()){
-                if(xRef != 0 && idRef != idEquipa){
+                if(encontrouPeca && idRef != idEquipa){
                     while (valorX - 1 >= xRef){
                         if (valorX-1 == xRef){
                             jogadaTorreHor.add(new Sugestao(valorX-1, yO, pontosRef));
@@ -105,38 +86,15 @@ public class TorreHor extends CrazyPiece {
                         }
                         valorX--;
                     }
-                }else if (xRef != 0 && idRef == idEquipa) {
+                }else if (encontrouPeca && idRef == idEquipa) {
                     while (valorX-1 > xRef) {
                         jogadaTorreHor.add(new Sugestao(valorX-1, yO, 0));
                         valorX--;
                     }
                 }else{
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo){
-                        if(pecaFronteira.getX()== 0 && pecaFronteira.getY() == yO && idRef == idEquipa){
-                            while (valorX - 1 > 0){
-                                jogadaTorreHor.add(new Sugestao(valorX - 1, yO, 0));
-                                valorX--;
-                            }
-                            break;
-                        }else if(pecaFronteira.getX()== 0 && pecaFronteira.getY() == yO && idRef != idEquipa) {
-                            while (valorX - 1 >= 0) {
-                                if (valorX - 1 == 0){
-                                    jogadaTorreHor.add(new Sugestao(valorX - 1, yO, pecaFronteira.getPontos()));
-                                }else{
-                                    jogadaTorreHor.add(new Sugestao(valorX - 1, yO, 0));
-                                }
-                                valorX--;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira ++;
-                        if (verificarPecaFronteira == pecasJogo.size()){
-                            while (valorX - 1 >= 0){
-                                jogadaTorreHor.add(new Sugestao(valorX - 1,yO,0));
-                                valorX--;
-                            }
-                        }
+                    while (valorX-1 >= 0) {
+                        jogadaTorreHor.add(new Sugestao(valorX-1, yO, 0));
+                        valorX++;
                     }
                 }
             }

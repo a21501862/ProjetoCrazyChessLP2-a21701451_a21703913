@@ -49,14 +49,15 @@ public class PadreDaVila extends CrazyPiece {
 //            count++;
 //            if (count == pecasJogo.size()) {
 //                count = 0;
-//                if (xRef != 0 && yRef != 0 && idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
+//                if (idRef != idEquipa && tipoRef != 1 && !(tipoJoker.equals("Rainha"))) {
 //                    while (valorY - 1 >= yRef && valorX - 1 >= xRef && count < 3) {
+//                        if ()
 //                        jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
 //                        valorX--;
 //                        valorY--;
 //                        count++;
 //                    }
-//                } else if (yRef != 0 && xRef != 0 && idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
+//                } else if (idRef != idEquipa && (tipoRef == 1 || tipoJoker.equals("Rainha"))) {
 //                    while (valorY - 1 >= yRef && valorX - 1 >= xRef && count < 3) {
 //                        if (!(valorY - 1 == yRef + 1 && valorX - 1 == xRef + 1)) {
 //                            jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
@@ -65,7 +66,7 @@ public class PadreDaVila extends CrazyPiece {
 //                        valorY--;
 //                        count++;
 //                    }
-//                } else if (yRef != 0 && xRef != 0 && idRef == idEquipa) {
+//                } else if (idRef == idEquipa) {
 //                    while (valorY - 1 > yRef && valorX - 1 > xRef && count < 3) {
 //                        jogadaPadre.add(valorX - 1 + ", " + (valorY - 1));
 //                        valorX--;

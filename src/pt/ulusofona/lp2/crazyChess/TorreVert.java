@@ -30,15 +30,17 @@ public class TorreVert extends CrazyPiece {
         int yRef = tamanhoTabuleiro - 1;
         int idRef = idEquipa;
         int pontosRef = 0;
+        boolean encontrouPeca = false;
         for (CrazyPiece peca: pecasJogo){//baixo
             if (peca.getY() > valorY && peca.getY() <= yRef && peca.getX() == xO){
                 yRef = peca.getY();
                 idRef = peca.getIdEquipa();
                 pontosRef = peca.getPontos();
+                encontrouPeca = true;
             }
             count ++;
             if (count == pecasJogo.size()){
-                if(yRef != tamanhoTabuleiro-1 && idRef != idEquipa){
+                if(encontrouPeca && idRef != idEquipa){
                     while (valorY + 1 <= yRef){
                         if (valorY+1 == yRef){
                             jogadaTorreVer.add(new Sugestao(xO, (valorY + 1), pontosRef));
@@ -47,38 +49,15 @@ public class TorreVert extends CrazyPiece {
                         }
                         valorY++;
                     }
-                }else if (yRef != tamanhoTabuleiro-1 && idRef == idEquipa) {
+                }else if (encontrouPeca && idRef == idEquipa) {
                     while (valorY+1 < yRef) {
                         jogadaTorreVer.add(new Sugestao(xO ,(valorY+1),0));
                         valorY++;
                     }
                 }else{
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo){
-                        if(pecaFronteira.getY()== tamanhoTabuleiro-1 && pecaFronteira.getX() == xO && idRef == idEquipa){
-                            while (valorY + 1 < tamanhoTabuleiro -1){
-                                jogadaTorreVer.add(new Sugestao(xO,(valorY+1),0));
-                                valorY++;
-                            }
-                            break;
-                        }else if(pecaFronteira.getY()== tamanhoTabuleiro - 1 && pecaFronteira.getX() == xO && idRef != idEquipa) {
-                            while (valorY + 1 <= tamanhoTabuleiro-1) {
-                                if (valorY + 1 == tamanhoTabuleiro-1){
-                                    jogadaTorreVer.add(new Sugestao( xO, valorY + 1, pecaFronteira.getPontos()));
-                                }else{
-                                    jogadaTorreVer.add(new Sugestao(xO, valorY + 1, 0));
-                                }
-                                valorY++;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira ++;
-                        if (verificarPecaFronteira == pecasJogo.size()){
-                            while (valorY + 1 <= tamanhoTabuleiro -1){
-                                jogadaTorreVer.add(new Sugestao(xO,(valorY+1),0));
-                                valorY++;
-                            }
-                        }
+                    while (valorY+1 <= tamanhoTabuleiro - 1) {
+                        jogadaTorreVer.add(new Sugestao(xO, valorY + 1, 0));
+                        valorY++;
                     }
                 }
             }
@@ -88,20 +67,22 @@ public class TorreVert extends CrazyPiece {
         yRef = 0;
         idRef = idEquipa;
         pontosRef = 0;
+        encontrouPeca = false;
         for (CrazyPiece peca: pecasJogo){//cima
             if (peca.getY() < valorY && peca.getY() >= yRef && peca.getX() == xO){
                 yRef = peca.getY();
                 idRef = peca.getIdEquipa();
                 pontosRef = peca.getPontos();
+                encontrouPeca = true;
             }
             count ++;
             if (count == pecasJogo.size()){
-                if(yRef != 0 && idRef != idEquipa){
+                if(encontrouPeca && idRef != idEquipa){
                     while (valorY - 1 >= yRef){
                         jogadaTorreVer.add(new Sugestao(xO,(valorY-1), peca.getPontos()));
                         valorY--;
                     }
-                }else if (yRef != 0 && idRef == idEquipa) {
+                }else if (encontrouPeca && idRef == idEquipa) {
                     while (valorY-1 > yRef) {
                         if (valorY-1 == yRef){
                             jogadaTorreVer.add(new Sugestao(xO, (valorY - 1), pontosRef));
@@ -111,32 +92,9 @@ public class TorreVert extends CrazyPiece {
                         valorY--;
                     }
                 }else{
-                    int verificarPecaFronteira = 0;
-                    for (CrazyPiece pecaFronteira : pecasJogo){
-                        if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == xO && idRef == idEquipa){
-                            while (valorY - 1 >0){
-                                jogadaTorreVer.add(new Sugestao(xO,(valorY-1),0));
-                                valorY--;
-                            }
-                            break;
-                        }else if(pecaFronteira.getY()== 0 && pecaFronteira.getX() == xO && idRef != idEquipa) {
-                            while (valorY - 1 >= 0) {
-                                if (valorY - 1 == 0){
-                                    jogadaTorreVer.add(new Sugestao( xO, valorY - 1, pecaFronteira.getPontos()));
-                                }else{
-                                    jogadaTorreVer.add(new Sugestao(xO, valorY - 1, 0));
-                                }
-                                valorY--;
-                            }
-                            break;
-                        }
-                        verificarPecaFronteira ++;
-                        if (verificarPecaFronteira == pecasJogo.size()){
-                            while (valorY - 1 >= 0){
-                                jogadaTorreVer.add(new Sugestao(xO,(valorY-1), 0));
-                                valorY--;
-                            }
-                        }
+                    while (valorY-1 >= 0) {
+                        jogadaTorreVer.add(new Sugestao(xO, valorY - 1, 0));
+                        valorY--;
                     }
                 }
             }
